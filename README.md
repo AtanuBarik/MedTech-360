@@ -58,21 +58,21 @@ The prototype follows an Evalueserve-inspired design system with deep purple sur
 
 > Authentication, SSO, roles, dashboard metrics, alerts, search, and AI responses are simulated in the frontend for prototype purposes. Production SSO/IAM and permissions require enterprise integration.
 
+## Access the live frontend
+
+GitHub Pages is enabled from the `gh-pages` branch. The live site is:
+
+`https://atanubarik.github.io/MedTech-360/`
+
+The `gh-pages` branch currently mirrors the latest deployed frontend. The repository includes `.nojekyll` so GitHub Pages serves the static prototype directly without Jekyll processing.
+
 ## Access locally
 
 Download or clone this repository and open `index.html` directly in a modern browser. No Python, Node.js, package installation, or local server is required.
 
-## Publish with GitHub Pages
+## Updating the published site
 
-1. Open this repository on GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select branch **main** and folder **/(root)**.
-5. Click **Save**.
-6. Once deployment finishes, the expected URL is:
-   `https://atanubarik.github.io/MedTech-360/`
-
-The repository includes `.nojekyll` so GitHub Pages serves the static prototype directly without Jekyll processing.
+The working source remains on `main`. After frontend changes are committed to `main`, update the `gh-pages` branch to the same approved commit to trigger a GitHub Pages rebuild and deployment.
 
 ## Production hardening
 
