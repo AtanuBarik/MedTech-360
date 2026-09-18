@@ -81,18 +81,21 @@ function executiveGrowthChart(rows){
 }
 
 function executiveRegionalMap(regions){
-  return '<div class="exec-map-shell"><div class="exec-map-canvas"><svg class="exec-world-map" viewBox="0 0 760 355" role="img" aria-label="Illustrative regional opportunity map">'+
-    '<rect x="0" y="0" width="760" height="355" rx="18" fill="#f8fafc"/>'+
-    '<g class="world-land">'+
-      '<path d="M66 86 L115 50 L178 57 L225 91 L203 130 L166 145 L145 193 L96 174 L76 127 Z"/>'+
-      '<path d="M184 194 L222 202 L244 239 L232 295 L205 333 L179 288 L168 239 Z"/>'+
-      '<path d="M345 67 L400 61 L430 86 L416 120 L373 122 L346 104 Z"/>'+
-      '<path d="M383 129 L436 125 L472 162 L461 223 L426 284 L391 258 L373 195 Z"/>'+
-      '<path d="M440 70 L525 54 L635 72 L702 112 L670 161 L617 173 L583 221 L529 203 L494 160 L452 137 Z"/>'+
-      '<path d="M602 246 L654 240 L687 268 L670 307 L621 311 L594 279 Z"/>'+
-    '</g>'+
-    regions.map((r,i)=>'<g class="map-pin"><circle cx="'+r.x*1.32+'" cy="'+r.y*1.28+'" r="20" fill="#fff" stroke="#e8005a" stroke-width="3"/><circle cx="'+r.x*1.32+'" cy="'+r.y*1.28+'" r="14" fill="#e8005a"/><text x="'+r.x*1.32+'" y="'+(r.y*1.28+4)+'" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">'+(i+1)+'</text><title>'+esc(r.name)+': $'+r.size.toFixed(1)+'B · Opportunity index '+r.index+'</title></g>').join('')+
-    '</svg></div><div class="exec-region-grid">'+regions.map((r,i)=>'<article><span class="region-num">'+(i+1)+'</span><div><strong>'+esc(r.name)+'</strong><b>$'+r.size.toFixed(1)+'B · Index '+r.index+'</b><p>'+esc(r.story)+'</p></div></article>').join('')+'</div></div>';
+  const pinPositions={
+    "North America":{left:"18.0%",top:"40.5%"},
+    "Europe":{left:"50.0%",top:"35.5%"},
+    "Asia-Pacific":{left:"77.0%",top:"48.5%"},
+    "Latin America":{left:"29.0%",top:"69.0%"},
+    "Middle East & Africa":{left:"56.5%",top:"58.5%"}
+  };
+  const mapUrl="https://upload.wikimedia.org/wikipedia/commons/8/8e/BlankMap_World_simple.svg";
+  return '<div class="exec-map-shell"><div class="exec-map-canvas executive-image-map">'+
+    '<div class="exec-map-image-frame">'+
+      '<img class="exec-map-image" src="'+mapUrl+'" alt="World map used for regional market opportunity visualization" loading="lazy" referrerpolicy="no-referrer" />'+
+      regions.map((r,i)=>{const p=pinPositions[r.name]||{left:"50%",top:"50%"};return '<button class="exec-map-pin" style="left:'+p.left+';top:'+p.top+'" title="'+esc(r.name)+': $'+r.size.toFixed(1)+'B · Opportunity index '+r.index+'" aria-label="'+esc(r.name)+' regional opportunity"><span>'+(i+1)+'</span></button>'}).join('')+
+    '</div>'+
+    '<div class="exec-map-caption"><span>Regional opportunity visualization</span><small>Numbered pins correspond to the regional intelligence cards; market size and opportunity index are illustrative dashboard values.</small></div>'+
+  '</div><div class="exec-region-grid">'+regions.map((r,i)=>'<article tabindex="0"><span class="region-num">'+(i+1)+'</span><div><strong>'+esc(r.name)+'</strong><b>$'+r.size.toFixed(1)+'B · Index '+r.index+'</b><p>'+esc(r.story)+'</p></div></article>').join('')+'</div></div>';
 }
 
 function executiveDonut(items){
