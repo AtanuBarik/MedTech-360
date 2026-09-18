@@ -9,6 +9,11 @@ function resetCompanyProfileState(){
 }
 function cpUnique(arr){return [...new Set(arr.filter(Boolean))].sort((a,b)=>a.localeCompare(b))}
 function cpOptions(values,selected){return values.map(v=>'<option value="'+esc(v)+'" '+(v===selected?'selected':'')+'>'+esc(v)+'</option>').join('')}
+function cpLogoMark(name){
+  const domain=typeof companyDomain==='function'?companyDomain(name):null;
+  const initials=name.split(/\\s|\\//).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+  return '<span class="cp-tab-logo">'+(domain?'<img src="https://www.google.com/s2/favicons?domain='+domain+'&sz=64" alt="" onerror="this.style.display=\\'none\\';this.nextElementSibling.style.display=\\'block\\'"/><b style="display:none">'+esc(initials)+'</b>':'<b>'+esc(initials)+'</b>')+'</span>';
+}
 function cpMatches(p){
   const s=companyProfileState;
   const regionOk=s.region==="All Regions"||(p.regions||[]).includes(s.region);
@@ -98,11 +103,11 @@ function renderCompanyProfilesPage(){
 
   $('pageContent').innerHTML=
     '<div class="page-head cp-page-head"><div class="title-wrap"><div class="breadcrumb"><button onclick="navigate(\'executive\')">Executive Hub</button> / <button onclick="openSegment(\'ci\')">Competitive Intelligence</button> / Company Profiles</div><h1>Company Profiles</h1><p>Deep-dive competitor intelligence for <b>'+esc(currentDomain)+'</b>, integrating corporate footprint, financial performance, portfolio, regional presence, strategy, technology, M&A and transformation signals.</p></div></div>'+
-    '<section class="cp-filter-shell"><div class="cp-filter"><label>Company<select onchange="updateCompanyProfileFilter(\'company\',this.value)">'+profiles.map(p=>'<option value="'+esc(p.id)+'" '+(p.id===profile.id?'selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select></label></div>'+
+    '<section class="cp-filter-shell"><div class="cp-filter"><label>Company<select onchange="updateCompanyProfileFilter(\'company\',this.value)">'+filtered.map(p=>'<option value="'+esc(p.id)+'" '+(p.id===profile.id?'selected':'')+'>'+esc(p.name)+'</option>').join('')+'</select></label></div>'+
     '<div class="cp-filter"><label>Region<select onchange="updateCompanyProfileFilter(\'region\',this.value)">'+cpOptions(["All Regions",...regions],companyProfileState.region)+'</select></label></div>'+
     '<div class="cp-filter"><label>Portfolio & Services<select onchange="updateCompanyProfileFilter(\'portfolio\',this.value)">'+cpOptions(["All Portfolio & Services",...portfolios],companyProfileState.portfolio)+'</select></label></div>'+
     '<div class="cp-filter"><label>Focus of Company<select onchange="updateCompanyProfileFilter(\'focus\',this.value)">'+cpOptions(["All Focus Areas",...focuses],companyProfileState.focus)+'</select></label></div></section>'+
-    '<section class="cp-matchbar"><div><strong>'+filtered.length+'</strong><span>matching companies</span></div><div class="cp-company-tabs">'+filtered.map(p=>'<button class="'+(p.id===profile.id?'active':'')+'" onclick="selectCompanyProfile(\''+p.id+'\')">'+companyLogo(p.logoName||p.name)+'<span>'+esc(p.name)+'</span></button>').join('')+'</div></section>'+
+    '<section class="cp-matchbar"><div><strong>'+filtered.length+'</strong><span>matching companies</span></div><div class="cp-company-tabs">'+filtered.map(p=>'<button class="'+(p.id===profile.id?'active':'')+'" onclick="selectCompanyProfile(\''+p.id+'\')">'+cpLogoMark(p.logoName||p.name)+'<span>'+esc(p.name)+'</span></button>').join('')+'</div></section>'+
 
     '<section class="cp-company-hero"><div class="cp-company-title">'+companyLogo(profile.logoName||profile.name)+'<div><span>'+esc(currentDomain)+'</span><h2>'+esc(profile.name)+'</h2><p>'+esc(profile.overview)+'</p></div></div><div class="cp-meta-grid">'+
       '<div><span>HQ</span><strong>'+esc(profile.hq)+'</strong></div><div><span>Founded</span><strong>'+esc(profile.founded)+'</strong></div><div><span>Company type</span><strong>'+esc(profile.type)+'</strong></div><div><span>Employees</span><strong>'+esc(profile.employees)+'</strong></div></div>'+
