@@ -103,13 +103,22 @@ function renderNewsAlertsPage(){
 }
 
 /* PRODUCT BENCHMARKING V2 */
-function ci2FeatureDimensions(){
-  return ["Automation / workflow","Digital connectivity","Clinical evidence","Ease of use","Interoperability","Regional availability","Portfolio breadth","Service / support"];
+function ci2FeatureDimensions(lens){
+  const all=["Automation / workflow","Technology differentiation","Digital connectivity","Clinical evidence","Ease of use","Interoperability","Regional availability","Portfolio breadth","Service / support"];
+  const map={
+    "Features":["Automation / workflow","Ease of use","Service / support","Portfolio breadth"],
+    "Technology":["Technology differentiation","Automation / workflow","Interoperability"],
+    "Digital":["Digital connectivity","Interoperability","Automation / workflow"],
+    "Regional reach":["Regional availability","Service / support","Portfolio breadth"],
+    "Evidence":["Clinical evidence","Technology differentiation","Service / support"]
+  };
+  return map[lens]||all;
 }
 function ci2FeatureScore(p,dim,category,region){
   const blob=JSON.stringify(p).toLowerCase(),products=(p.products||[]).filter(x=>category==="All categories"||x.category===category),regional=(p.regions||[]).includes(region)||region==="All Regions";
   const keys={
     "Automation / workflow":["automation","workflow","robot","automated","throughput"],
+    "Technology differentiation":["technology","sensor","robot","optical","molecular","assay","implant","algorithm","platform"],
     "Digital connectivity":["digital","cloud","app","connected","software","data"],
     "Clinical evidence":["clinical","evidence","trial","study","outcomes"],
     "Ease of use":["easy","simple","compact","workflow","patient-friendly","tubeless"],
@@ -140,7 +149,7 @@ function ci2ProductOpportunity(a,b,category,region){
 }
 function renderProductPortfolioPage(){
   const s=ciIntelState["product-portfolio"],names=ciNames(),profiles=ciProfiles();if(!names.includes(s.companyA))s.companyA=names[0]||"";if(!names.includes(s.companyB)||s.companyB===s.companyA)s.companyB=names.find(n=>n!==s.companyA)||s.companyA;
-  const a=ciProfileByName(s.companyA),b=ciProfileByName(s.companyB),regions=ciUnique(profiles.flatMap(p=>p.regions||[])),cats=ciProductCategories(),dims=ci2FeatureDimensions();
+  const a=ciProfileByName(s.companyA),b=ciProfileByName(s.companyB),regions=ciUnique(profiles.flatMap(p=>p.regions||[])),cats=ciProductCategories(),dims=ci2FeatureDimensions(s.lens);
   const scoreRows=dims.map(d=>({label:d,value:Math.round((ci2FeatureScore(a,d,s.category,s.region)+ci2FeatureScore(b,d,s.category,s.region))/2)}));
   $('breadcrumbSmall').textContent='Competitive Intelligence / Product & Portfolio Benchmarking';$('breadcrumbTitle').textContent=currentDomain+' — Product Benchmarking';
   $('pageContent').innerHTML=ciPageHead("Product & Portfolio Benchmarking",'Multi-dimensional benchmarking of representative competitor portfolios in <b>'+esc(currentDomain)+'</b>, combining product attributes, workflow fit, technology, evidence, regional availability and recent innovation signals.')+
@@ -234,8 +243,9 @@ function renderSocialDigitalPage(){
 }
 
 /* STRATEGY V2 */
-function ci2StrategyNewsSignals(p){
-  const news=ciSyntheticNews().filter(n=>n.company===p.name&&ciDateVal(n.date)>=new Date("2025-09-18T00:00:00"));
+function ci2StrategyNewsSignals(p,period){
+  const cut=ciPeriodCutoff(period||"1 year");
+  const news=ciSyntheticNews().filter(n=>n.company===p.name&&ciDateVal(n.date)>=cut);
   const map={"Product / portfolio":["Product & Services"],"Evidence / R&D":["Clinical, R&D"],"M&A / ecosystem":["Partnership, M&A"],"Organization":["Leadership Changes","Organizational Updates"],"Financial execution":["Financials"]};
   return Object.entries(map).map(([label,themes])=>({label,value:news.filter(n=>themes.includes(ciTheme(n))).length}));
 }
@@ -261,10 +271,10 @@ function renderStrategyPositioningPage(){
       {label:"Tech-enabled innovators",value:selected.filter(p=>ci2Archetype(p)==="Tech-enabled innovator").length,note:"Directional archetype"},
       {label:"High digital emphasis",value:selected.filter(p=>ciStrategyScore2(p,"digital")>=85).length,note:"Illustrative index >=85"},
       {label:"High R&D emphasis",value:selected.filter(p=>ciStrategyScore2(p,"rd")>=85).length,note:"Illustrative index >=85"},
-      {label:"M&A / ecosystem signals",value:selected.reduce((a,p)=>a+ci2StrategyNewsSignals(p).find(x=>x.label==="M&A / ecosystem").value,0),note:"Last year"},
+      {label:"M&A / ecosystem signals",value:selected.reduce((a,p)=>a+ci2StrategyNewsSignals(p,s.period).find(x=>x.label==="M&A / ecosystem").value,0),note:"Last year"},
       {label:"Regions represented",value:ciUnique(selected.flatMap(p=>p.regions||[])).length,note:"Documented presence"}
     ])+'</section>'+
-    '<section class="section"><div class="grid-2"><div class="card"><div class="card-title"><h3>Innovation × digital positioning map</h3><small>Directional public-strategy interpretation</small></div>'+ciPositionMatrix(selected)+'</div><div class="card"><div class="card-title"><h3>One-year strategy-signal mix</h3><small>News evidence across competitive set</small></div>'+ci2Heatmap(selected.map(p=>p.name),signalThemes,(name,t)=>ci2StrategyNewsSignals(selected.find(p=>p.name===name)).find(x=>x.label===t)?.value||0)+'</div></div></section>'+
+    '<section class="section"><div class="grid-2"><div class="card"><div class="card-title"><h3>Innovation × digital positioning map</h3><small>Directional public-strategy interpretation</small></div>'+ciPositionMatrix(selected)+'</div><div class="card"><div class="card-title"><h3>One-year strategy-signal mix</h3><small>News evidence across competitive set</small></div>'+ci2Heatmap(selected.map(p=>p.name),signalThemes,(name,t)=>ci2StrategyNewsSignals(selected.find(p=>p.name===name),s.period).find(x=>x.label===t)?.value||0)+'</div></div></section>'+
     '<section class="section">'+ciSectionTitle("Strategic emphasis heatmap","Compares business, product, channel, geography, digital, R&D and expansion emphasis across the selected companies.","Illustrative analyst index")+'<div class="card"><div class="table-scroll"><table class="data-table ci-heatmap"><thead><tr><th>Company</th><th>Archetype</th>'+keys.map(k=>'<th>'+esc(k==="rd"?"R&D":k[0].toUpperCase()+k.slice(1))+'</th>').join('')+'</tr></thead><tbody>'+heatRows.map(r=>'<tr><td><strong>'+esc(r.p.name)+'</strong></td><td>'+esc(ci2Archetype(r.p))+'</td>'+r.vals.map(x=>'<td><span style="--heat:'+x.v+'">'+x.v+'</span></td>').join('')+'</tr>').join('')+'</tbody></table></div></div></section>'+
     '<section class="section">'+ciSectionTitle("Regional strategic presence","Documented geographic presence across the competitive set; useful for identifying market-density and white-space questions.","Profile evidence")+'<div class="card">'+ci2RegionalMatrix(selected,regions)+'</div></section>'+
     '<section class="section">'+ciSectionTitle("Strategy cards","Detailed strategic narrative and monitoring agenda for each selected company.","Company reporting + analyst synthesis")+'<div class="ci-strategy-company-grid">'+selected.map(p=>'<article class="card"><div class="ci-strategy-company-head">'+cpCompanyLogo(p.name)+'<div><h3>'+esc(p.name)+'</h3><p>'+esc(ci2Archetype(p)+' · '+(p.focusTags||[]).join(" · "))+'</p></div></div><div class="ci-strategy-lines">'+keys.map(k=>'<div><b>'+esc(k==="rd"?"R&D":k[0].toUpperCase()+k.slice(1))+'</b><p>'+esc(ciStrategyValue(p,k))+'</p></div>').join('')+'</div><div class="ci-watch"><b>Key watchpoints</b><p>'+esc((p.riskWatchpoints||["Execution against stated strategy","Competitive response","Market access / reimbursement"]).join(" · "))+'</p></div></article>').join('')+'</div></section>';
