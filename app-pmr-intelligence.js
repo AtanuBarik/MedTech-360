@@ -24,7 +24,8 @@ function pmrSelect(label,key,values,value,module){
   return '<label>'+esc(label)+'<select onchange="updatePMRFilter(\''+module+'\',\''+key+'\',this.value)">'+values.map(v=>'<option value="'+esc(v.value??v)+'" '+((v.value??v)===value?'selected':'')+'>'+esc(v.label??v)+'</option>').join('')+'</select></label>';
 }
 function pmrPageHead(title,desc){
-  return '<div class="page-head pmr-page-head"><div class="title-wrap"><div class="breadcrumb"><button onclick="navigate(\'executive\')">Executive Hub</button> / <button onclick="openSegment(\'pmr\')">Primary Market Research</button> / '+esc(title)+'</div><h1>'+esc(title)+'</h1><p>'+desc+'</p></div><span class="pmr-demo-badge">Synthetic PMR demo data</span></div>';
+  const t=String(title).toLowerCase(),icon=t.includes("voice")?"◉":t.includes("expert")?"✦":"▥";
+  return '<div class="page-head pmr-page-head"><div class="pmr-page-icon">'+icon+'</div><div class="title-wrap"><div class="breadcrumb"><button onclick="navigate(\'executive\')">Executive Hub</button> / <button onclick="openSegment(\'pmr\')">Primary Market Research</button> / '+esc(title)+'</div><h1>'+esc(title)+'</h1><p>'+desc+'</p></div><span class="pmr-demo-badge">Synthetic PMR demo data</span></div>';
 }
 function pmrResearchPortfolio(){
   const d=pmrData();
