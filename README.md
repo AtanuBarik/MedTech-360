@@ -109,3 +109,21 @@ The Executive Hub now uses:
 - compact multi-step ecosystem cards;
 - company logo / website links in competitor views;
 - importance-tagged drivers, risks, trends, opportunities, and market-landscape takeaways.
+
+
+## Company Profiles intelligence dashboard
+
+The **Competitive Intelligence → Company Profiles** module is now a dedicated research experience rather than a generic capability page. It includes domain-specific competitor datasets across all six MedTech domains and interactive filters for **Company**, **Region**, **Portfolio & Services**, and **Focus of Company**.
+
+Each profile includes:
+- company overview, headquarters, founding year, ownership / listing, employees and geographic presence;
+- official regional website links;
+- latest revenue, business-unit revenue, multi-year revenue trend where publicly disclosed, regional / country revenue and financial-result insights;
+- product / service portfolio with USP, features, company claims and market positioning;
+- regional product and service portfolio;
+- transformation timeline, technology stack, competitive USPs and representative devices / tests / services;
+- business, product, channel, geographic, digital, R&D and expansion strategy;
+- selected M&A / partnership events and strategic initiatives;
+- direct links to official company filings, investor materials and product pages.
+
+Private-company financial gaps are explicitly marked as **not publicly disclosed** rather than filled with synthetic values.
