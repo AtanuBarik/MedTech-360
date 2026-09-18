@@ -117,7 +117,8 @@ function ciNewsSummary(news){
 }
 function ciNewsFeed(news){
   return '<div class="ci-news-feed">'+news.map(n=>'<article class="ci-news-card">'+
-    '<div class="ci-news-meta"><time>'+esc(n.date)+'</time><span>'+esc(n.company)+'</span><span>'+esc(ciTheme(n))+'</span><span>'+esc(n.sourceType)+'</span>'+(n.estimated?'<span class="estimate">Demo reporting-cycle date</span>':'')+'</div>'+
+    '<div class="ci-news-company">'+(typeof cpCompanyLogo==="function"?cpCompanyLogo(n.company):"")+'<strong>'+esc(n.company)+'</strong></div>'+
+    '<div class="ci-news-meta"><time>'+esc(n.date)+'</time><span>'+esc(ciTheme(n))+'</span><span>'+esc(n.sourceType)+'</span>'+(n.estimated?'<span class="estimate">Demo reporting-cycle date</span>':'')+'</div>'+
     '<h3>'+esc(n.title)+'</h3><p>'+esc(n.summary)+'</p><div class="ci-news-source"><b>'+esc(n.source)+'</b><a href="'+n.url+'" target="_blank" rel="noopener">Open exact source ↗</a></div></article>').join('')+'</div>';
 }
 function ciNewsMilestones(news){
