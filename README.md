@@ -95,3 +95,17 @@ Each of the six domain landing pages now includes:
 - explicit data labels separating public-source context, illustrative market models, placeholder share estimates, and directional interpretation.
 
 The detailed content is stored in `data-executive.js`.
+
+
+### Executive Hub interaction update
+
+The landing page now uses five compact interactive tabs: **Overview**, **Market & Regions**, **Competition**, **Ecosystem & Drivers**, and **Strategy & Opportunities**. The former Company / Theme / Dataset dropdown filters and filter ribbon were removed from the top navigation. The domain selector remains.
+
+The Executive Hub now uses:
+- source-backed disease / infrastructure context;
+- illustrative market-growth charts with strategic interpretation;
+- a non-overlapping numbered regional opportunity map;
+- a full-width segment-mix view;
+- compact multi-step ecosystem cards;
+- company logo / website links in competitor views;
+- importance-tagged drivers, risks, trends, opportunities, and market-landscape takeaways.
