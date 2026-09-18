@@ -151,12 +151,12 @@ function executiveSignalFeed(signals){
   return '<div class="signal-feed">'+signals.slice(0,6).map(s=>'<article class="signal-card"><div><span class="signal-type">'+esc(s.type)+'</span><time>'+esc(s.date)+'</time></div><strong>'+esc(s.title)+'</strong><p>'+esc(s.detail)+'</p><a href="'+s.url+'" target="_blank" rel="noopener">'+esc(s.company)+' · open source ↗</a></article>').join('')+'</div>';
 }
 
-function renderExecutive(){
+function renderIndustryOverview(){
   const d=DOMAIN_DATA[currentDomain],ev=(window.DOMAIN_EVIDENCE&&DOMAIN_EVIDENCE[currentDomain])||{},en=enrichment(),ex=executiveData(),st=executiveStrategy();
-  if(!ex){$('pageContent').innerHTML='<div class="empty-search">Executive research data is not available for this domain.</div>';return}
+  if(!ex){$('pageContent').innerHTML='<div class="empty-search">Industry overview research data is not available for this domain.</div>';return}
   const players=ex.players||[],signals=(en.signals||[]);
   activeExecutiveTab='overview';
-  $('breadcrumbSmall').textContent='MedTech 360 / Executive Hub';
+  $('breadcrumbSmall').textContent='MedTech 360 / Industry Overview';
   $('breadcrumbTitle').textContent=currentDomain+' — Industry Overview';
 
   const totalGrowth=((ex.yoy[ex.yoy.length-1].size/ex.yoy[0].size-1)*100).toFixed(0);
@@ -165,7 +165,7 @@ function renderExecutive(){
   const top2Share=players.slice().sort((a,b)=>b.share-a.share).slice(0,2).reduce((s,p)=>s+p.share,0);
 
   $('pageContent').innerHTML=
-    '<section class="hero executive-hero"><div class="hero-grid"><div><div class="kicker" style="color:#f3a4c0">Executive Hub • '+esc(currentDomain)+'</div><h1>Industry intelligence overview</h1><p>'+esc(ex.overview)+'</p></div>'+
+    '<section class="hero executive-hero"><div class="hero-grid"><div><div class="kicker" style="color:#f3a4c0">Industry Overview • '+esc(currentDomain)+'</div><h1>Industry intelligence overview</h1><p>'+esc(ex.overview)+'</p></div>'+
     '<div class="hero-stats"><div class="hero-stat"><b>'+totalGrowth+'%</b><span>Illustrative 2022–28 market expansion</span></div><div class="hero-stat"><b>'+latestGrowth.toFixed(1)+'%</b><span>2028 YoY model growth</span></div><div class="hero-stat"><b>'+esc(topRegion.name)+'</b><span>Highest opportunity index</span></div><div class="hero-stat"><b>'+top2Share+'%</b><span>Top-2 placeholder share</span></div></div></div></section>'+
     executiveTabs()+
 
@@ -202,7 +202,7 @@ function renderExecutive(){
     '<div class="exec-tab-panel" data-tab="strategy">'+
       '<section class="section exec-section-first"><div class="grid-2"><div class="card"><div class="card-title"><h3>Trends & strategic developments</h3><small>Priority themes shaping the next phase of the market</small></div>'+strategicCards(st.trends||[],'trend')+'</div>'+
       '<div class="card"><div class="card-title"><h3>Opportunity scanner</h3><small>Potential whitespace for strategy, CI and PMR</small></div>'+strategicCards(st.opportunities||[],'opportunity')+'</div></div></section>'+
-      '<section class="section"><div class="card"><div class="card-title"><div><h3>Market Landscape & Sizing — strategic takeaways</h3><small>Integrated into the Executive Hub</small></div></div>'+strategicCards(st.marketLandscape||[],'landscape')+'</div></section>'+
+      '<section class="section"><div class="card"><div class="card-title"><div><h3>Market landscape & sizing — strategic takeaways</h3><small>Integrated into the Industry Overview</small></div></div>'+strategicCards(st.marketLandscape||[],'landscape')+'</div></section>'+
       '<section class="section"><div class="grid-2"><div class="card"><div class="card-title"><h3>Decision questions to monitor</h3><small>CI watchpoints</small></div><div class="question-list">'+ex.ciWatch.map((x,i)=>'<div class="question-item"><div class="qnum">'+(i+1)+'</div><span>'+esc(x)+'</span></div>').join('')+'</div><div class="exec-card-link"><button onclick="navigate(\'ci\',\'news-alerts\')">Open News & Alerts →</button></div></div>'+
       '<div class="card"><div class="card-title"><h3>Questions to validate with customers</h3><small>PMR agenda</small></div><div class="question-list">'+ex.pmrQuestions.map((x,i)=>'<div class="question-item"><div class="qnum">'+(i+1)+'</div><span>'+esc(x)+'</span></div>').join('')+'</div><div class="exec-card-link"><button onclick="navigate(\'pmr\',\'voc\')">Open Voice of Customer →</button></div></div></div></section>'+
       '<section class="section"><div class="grid-2"><div class="card"><div class="card-title"><h3>Source basis</h3><small>Authoritative and market-context sources</small></div>'+executiveSourceLinks(ex,d)+'</div>'+
