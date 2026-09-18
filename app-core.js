@@ -83,7 +83,17 @@ function openSegment(type){
 function setActiveNav(type,id){
   document.querySelectorAll('.nav-btn,.nav-parent,.subnav-btn').forEach(x=>x.classList.remove('active'));
   if(type==='executive'){
-    $('navExecutive').classList.add('active');
+    if($('navExecutive'))$('navExecutive').classList.add('active');
+    document.querySelectorAll('.submenu').forEach(x=>x.classList.remove('open'));
+    document.querySelectorAll('.nav-parent').forEach(x=>x.classList.remove('open'));
+  }
+  if(type==='industry'){
+    if($('navIndustry'))$('navIndustry').classList.add('active');
+    document.querySelectorAll('.submenu').forEach(x=>x.classList.remove('open'));
+    document.querySelectorAll('.nav-parent').forEach(x=>x.classList.remove('open'));
+  }
+  if(type==='repository'){
+    if($('navRepository'))$('navRepository').classList.add('active');
     document.querySelectorAll('.submenu').forEach(x=>x.classList.remove('open'));
     document.querySelectorAll('.nav-parent').forEach(x=>x.classList.remove('open'));
   }
@@ -104,7 +114,13 @@ function setActiveNav(type,id){
   if(id){const el=document.querySelector('[data-route="'+type+'/'+id+'"]');if(el)el.classList.add('active')}
 }
 function navigate(type,id){currentPage={type,id};window.location.hash=id?type+'/'+id:type;setActiveNav(type,id);renderCurrentPage();window.scrollTo({top:0,behavior:'smooth'})}
-function renderCurrentPage(){if(currentPage.type==='executive')renderExecutive();else if(!currentPage.id)renderSegmentOverview(currentPage.type);else renderSubsegment(currentPage.type,currentPage.id)}
+function renderCurrentPage(){
+  if(currentPage.type==='executive')renderExecutiveHub();
+  else if(currentPage.type==='industry')renderIndustryOverview();
+  else if(currentPage.type==='repository')renderKnowledgeRepository();
+  else if(!currentPage.id)renderSegmentOverview(currentPage.type);
+  else renderSubsegment(currentPage.type,currentPage.id)
+}
 
 function lineChart(values,labels){const W=560,H=210,p=28,max=Math.max(...values)+5,min=Math.min(...values)-5;const pts=values.map((v,i)=>{const x=p+i*(W-p*2)/(values.length-1),y=H-p-(v-min)*(H-p*2)/(max-min);return [x,y]}),poly=pts.map(a=>a.join(',')).join(' ');return '<svg viewBox="0 0 '+W+' '+H+'" aria-label="Indexed trend chart"><g stroke="#eee8ef" stroke-width="1">'+[0,1,2,3].map(i=>'<line x1="'+p+'" y1="'+(40+i*40)+'" x2="'+(W-p)+'" y2="'+(40+i*40)+'"/>').join('')+'</g><polyline fill="none" stroke="#4a2351" stroke-width="4" points="'+poly+'"/><polyline fill="none" stroke="#e8005a" stroke-width="9" opacity=".08" points="'+poly+'"/>'+pts.map((a,i)=>'<circle cx="'+a[0]+'" cy="'+a[1]+'" r="5" fill="#e8005a"/><text x="'+a[0]+'" y="'+(H-7)+'" text-anchor="middle" font-size="13" fill="#756d79">'+labels[i]+'</text><text x="'+a[0]+'" y="'+(a[1]-10)+'" text-anchor="middle" font-size="12" font-weight="700" fill="#4a2351">'+values[i]+'</text>').join('')+'</svg>'}
 function marketBarChart(m){
