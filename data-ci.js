@@ -1,21 +1,22 @@
+window.MARKET_LANDSCAPE_EXECUTIVE = {
+  "id": "market-landscape",
+  "icon": "ML",
+  "title": "Market Landscape & Sizing",
+  "overview": "Map category structure, market evolution, segment attractiveness, growth drivers, barriers and white spaces.",
+  "questions": [
+    "How is the market structured and where is growth concentrated?",
+    "Which segments, geographies and care settings are changing fastest?",
+    "What are the major demand, reimbursement and technology drivers?"
+  ],
+  "deliverables": [
+    "Market map and segment taxonomy",
+    "Growth-driver and barrier matrix",
+    "Indexed attractiveness dashboard",
+    "Opportunity / white-space view"
+  ]
+};
+
 window.CI_SUBSEGMENTS = [
-  {
-    "id": "market-landscape",
-    "icon": "ML",
-    "title": "Market Landscape & Sizing",
-    "overview": "Map category structure, market evolution, segment attractiveness, growth drivers, barriers and white spaces.",
-    "questions": [
-      "How is the market structured and where is growth concentrated?",
-      "Which segments, geographies and care settings are changing fastest?",
-      "What are the major demand, reimbursement and technology drivers?"
-    ],
-    "deliverables": [
-      "Market map and segment taxonomy",
-      "Growth-driver and barrier matrix",
-      "Indexed attractiveness dashboard",
-      "Opportunity / white-space view"
-    ]
-  },
   {
     "id": "company-profiles",
     "icon": "CP",
@@ -51,23 +52,6 @@ window.CI_SUBSEGMENTS = [
     ]
   },
   {
-    "id": "strategy-positioning",
-    "icon": "SP",
-    "title": "Strategy & Market Positioning",
-    "overview": "Decode strategic priorities, target segments, differentiation, investment themes and evolving market narratives.",
-    "questions": [
-      "Where is each player placing strategic bets?",
-      "How is positioning changing by audience?",
-      "Which capabilities underpin differentiation?"
-    ],
-    "deliverables": [
-      "Positioning map",
-      "Strategic pillar comparison",
-      "Narrative / message matrix",
-      "Implication summary"
-    ]
-  },
-  {
     "id": "product-portfolio",
     "icon": "PB",
     "title": "Product & Portfolio Benchmarking",
@@ -85,60 +69,9 @@ window.CI_SUBSEGMENTS = [
     ]
   },
   {
-    "id": "pipeline-innovation",
-    "icon": "PI",
-    "title": "Pipeline & Innovation Watch",
-    "overview": "Track emerging technologies, R&D priorities, pipeline assets, platform extensions and disruptive adjacencies.",
-    "questions": [
-      "What is likely to change the category next?",
-      "Which innovation themes are receiving investment?",
-      "Where are incumbents vulnerable?"
-    ],
-    "deliverables": [
-      "Innovation radar",
-      "Pipeline tracker",
-      "Technology maturity map",
-      "Disruption scenarios"
-    ]
-  },
-  {
-    "id": "regulatory-clinical",
-    "icon": "RC",
-    "title": "Regulatory & Clinical Milestones",
-    "overview": "Monitor approvals, submissions, trials, evidence releases, recalls, guideline changes and clinical milestones.",
-    "questions": [
-      "Which milestones alter competitive readiness?",
-      "What evidence is being generated?",
-      "Where are regulatory risks emerging?"
-    ],
-    "deliverables": [
-      "Milestone calendar",
-      "Trial / evidence tracker",
-      "Regulatory heatmap",
-      "Risk and implication log"
-    ]
-  },
-  {
-    "id": "pricing-access",
-    "icon": "PA",
-    "title": "Pricing, Reimbursement & Access",
-    "overview": "Assess reimbursement shifts, coding, payer policy, pricing architecture and economic evidence affecting adoption.",
-    "questions": [
-      "What access conditions shape adoption?",
-      "Where are policy changes creating upside or risk?",
-      "How are competitors defending value?"
-    ],
-    "deliverables": [
-      "Access landscape",
-      "Policy tracker",
-      "Pricing architecture comparison",
-      "Economic evidence map"
-    ]
-  },
-  {
     "id": "ma-partnerships",
     "icon": "MP",
-    "title": "M&A, Partnerships & Investment",
+    "title": "M&A Partnerships & Investment",
     "overview": "Track acquisitions, alliances, licensing, distribution deals, venture activity and capability-building moves.",
     "questions": [
       "Which capabilities are competitors buying or partnering for?",
@@ -155,7 +88,7 @@ window.CI_SUBSEGMENTS = [
   {
     "id": "social-digital",
     "icon": "SD",
-    "title": "Social & Digital Intelligence",
+    "title": "Social & Digital Media",
     "overview": "Analyze digital visibility, discussion themes, sentiment, campaign activity, share of voice and stakeholder engagement.",
     "questions": [
       "Which topics drive digital attention?",
@@ -170,20 +103,20 @@ window.CI_SUBSEGMENTS = [
     ]
   },
   {
-    "id": "commercial-gtm",
-    "icon": "GT",
-    "title": "Commercial & GTM Intelligence",
-    "overview": "Compare channel models, sales motion, account strategy, customer targeting, service models and geographic expansion.",
+    "id": "strategy-positioning",
+    "icon": "SP",
+    "title": "Strategy & Market Positioning",
+    "overview": "Decode strategic priorities, target segments, differentiation, investment themes and evolving market narratives.",
     "questions": [
-      "How do competitors reach priority customers?",
-      "What sales / service model supports adoption?",
-      "Where are GTM changes visible?"
+      "Where is each player placing strategic bets?",
+      "How is positioning changing by audience?",
+      "Which capabilities underpin differentiation?"
     ],
     "deliverables": [
-      "GTM benchmark",
-      "Channel map",
-      "Target-account lens",
-      "Commercial capability matrix"
+      "Positioning map",
+      "Strategic pillar comparison",
+      "Narrative / message matrix",
+      "Implication summary"
     ]
   },
   {
@@ -201,23 +134,6 @@ window.CI_SUBSEGMENTS = [
       "KOL theme map",
       "Launch / evidence tracker",
       "Message comparison"
-    ]
-  },
-  {
-    "id": "ip-rd",
-    "icon": "IP",
-    "title": "IP & R&D Signals",
-    "overview": "Track patents, publications, research collaborations and technical themes as early indicators of future competition.",
-    "questions": [
-      "Where is R&D activity accelerating?",
-      "Which technology clusters are forming?",
-      "What early signals precede product launches?"
-    ],
-    "deliverables": [
-      "Patent / publication radar",
-      "Technology cluster map",
-      "Inventor / partner network",
-      "Early-warning signals"
     ]
   }
 ];
