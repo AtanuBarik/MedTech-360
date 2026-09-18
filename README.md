@@ -127,3 +127,18 @@ Each profile includes:
 - direct links to official company filings, investor materials and product pages.
 
 Private-company financial gaps are explicitly marked as **not publicly disclosed** rather than filled with synthetic values.
+
+
+### Company Profiles v2
+
+The Company Profiles module now covers **39 company/domain profiles** across the six MedTech domains:
+- Autoimmunity & Allergy: 6
+- Diabetes & Blood Glucose Monitoring: 6
+- Ophthalmology & Eye Health: 6
+- Orthopedics & Sports Medicine: 7
+- Advanced Wound Management: 7
+- Clinical Laboratory Services: 7
+
+The four filters are cascading and dynamic. Selecting **Region**, **Portfolio & Services**, or **Focus of Company** changes the compatible company options and scopes the related regional / product evidence. The separate row of company buttons was removed; only the selected company's logo and profile are shown.
+
+Additional visual analytics include revenue trendlines, annual revenue-growth bars, portfolio-breadth index, regional operating-footprint evidence, strategy-emphasis index, financial KPI tiles, competitive synthesis, risk watchpoints and expanded business-model / market-access content. Analyst indices are explicitly labeled as illustrative demo visualizations.
