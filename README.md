@@ -78,3 +78,20 @@ If GitHub Pages needs to be configured manually, open **Settings → Pages**, ch
 ## Production hardening
 
 For client deployment, replace simulated authentication with enterprise SSO (e.g., Microsoft Entra ID / Okta), enforce server-side RBAC, move data and GenAI functions behind governed APIs, add source-level permissions and audit logs, and connect approved PMR/CI repositories and live data feeds.
+
+
+## Executive Hub industry dashboard
+
+Each of the six domain landing pages now includes:
+- source-backed burden / infrastructure facts;
+- a clearly labeled illustrative 2022–2028 market model with YoY growth;
+- regional opportunity map;
+- segment-mix visualization;
+- key-player capability matrix and placeholder share visualization;
+- growth drivers and constraints;
+- trends and source-linked developments;
+- device / instrument / service ecosystem flow;
+- opportunity scanner with CI watchpoints and PMR questions;
+- explicit data labels separating public-source context, illustrative market models, placeholder share estimates, and directional interpretation.
+
+The detailed content is stored in `data-executive.js`.
