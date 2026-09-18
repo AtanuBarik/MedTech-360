@@ -87,11 +87,15 @@
       </div>
       <div class="top-actions">
         <select id="topDomainSelect" class="top-domain" onchange="switchDomain(this.value)"></select>
+        <select id="companyFilter" class="top-filter" onchange="updateGlobalFilter('company',this.value)" title="Company filter"></select>
+        <select id="themeFilter" class="top-filter" onchange="updateGlobalFilter('theme',this.value)" title="Theme filter"></select>
+        <select id="datasetFilter" class="top-filter dataset-filter" onchange="updateGlobalFilter('dataset',this.value)" title="Dataset filter"></select>
         <div class="search-box"><input id="globalSearch" onkeydown="if(event.key==='Enter')runGlobalSearch()" placeholder="Search capabilities, players, topics..." /></div>
         <button class="logout-btn" onclick="logout()">Log out</button>
         <div class="avatar" id="avatarLabel">AB</div>
       </div>
     </header>
+    <div id="filterRibbon" class="filter-ribbon"></div>
     <div id="pageContent" class="page"></div>
   </main>
 </section>
@@ -101,6 +105,7 @@
 <script src="data-domains-2.js?v=20260918"></script>
 <script src="data-domains-3.js?v=20260918"></script>
 <script src="data-evidence.js?v=20260918"></script>
+<script src="data-enrichment.js?v=20260918"></script>
 <script src="data-ci.js?v=20260918"></script>
 <script src="data-pmr.js?v=20260918"></script>
 <script src="data-pageviews.js?v=20260918"></script>
