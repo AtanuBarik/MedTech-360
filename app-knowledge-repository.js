@@ -27,6 +27,12 @@ function repoTypes(docs){return ["All document types",...pmrUnique(docs.map(d=>d
 function repoWorkstreams(docs){return ["All workstreams",...pmrUnique(docs.map(d=>d.workstream))]}
 function repoSources(docs){return ["All sources",...pmrUnique(docs.map(d=>d.source))]}
 function updateRepositoryFilter(key,value){repositoryState[key]=value;renderKnowledgeRepository()}
+function updateRepositorySearch(value){
+  repositoryState.search=value;
+  const rows=repositoryFilteredDocs(),results=$('repositoryResults'),count=$('repositoryResultCount');
+  if(results)results.innerHTML=repoDocumentCards(rows);
+  if(count)count.textContent=rows.length+" assets";
+}
 function repositoryFilteredDocs(){
   const q=(repositoryState.search||"").toLowerCase();
   return repoDomainDocs().filter(d=>
@@ -69,9 +75,9 @@ function renderKnowledgeRepository(){
   $('pageContent').innerHTML=
     '<section class="hero repository-hero"><div class="hero-grid"><div><div class="kicker" style="color:#f3a4c0">Knowledge Repository · '+esc(currentDomain)+'</div><h1>One governed hub for research evidence</h1><p>Find project reports, transcripts, survey outputs, competitive intelligence, industry sources and uploaded working files in one place, with direct access to the underlying evidence.</p></div><div class="repo-hero-kpis"><article><b>'+docs.length+'</b><span>Available / linked assets</span></article><article><b>'+docs.filter(d=>d.status==="Indexed").length+'</b><span>Indexed assets</span></article><article><b>'+(window.REPOSITORY_CONNECTORS||[]).length+'</b><span>Connector options</span></article><article><b>'+repositoryUploads.length+'</b><span>Local files queued</span></article></div></div></section>'+
     '<section class="section exec-section-first"><div class="section-head"><div><h2>Document library</h2><p>Filter the domain repository and open the relevant internal dashboard or original public source directly.</p></div></div>'+
-      '<div class="repository-filter-shell"><label class="repo-search-label">Search repository<input value="'+esc(repositoryState.search)+'" oninput="repositoryState.search=this.value;renderKnowledgeRepository()" placeholder="Search reports, projects, companies, themes..." /></label>'+
+      '<div class="repository-filter-shell"><label class="repo-search-label">Search repository<input value="'+esc(repositoryState.search)+'" oninput="updateRepositorySearch(this.value)" placeholder="Search reports, projects, companies, themes..." /></label>'+
       repoSelect("Document type","type",repoTypes(docs),repositoryState.type)+repoSelect("Workstream","workstream",repoWorkstreams(docs),repositoryState.workstream)+repoSelect("Source","source",repoSources(docs),repositoryState.source)+'</div>'+
-      '<div class="repository-result-head"><strong>'+rows.length+' assets</strong><span>'+esc(currentDomain)+'</span></div>'+repoDocumentCards(rows)+'</section>'+
+      '<div class="repository-result-head"><strong id="repositoryResultCount">'+rows.length+' assets</strong><span>'+esc(currentDomain)+'</span></div><div id="repositoryResults">'+repoDocumentCards(rows)+'</div></section>'+
     '<section class="section"><div class="section-head"><div><h2>Upload from local system</h2><p>Add research reports, transcripts, survey data, competitor files or working documents for future indexing and analysis.</p></div><span class="pmr-demo-badge small">Browser-session prototype</span></div>'+
       '<div class="repository-upload"><label class="repo-dropzone"><input type="file" multiple onchange="handleRepositoryUpload(this)" accept=".pdf,.ppt,.pptx,.doc,.docx,.xls,.xlsx,.csv,.txt,.json" /><div class="repo-upload-icon">↑</div><strong>Choose files from your computer</strong><p>PDF, PowerPoint, Word, Excel, CSV, TXT and JSON are represented in the prototype.</p><span>Select files</span></label><div class="repo-upload-queue"><h3>Upload queue</h3>'+repoUploadedFiles()+'</div></div></section>'+
     '<section class="section"><div class="section-head"><div><h2>Connect external repositories & intelligence sources</h2><p>Connector cards represent the target ingestion architecture for governed cloud, competitive, social and scientific sources.</p></div><span class="assistant-evidence-badge">OAuth / API wiring required for live ingestion</span></div>'+repoConnectorCards()+'</section>'+
