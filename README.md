@@ -30,15 +30,17 @@ The Executive Hub changes by selected domain and contains:
 - Opportunity areas and cross-workstream business questions
 - Links into CI and PMR capability pages
 
+## Executive Hub
+
+The Executive Hub is the landing page for each selected domain. It contains the industry overview, sourced market context, market dynamics, key players, competitive signals, and the full **Market Landscape & Sizing** module including its research/data architecture, business questions, outputs, analytical cuts, category structure, and domain-specific intelligence lens.
+
 ## Competitive Intelligence sub-segments
 
-Market Landscape & Sizing; Company Profiles; News & Alerts; Strategy & Market Positioning; Product & Portfolio Benchmarking; Pipeline & Innovation Watch; Regulatory & Clinical Milestones; Pricing, Reimbursement & Access; M&A, Partnerships & Investment; Social & Digital Intelligence; Commercial & GTM Intelligence; Conference & KOL Intelligence; IP & R&D Signals.
+Company Profiles; News & Alerts; Product & Portfolio Benchmarking; M&A Partnerships & Investment; Social & Digital Media; Strategy & Market Positioning; Conference & KOL Intelligence.
 
 ## Primary Market Research sub-segments
 
-Voice of Customer Study; Expert & KOL Interview Analysis; Concept & Product Testing; Quantitative Survey Analysis; Conjoint / Discrete Choice; Pricing & Willingness-to-Pay; Segmentation & Personas; Customer Journey & UX; Message & Claims Testing; Adoption & Readiness; Satisfaction & Loyalty; Workflow & Unmet Needs; MaxDiff / Prioritization; Human Factors / UX / Usability; Launch Readiness & Demand Forecast; AI-assisted Open-text Analytics.
-
-Each sub-segment has its own routed page (`#ci/...` or `#pmr/...`) with domain research context, relevant datapoints, analytical views, business questions, deliverables, recommended cuts, and source basis.
+Voice of Customer Study; Expert & KOL Interview Analysis; Concept & Product Testing; Quantitative Survey Analysis; Pricing & Willingness-to-Pay.
 
 ## Interactive filters
 
