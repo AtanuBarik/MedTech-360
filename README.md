@@ -49,7 +49,9 @@ Factual KPI cards and research statements are tied to external sources listed in
 - `index.html` – three-stage experience shell and app structure
 - `styles-base.css`, `styles-app.css`, `styles-pages.css` – Evalueserve-inspired responsive design system and page layouts
 - `data-base.js`, `data-domains-1.js` ... `data-domains-3.js` – domain research content
+- `data-evidence.js` – current public-source evidence anchors for all six domains
 - `data-ci.js`, `data-pmr.js` – CI/PMR capability taxonomy
+- `data-pageviews.js` – module-specific datapoints, analytical lenses, and recommended visualizations for every sub-segment
 - `app-core.js`, `app-executive.js`, `app-subpages.js` – navigation, routing, role/domain selection, page rendering and interactions
 - `.nojekyll` – static GitHub Pages support
 
