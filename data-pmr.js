@@ -202,5 +202,73 @@ window.PMR_SUBSEGMENTS = [
       "Unmet-needs taxonomy",
       "Opportunity matrix"
     ]
+  },
+  {
+    "id": "maxdiff",
+    "icon": "MX",
+    "title": "MaxDiff / Prioritization",
+    "overview": "Quantify the relative priority of features, outcomes, services, needs or messages through best-worst choice exercises.",
+    "questions": [
+      "Which items matter most when respondents must make explicit trade-offs?",
+      "How do priorities differ by segment or persona?",
+      "What should be emphasized, deprioritized or bundled?"
+    ],
+    "deliverables": [
+      "Best-worst score bars",
+      "Relative priority index",
+      "Segment comparison",
+      "Portfolio / message prioritization"
+    ]
+  },
+  {
+    "id": "human-factors",
+    "icon": "HF",
+    "title": "Human Factors / UX / Usability",
+    "overview": "Evaluate task flow, ease of use, error risk, training burden, interface comprehension and fit with real clinical or operational workflows.",
+    "questions": [
+      "Where are the highest-friction or highest-risk tasks?",
+      "Which design choices increase errors or training burden?",
+      "What changes would improve usability and workflow fit?"
+    ],
+    "deliverables": [
+      "Task success scorecard",
+      "Error / friction heatmap",
+      "Usability index",
+      "Design-improvement backlog"
+    ]
+  },
+  {
+    "id": "launch-readiness",
+    "icon": "LR",
+    "title": "Launch Readiness & Demand Forecast",
+    "overview": "Translate adoption intent, barriers, evidence thresholds, channel readiness and customer segments into launch scenarios.",
+    "questions": [
+      "Which segments are most likely to adopt first?",
+      "What evidence or support is required before launch?",
+      "How does demand change under alternative access or positioning scenarios?"
+    ],
+    "deliverables": [
+      "Adoption funnel",
+      "Readiness heatmap",
+      "Demand scenarios",
+      "Launch action plan"
+    ]
+  },
+  {
+    "id": "open-text-ai",
+    "icon": "AI",
+    "title": "AI-assisted Open-text Analytics",
+    "overview": "Structure open-ended survey answers and interview transcripts into themes, sentiment, emerging issues and searchable verbatim evidence.",
+    "questions": [
+      "Which themes explain the quantitative findings?",
+      "What new issues are emerging in unstructured feedback?",
+      "How do themes and verbatims differ by persona or segment?"
+    ],
+    "deliverables": [
+      "Theme tree",
+      "Sentiment / tone view",
+      "Searchable verbatim explorer",
+      "Persona-specific theme matrix"
+    ]
   }
 ];
