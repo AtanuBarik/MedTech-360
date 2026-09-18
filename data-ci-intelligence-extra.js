@@ -175,7 +175,8 @@ window.CI_NEWS_EXTRA={
       "source": "Coloplast",
       "sourceType": "Company press release",
       "url": "https://www.coloplast.com/news-and-media/press-releases/2026/Coloplast-announces-changes-to-Executive-Leadership-Team-ELT/",
-      "milestone": "Executive Movement"
+      "milestone": "Executive Movement",
+      "estimated": true
     },
     {
       "date": "2026-05-06",
