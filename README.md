@@ -1,8 +1,15 @@
 # MedTech 360
 
-MedTech 360 is an Evalueserve-themed MedTech intelligence and research platform prototype that brings Competitive Intelligence (CI) and Primary Market Research (PMR) into one role-based workspace.
+MedTech 360 is an Evalueserve-themed, static interactive prototype for MedTech Competitive Intelligence (CI) and Primary Market Research (PMR). It is designed to work directly in a browser and can be hosted on GitHub Pages.
 
-## Priority MedTech domains
+## User journey
+
+1. **Login** – prototype enterprise SSO plus username/password access.
+2. **Workspace setup** – the user selects both a MedTech domain and a role (Hub Owner, Contributor, Viewer).
+3. **Interactive platform** – the **Executive Hub** is the landing page, followed by expandable CI and PMR segments. Clicking a segment reveals its sub-segments; every sub-segment opens a dedicated page.
+4. **Log out** – available in the dashboard top bar and left navigation.
+
+## MedTech domains
 
 - Autoimmunity & Allergy
 - Diabetes & Blood Glucose Monitoring
@@ -11,73 +18,54 @@ MedTech 360 is an Evalueserve-themed MedTech intelligence and research platform 
 - Advanced Wound Management
 - Clinical Laboratory Services
 
-## Experience flow
+## Executive Hub
 
-1. **Login** – enterprise SSO concept plus username/password demo access.
-2. **Role selection** – Hub Owner, Contributor, or Viewer.
-3. **Interactive dashboard** – domain switcher, executive hub, CI modules, PMR modules, intelligence signals, research views, reports, knowledge repository, and a prototype AI insights assistant.
+The Executive Hub changes by selected domain and contains:
 
-## Competitive Intelligence modules
+- Industry overview and category context
+- Factual research datapoints with external source links
+- Priority market dynamics
+- Key-player watchlist
+- Illustrative industry-momentum visualization
+- Opportunity areas and cross-workstream business questions
+- Links into CI and PMR capability pages
 
-- Company Profiles
-- News & Alerts
-- Strategy & Market Positioning
-- Product & Portfolio Benchmarking
-- Pipeline & Innovation Watch
-- Regulatory & Clinical Milestones
-- Pricing, Reimbursement & Access
-- M&A, Partnerships & Investment
-- Social & Digital Intelligence
-- Commercial & GTM Intelligence
-- Conference & KOL Intelligence
-- IP & R&D Signals
+## Competitive Intelligence sub-segments
 
-## Primary Market Research modules
+Market Landscape & Sizing; Company Profiles; News & Alerts; Strategy & Market Positioning; Product & Portfolio Benchmarking; Pipeline & Innovation Watch; Regulatory & Clinical Milestones; Pricing, Reimbursement & Access; M&A, Partnerships & Investment; Social & Digital Intelligence; Commercial & GTM Intelligence; Conference & KOL Intelligence; IP & R&D Signals.
 
-- Voice of Customer
-- Expert & KOL Interviews
-- Concept & Product Testing
-- Quantitative Survey Analysis
-- Conjoint / Discrete Choice
-- Pricing & Willingness-to-Pay
-- Segmentation & Personas
-- Customer Journey & UX
-- Message & Claims Testing
-- Adoption & Readiness
-- Satisfaction & Loyalty
-- Workflow & Unmet Needs
+## Primary Market Research sub-segments
 
-## Design language
+Voice of Customer Study; Expert & KOL Interview Analysis; Concept & Product Testing; Quantitative Survey Analysis; Conjoint / Discrete Choice; Pricing & Willingness-to-Pay; Segmentation & Personas; Customer Journey & UX; Message & Claims Testing; Adoption & Readiness; Satisfaction & Loyalty; Workflow & Unmet Needs.
 
-The prototype follows an Evalueserve-inspired design system with deep purple surfaces, magenta accents, white content areas, strong typography, rounded modular cards, and dashboard-style information hierarchy. The visual direction was aligned to the Evalueserve website and the corporate template supplied for this work.
+Each sub-segment has its own routed page (`#ci/...` or `#pmr/...`) with domain research context, relevant datapoints, analytical views, business questions, deliverables, recommended cuts, and source basis.
 
-## Demo credentials
+## Data note
+
+Factual KPI cards and research statements are tied to external sources listed in the frontend. Trend charts, opportunity indices, competitor watch-intensity scores, and similar dashboard indices are deliberately labeled **illustrative** and are used only to demonstrate the visual and analytical experience. They should be replaced with approved client/project data in production.
+
+## Files
+
+- `index.html` – three-stage experience shell and app structure
+- `styles-base.css`, `styles-app.css`, `styles-pages.css` – Evalueserve-inspired responsive design system and page layouts
+- `data-base.js`, `data-domains-1.js` ... `data-domains-3.js` – domain research content
+- `data-ci.js`, `data-pmr.js` – CI/PMR capability taxonomy
+- `app-core.js`, `app-executive.js`, `app-subpages.js` – navigation, routing, role/domain selection, page rendering and interactions
+- `.nojekyll` – static GitHub Pages support
+
+## Prototype credentials
 
 - Email: `demo@evalueserve.com`
 - Password: `MedTech360`
 
-> Authentication, SSO, roles, dashboard metrics, alerts, search, and AI responses are simulated in the frontend for prototype purposes. Production SSO/IAM and permissions require enterprise integration.
+## GitHub Pages
 
-## Access the live frontend
-
-GitHub Pages is enabled from the `gh-pages` branch. The live site is:
+The repository is published from the `gh-pages` branch. The expected URL is:
 
 `https://atanubarik.github.io/MedTech-360/`
 
-The `gh-pages` branch currently mirrors the latest deployed frontend. The repository includes `.nojekyll` so GitHub Pages serves the static prototype directly without Jekyll processing.
-
-## Access locally
-
-Download or clone this repository and open `index.html` directly in a modern browser. No Python, Node.js, package installation, or local server is required.
-
-## Updating the published site
-
-The working source remains on `main`. After frontend changes are committed to `main`, update the `gh-pages` branch to the same approved commit to trigger a GitHub Pages rebuild and deployment.
+If GitHub Pages needs to be configured manually, open **Settings → Pages**, choose **Deploy from a branch**, select **gh-pages**, choose **/(root)**, and save.
 
 ## Production hardening
 
-For a production implementation, connect the UI to an enterprise identity provider such as Microsoft Entra ID or Okta; enforce server-side role-based authorization; move intelligence, search, alerts, and AI workflows behind authenticated APIs; apply source-level permissions and audit logging; and replace all illustrative data with governed client-approved sources.
-
-## Key file
-
-- `index.html` – complete static frontend prototype
+For client deployment, replace simulated authentication with enterprise SSO (e.g., Microsoft Entra ID / Okta), enforce server-side RBAC, move data and GenAI functions behind governed APIs, add source-level permissions and audit logs, and connect approved PMR/CI repositories and live data feeds.

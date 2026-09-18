@@ -1,106 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MedTech 360 | Evalueserve</title>
-<meta name="description" content="MedTech 360 - Evalueserve competitive intelligence and primary market research hub for MedTech clients." />
-<style>
-:root{
-  --ev-purple:#49214f;
-  --ev-purple-2:#2f1539;
-  --ev-navy:#111c4e;
-  --ev-magenta:#ec005b;
-  --ev-pink:#ff2f7d;
-  --ev-lilac:#d8c7df;
-  --ev-blue:#dceaf4;
-  --bg:#f6f6f8;
-  --surface:#ffffff;
-  --ink:#251d2a;
-  --muted:#6f6874;
-  --line:#e8e4ea;
-  --green:#2c9d7b;
-  --amber:#d99222;
-  --red:#d94a61;
-  --shadow:0 16px 44px rgba(51,23,61,.11);
-  --radius:18px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
-.ev-logo{font-weight:900;letter-spacing:.08em;font-size:23px;color:inherit}
-.ev-logo span{color:var(--ev-magenta)}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:#f3edf5;color:var(--ev-purple);font-size:12px;font-weight:800}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ev-magenta)}
-
-/* auth */
-.auth-screen{min-height:100vh;display:grid;grid-template-columns:1.12fr .88fr;background:linear-gradient(135deg,var(--ev-purple-2),var(--ev-purple) 52%,#641f55);overflow:hidden}
-.auth-visual{position:relative;color:#fff;padding:58px 7vw;display:flex;flex-direction:column;justify-content:space-between;min-height:100vh}
-.auth-visual:before{content:"";position:absolute;inset:-30% -10% auto 25%;height:70%;background:radial-gradient(circle,rgba(236,0,91,.27),transparent 62%);pointer-events:none}
-.auth-visual:after{content:"";position:absolute;width:620px;height:620px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-210px;bottom:-270px;box-shadow:0 0 0 90px rgba(255,255,255,.03),0 0 0 180px rgba(255,255,255,.02)}
-.auth-copy{position:relative;z-index:1;max-width:760px}
-.kicker{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:#f7b7cf;margin-bottom:20px}
-.auth-copy h1{font-size:clamp(44px,5vw,78px);line-height:.95;margin:0 0 22px;letter-spacing:-.04em}
-.auth-copy h1 em{font-style:normal;color:#fff;position:relative}.auth-copy h1 em:after{content:"";display:block;width:78px;height:7px;background:var(--ev-magenta);margin-top:16px;border-radius:8px}
-.auth-copy p{max-width:650px;line-height:1.65;color:#e9dfe9;font-size:17px}
-.domain-pills{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:1}.domain-pills span{border:1px solid rgba(255,255,255,.22);padding:8px 12px;border-radius:999px;font-size:12px;background:rgba(255,255,255,.05);backdrop-filter:blur(8px)}
-.auth-panel{background:#fff;display:flex;align-items:center;justify-content:center;padding:48px;min-height:100vh}
-.auth-card{width:min(440px,100%)}
-.auth-card h2{font-size:34px;letter-spacing:-.03em;margin:18px 0 8px;color:var(--ev-purple)}
-.auth-card>p{color:var(--muted);line-height:1.55;margin-bottom:26px}
-.sso-btn,.primary-btn,.secondary-btn{border:0;border-radius:12px;font-weight:800;transition:.2s}
-.sso-btn{width:100%;background:var(--ev-purple);color:#fff;padding:14px 18px;display:flex;justify-content:center;gap:10px}.sso-btn:hover,.primary-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(73,33,79,.18)}
-.divider{display:flex;align-items:center;gap:12px;color:#aaa;margin:22px 0;font-size:12px}.divider:before,.divider:after{content:"";height:1px;background:var(--line);flex:1}
-.field{margin-bottom:15px}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:7px;color:#5f5564}.field input{width:100%;padding:13px 14px;border:1px solid #ded8e1;border-radius:11px;outline:none}.field input:focus{border-color:var(--ev-magenta);box-shadow:0 0 0 3px rgba(236,0,91,.08)}
-.primary-btn{background:var(--ev-magenta);color:#fff;padding:13px 18px}.auth-card .primary-btn{width:100%;margin-top:4px}
-.demo-note{margin-top:16px;background:#faf7fb;border:1px solid #eee7f0;border-radius:12px;padding:12px 14px;color:#736978;font-size:12px;line-height:1.5}.demo-note strong{color:var(--ev-purple)}
-
-/* roles */
-.role-screen{min-height:100vh;background:linear-gradient(180deg,#fff 0,#f7f4f8 100%);padding:44px 6vw}
-.role-top{display:flex;align-items:center;justify-content:space-between}.role-top .ev-logo{color:var(--ev-purple)}
-.role-wrap{max-width:1100px;margin:72px auto}.role-wrap h1{font-size:46px;letter-spacing:-.04em;margin:0;text-align:center;color:var(--ev-purple)}.role-wrap>p{text-align:center;color:var(--muted);margin:12px auto 34px;max-width:680px}
-.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.role-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 8px 28px rgba(61,33,65,.06);transition:.2s;position:relative;overflow:hidden}.role-card:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:transparent}.role-card:hover{transform:translateY(-5px);border-color:#dac9df;box-shadow:var(--shadow)}.role-card:hover:before{background:var(--ev-magenta)}
-.role-icon{width:48px;height:48px;border-radius:14px;background:#f4edf6;color:var(--ev-purple);display:grid;place-items:center;font-size:22px;font-weight:900}.role-card h3{font-size:22px;margin:18px 0 8px;color:var(--ev-purple)}.role-card p{color:var(--muted);line-height:1.55;min-height:72px}.role-card ul{padding-left:18px;color:#5f5662;line-height:1.8;font-size:13px}.role-card button{width:100%;padding:11px;border:1px solid var(--ev-purple);background:#fff;color:var(--ev-purple);border-radius:10px;font-weight:800}.role-card:hover button{background:var(--ev-purple);color:#fff}
-
-/* app shell */
-.app{min-height:100vh;display:grid;grid-template-columns:264px 1fr;background:var(--bg)}
-.sidebar{height:100vh;position:sticky;top:0;background:linear-gradient(180deg,var(--ev-purple-2),var(--ev-purple));color:white;padding:26px 18px;overflow:auto}.side-brand{padding:0 10px 20px;border-bottom:1px solid rgba(255,255,255,.12)}.side-brand small{display:block;color:#cfbdd2;margin-top:4px}.side-role{margin:16px 7px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.08);font-size:12px;color:#eaddec}.side-role strong{display:block;color:#fff;font-size:13px;margin-top:2px}
-.nav-group-label{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:#bca8c1;padding:15px 12px 7px}.nav-btn{width:100%;border:0;background:transparent;color:#e9ddea;padding:10px 12px;border-radius:10px;text-align:left;display:flex;gap:10px;align-items:center;font-size:13px;margin:2px 0}.nav-btn:hover,.nav-btn.active{background:rgba(255,255,255,.1);color:#fff}.nav-btn.active{box-shadow:inset 3px 0 0 var(--ev-magenta)}.nav-ico{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:rgba(255,255,255,.08);font-size:12px}
-.sidebar-foot{margin-top:20px;border-top:1px solid rgba(255,255,255,.12);padding:16px 8px 0;font-size:11px;color:#c8b7cb;line-height:1.5}
-.main{min-width:0}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}.top-left{display:flex;align-items:center;gap:14px}.domain-select{border:1px solid var(--line);border-radius:11px;padding:10px 34px 10px 12px;background:#fff;color:var(--ev-purple);font-weight:800;max-width:330px}.search{width:min(370px,30vw);position:relative}.search input{width:100%;border:1px solid var(--line);background:#fafafa;border-radius:11px;padding:10px 14px 10px 36px}.search:before{content:"⌕";position:absolute;left:13px;top:7px;font-size:20px;color:#8d858f}.top-actions{display:flex;align-items:center;gap:10px}.icon-btn{width:38px;height:38px;border:1px solid var(--line);background:#fff;border-radius:10px;color:var(--ev-purple)}.action-btn{border:0;background:var(--ev-magenta);color:#fff;padding:10px 14px;border-radius:10px;font-weight:800;font-size:12px}.avatar{width:38px;height:38px;border-radius:50%;background:var(--ev-purple);color:#fff;display:grid;place-items:center;font-weight:900}
-.content{padding:28px 30px 54px;max-width:1580px;margin:auto}.hero{background:linear-gradient(120deg,var(--ev-purple-2),var(--ev-purple) 58%,#71204c);border-radius:24px;color:#fff;padding:28px 30px;position:relative;overflow:hidden;box-shadow:0 20px 50px rgba(47,21,57,.16)}.hero:after{content:"";position:absolute;width:370px;height:370px;border-radius:50%;border:1px solid rgba(255,255,255,.12);right:-80px;top:-190px;box-shadow:0 0 0 70px rgba(255,255,255,.025),0 0 0 140px rgba(255,255,255,.018)}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:end;position:relative;z-index:2}.hero h1{font-size:38px;letter-spacing:-.04em;margin:5px 0 9px}.hero p{color:#e9ddeb;margin:0;max-width:720px;line-height:1.55}.hero-actions{display:flex;gap:9px;margin-top:20px}.hero-actions button{border-radius:10px;padding:10px 13px;font-weight:800}.hero-primary{border:0;background:var(--ev-magenta);color:#fff}.hero-secondary{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.05);color:#fff}.hero-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.hero-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);padding:14px;border-radius:14px;backdrop-filter:blur(8px)}.hero-stat b{display:block;font-size:24px}.hero-stat span{font-size:11px;color:#d8cadb}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0 28px}.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;display:flex;align-items:center;justify-content:space-between}.kpi-label{color:var(--muted);font-size:11px;font-weight:700}.kpi-value{font-size:26px;font-weight:900;color:var(--ev-purple);margin-top:3px}.kpi-trend{font-size:10px;padding:5px 7px;border-radius:999px;background:#edf8f4;color:var(--green);font-weight:800}.kpi-trend.warn{background:#fff5e7;color:#b67818}
-.section{scroll-margin-top:100px;margin-top:28px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:0 0 14px}.section-head h2{font-size:25px;letter-spacing:-.025em;margin:0;color:var(--ev-purple)}.section-head p{font-size:12px;color:var(--muted);margin:4px 0 0}.section-head .link-btn{border:0;background:transparent;color:var(--ev-magenta);font-weight:800;font-size:12px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:19px;box-shadow:0 6px 20px rgba(55,31,60,.035)}.card-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}.card-title h3{font-size:15px;margin:0;color:var(--ev-purple)}.card-title small{color:var(--muted)}
-.chart-wrap{height:245px;display:flex;align-items:center;justify-content:center}.legend{display:flex;gap:13px;flex-wrap:wrap;font-size:10px;color:var(--muted)}.legend span:before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--ev-purple);margin-right:5px}.legend span:nth-child(2):before{background:var(--ev-magenta)}.legend span:nth-child(3):before{background:#c9b8d2}.legend span:nth-child(4):before{background:#87a7bf}
-.signal-list{display:flex;flex-direction:column;gap:10px}.signal{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:start;padding:11px;border-radius:12px;background:#faf9fb;border:1px solid #f0ecf1}.signal-ico{width:34px;height:34px;border-radius:10px;background:#f3e9f3;display:grid;place-items:center;color:var(--ev-purple);font-weight:900}.signal strong{font-size:12px}.signal p{font-size:11px;color:var(--muted);margin:4px 0 0;line-height:1.45}.signal-time{font-size:9px;color:#9b949e;white-space:nowrap}
-.module-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.module-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;transition:.18s;min-height:146px}.module-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(55,31,60,.08);border-color:#d8c7df}.module-card .micon{width:36px;height:36px;border-radius:10px;background:#f5eef6;color:var(--ev-purple);display:grid;place-items:center;font-weight:900}.module-card h4{font-size:13px;margin:12px 0 5px;color:var(--ev-purple)}.module-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}.module-card .tag{display:inline-block;margin-top:10px;font-size:9px;font-weight:800;color:var(--ev-magenta);text-transform:uppercase;letter-spacing:.06em}
-.matrix{overflow:auto}.matrix table{width:100%;border-collapse:collapse;font-size:11px;min-width:640px}.matrix th,.matrix td{padding:11px 10px;border-bottom:1px solid #efebf0;text-align:left}.matrix th{color:#817785;font-size:10px;text-transform:uppercase;letter-spacing:.04em}.score{height:7px;background:#eee9ef;border-radius:999px;overflow:hidden;min-width:85px}.score i{display:block;height:100%;background:linear-gradient(90deg,var(--ev-purple),var(--ev-magenta));border-radius:999px}.status{padding:4px 7px;border-radius:999px;font-size:9px;font-weight:800}.status.high{background:#ffedf2;color:#bd244e}.status.med{background:#fff4df;color:#a66c0d}.status.low{background:#edf7f3;color:#317d67}
-.research-banner{border:1px solid #e1d7e4;background:linear-gradient(90deg,#faf6fb,#fff);padding:18px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;gap:20px}.research-banner h3{margin:0 0 5px;color:var(--ev-purple)}.research-banner p{font-size:11px;color:var(--muted);margin:0;line-height:1.5}.research-banner button{border:1px solid var(--ev-purple);background:#fff;color:var(--ev-purple);padding:9px 12px;border-radius:10px;font-weight:800;white-space:nowrap}
-.ask-card{display:grid;grid-template-columns:1fr auto;gap:10px}.ask-card textarea{border:1px solid var(--line);border-radius:12px;padding:12px;resize:none;min-height:70px;outline:none}.ask-card textarea:focus{border-color:#caa5d3}.ask-card button{border:0;border-radius:12px;background:var(--ev-purple);color:#fff;padding:0 18px;font-weight:800}.answer-box{margin-top:10px;background:#faf7fb;border-left:3px solid var(--ev-magenta);padding:12px;border-radius:0 10px 10px 0;font-size:11px;color:#5f5662;line-height:1.55;display:none}
-.footer-note{text-align:center;color:#958d98;font-size:10px;margin-top:35px}
-.toast{position:fixed;right:22px;bottom:22px;background:#2d1a33;color:#fff;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:12px;z-index:100;opacity:0;transform:translateY(12px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:none}
-.modal{position:fixed;inset:0;background:rgba(20,10,24,.5);display:none;align-items:center;justify-content:center;z-index:90;padding:20px}.modal.show{display:flex}.modal-card{background:#fff;border-radius:20px;max-width:740px;width:100%;padding:24px;max-height:82vh;overflow:auto}.modal-card h2{color:var(--ev-purple);margin-top:0}.modal-card h3{color:var(--ev-purple);font-size:15px;margin-top:20px}.modal-card p,.modal-card li{color:#625a66;font-size:12px;line-height:1.65}.modal-close{float:right;border:0;background:#f3eef4;width:34px;height:34px;border-radius:10px;color:var(--ev-purple)}
-
-@media(max-width:1150px){.module-grid{grid-template-columns:repeat(3,1fr)}.kpi-grid{grid-template-columns:repeat(2,1fr)}.hero-grid{grid-template-columns:1fr}.grid-3,.grid-4{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.auth-screen{grid-template-columns:1fr}.auth-visual{display:none}.app{grid-template-columns:76px 1fr}.sidebar{padding:20px 10px}.side-brand small,.side-brand .ev-logo,.side-role,.nav-group-label,.nav-btn span:not(.nav-ico),.sidebar-foot{display:none}.nav-btn{justify-content:center}.topbar{padding:0 14px}.search{display:none}.content{padding:20px 16px}.role-grid{grid-template-columns:1fr}.role-wrap{margin-top:35px}}
-@media(max-width:650px){.module-grid,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.kpi-grid{grid-template-columns:1fr 1fr}.domain-select{max-width:200px}.action-btn{display:none}.hero{padding:22px}.hero h1{font-size:29px}.hero-meta{grid-template-columns:1fr 1fr}.auth-panel{padding:28px}.role-screen{padding:28px 18px}.role-wrap h1{font-size:34px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedTech 360 | Evalueserve</title>
+  <meta name="description" content="Evalueserve MedTech 360 - Competitive Intelligence and Primary Market Research workspace." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-<!-- PAGE 1: LOGIN -->
 <section id="loginScreen" class="auth-screen">
   <div class="auth-visual">
     <div class="ev-logo">EVALUESERVE<span>.</span></div>
     <div class="auth-copy">
-      <div class="kicker">Life Sciences & Healthcare</div>
+      <div class="kicker" style="color:#f4a9c4">Life Sciences & Healthcare</div>
       <h1>MedTech <em>360</em></h1>
-      <p>A single intelligence workspace connecting competitive intelligence, primary market research, domain expertise, and decision-ready analytics for MedTech teams.</p>
+      <p>A role-based intelligence workspace connecting industry research, competitive intelligence, primary market research, domain expertise, and decision-ready analytics for MedTech teams.</p>
     </div>
     <div class="domain-pills">
       <span>Autoimmunity & Allergy</span><span>Diabetes & BGM</span><span>Ophthalmology</span><span>Orthopedics</span><span>Advanced Wound Management</span><span>Clinical Laboratory Services</span>
@@ -110,198 +24,77 @@ button{cursor:pointer}
     <div class="auth-card">
       <div class="badge"><span class="dot"></span> Secure intelligence workspace</div>
       <h2>Welcome back</h2>
-      <p>Sign in to access MedTech 360. This prototype demonstrates both enterprise SSO and username-password entry.</p>
-      <button class="sso-btn" onclick="goRoles()"><span>◆</span> Continue with Enterprise SSO</button>
+      <p>Sign in to access MedTech 360. Enterprise SSO and credential access are represented in this prototype.</p>
+      <button class="sso-btn" onclick="goRoleSelection()">◆ &nbsp; Continue with Enterprise SSO</button>
       <div class="divider">or sign in with credentials</div>
-      <div class="field"><label>Work email</label><input id="email" type="email" placeholder="name@company.com" value="demo@evalueserve.com"></div>
-      <div class="field"><label>Password</label><input id="password" type="password" placeholder="••••••••" value="MedTech360"></div>
+      <div class="field"><label>Work email</label><input id="email" type="email" value="demo@evalueserve.com" /></div>
+      <div class="field"><label>Password</label><input id="password" type="password" value="MedTech360" /></div>
       <button class="primary-btn" onclick="credentialLogin()">Sign in to MedTech 360</button>
-      <div class="demo-note"><strong>Prototype access:</strong> demo@evalueserve.com / MedTech360<br>Authentication is simulated client-side for demonstration; production SSO/IAM requires enterprise integration.</div>
+      <div class="demo-note"><strong>Prototype access:</strong> demo@evalueserve.com / MedTech360<br/>Authentication is simulated in the static frontend.</div>
     </div>
   </div>
 </section>
 
-<!-- PAGE 2: ROLE -->
 <section id="roleScreen" class="role-screen hidden">
-  <div class="role-top"><div class="ev-logo">EVALUESERVE<span>.</span></div><button class="secondary-btn" style="border:1px solid #ddd;background:#fff;padding:9px 12px" onclick="logout()">Sign out</button></div>
+  <div class="role-top">
+    <div class="ev-logo">EVALUESERVE<span>.</span></div>
+    <button class="secondary-btn" onclick="logout()">Sign out</button>
+  </div>
   <div class="role-wrap">
-    <div class="kicker" style="text-align:center;color:var(--ev-magenta)">Choose your workspace role</div>
-    <h1>How will you use MedTech 360?</h1>
-    <p>Your role controls the actions surfaced in the prototype. In production, permissions would be mapped through SSO groups and enterprise access controls.</p>
+    <div class="role-title">
+      <div class="kicker">Personalize your workspace</div>
+      <h1>Select a domain and your role</h1>
+      <p>The selected domain determines the industry research and intelligence views shown when you enter the platform. You can switch domains later from the dashboard.</p>
+    </div>
+    <section class="selection-panel">
+      <div class="selection-panel-head">
+        <div><h2>1. Choose MedTech domain</h2><p>Select the domain you want to land on in the Executive Hub.</p></div>
+        <div class="field" style="margin:0;min-width:260px"><label>Selected domain</label><select id="roleDomainSelect" onchange="selectDomain(this.value)"></select></div>
+      </div>
+      <div id="domainGrid" class="domain-grid"></div>
+    </section>
+    <div class="selection-panel-head" style="margin:0 0 12px 2px"><div><h2>2. Choose workspace role</h2><p>Role controls the actions surfaced in the prototype.</p></div></div>
     <div class="role-grid">
-      <article class="role-card"><div class="role-icon">H</div><h3>Hub Owner</h3><p>Govern the workspace, curate intelligence priorities, and manage how domain teams consume insights.</p><ul><li>Manage modules & users</li><li>Approve / prioritize signals</li><li>Configure dashboards & taxonomy</li></ul><button onclick="chooseRole('Hub Owner')">Enter as Hub Owner</button></article>
-      <article class="role-card"><div class="role-icon">C</div><h3>Contributor</h3><p>Add intelligence, research outputs, expert findings, and decision context to shared workstreams.</p><ul><li>Add / tag intelligence</li><li>Upload research outputs</li><li>Create commentary & actions</li></ul><button onclick="chooseRole('Contributor')">Enter as Contributor</button></article>
-      <article class="role-card"><div class="role-icon">V</div><h3>Viewer</h3><p>Consume curated insights, compare domains, review alerts, and export decision-ready snapshots.</p><ul><li>Explore dashboards</li><li>Search evidence</li><li>Export / share snapshots</li></ul><button onclick="chooseRole('Viewer')">Enter as Viewer</button></article>
+      <article class="role-card"><div class="role-icon">H</div><h3>Hub Owner</h3><p>Govern the workspace, curate intelligence priorities, and manage how domain teams consume insights.</p><ul><li>Manage modules & users</li><li>Prioritize intelligence signals</li><li>Configure views & taxonomy</li></ul><button onclick="chooseRole('Hub Owner')">Enter as Hub Owner</button></article>
+      <article class="role-card"><div class="role-icon">C</div><h3>Contributor</h3><p>Add intelligence, research outputs, expert findings, and decision context to shared workstreams.</p><ul><li>Add and tag intelligence</li><li>Upload research outputs</li><li>Create commentary & actions</li></ul><button onclick="chooseRole('Contributor')">Enter as Contributor</button></article>
+      <article class="role-card"><div class="role-icon">V</div><h3>Viewer</h3><p>Explore evidence, dashboards, reports, market signals, and client-ready decision views.</p><ul><li>Consume approved insights</li><li>Filter by domain & segment</li><li>Export prototype snapshots</li></ul><button onclick="chooseRole('Viewer')">Enter as Viewer</button></article>
     </div>
   </div>
 </section>
 
-<!-- PAGE 3: DASHBOARD -->
 <section id="appScreen" class="app hidden">
   <aside class="sidebar">
-    <div class="side-brand"><div class="ev-logo">EVALUESERVE<span>.</span></div><small>MedTech 360</small></div>
-    <div class="side-role">Workspace role<strong id="roleLabel">Viewer</strong></div>
-    <div class="nav-group-label">Decision Hub</div>
-    <button class="nav-btn active" onclick="jump('executive',this)"><span class="nav-ico">⌂</span><span>Executive Hub</span></button>
-    <button class="nav-btn" onclick="jump('signals',this)"><span class="nav-ico">↯</span><span>Alerts & Signals</span></button>
-    <div class="nav-group-label">Competitive Intelligence</div>
-    <button class="nav-btn" onclick="jump('ci',this)"><span class="nav-ico">CI</span><span>CI Solutions</span></button>
-    <button class="nav-btn" onclick="jump('benchmark',this)"><span class="nav-ico">▦</span><span>Competitor Benchmark</span></button>
-    <div class="nav-group-label">Primary Market Research</div>
-    <button class="nav-btn" onclick="jump('pmr',this)"><span class="nav-ico">PM</span><span>PMR Solutions</span></button>
-    <button class="nav-btn" onclick="jump('voice',this)"><span class="nav-ico">◉</span><span>Voice & Evidence</span></button>
-    <div class="nav-group-label">Enablement</div>
-    <button class="nav-btn" onclick="jump('ask',this)"><span class="nav-ico">AI</span><span>Ask MedTech 360</span></button>
-    <button class="nav-btn" onclick="showToast('Knowledge Repository opened (prototype)')"><span class="nav-ico">□</span><span>Knowledge Repository</span></button>
-    <button class="nav-btn" onclick="showToast('Methodology & Audit opened (prototype)')"><span class="nav-ico">✓</span><span>Methodology & Audit</span></button>
-    <div class="sidebar-foot">Evalueserve-inspired prototype<br>Illustrative dashboard data</div>
+    <div class="side-brand"><div class="ev-logo">EVALUESERVE<span>.</span></div><small>MedTech 360 Intelligence Hub</small></div>
+    <div class="workspace-pill">Current workspace<strong id="sideRole">Viewer</strong><span id="sideDomain">Autoimmunity & Allergy</span></div>
+    <div class="nav-label">Workspace</div>
+    <button id="navExecutive" class="nav-btn active" onclick="navigate('executive')"><span class="nav-ico">EH</span><span>Executive Hub</span></button>
+    <div class="nav-label">Intelligence & Research</div>
+    <button id="navCi" class="nav-parent" onclick="openSegment('ci')"><span class="nav-ico">CI</span><span>Competitive Intelligence</span><span class="chev">›</span></button>
+    <div id="ciSubmenu" class="submenu"></div>
+    <button id="navPmr" class="nav-parent" onclick="openSegment('pmr')"><span class="nav-ico">PM</span><span>Primary Market Research</span><span class="chev">›</span></button>
+    <div id="pmrSubmenu" class="submenu"></div>
+    <div class="nav-label">Quick actions</div>
+    <button class="nav-btn" onclick="showToast('Knowledge repository opened (prototype)')"><span class="nav-ico">KR</span><span>Knowledge Repository</span></button>
+    <button class="nav-btn" onclick="showToast('Alerts center opened (prototype)')"><span class="nav-ico">AL</span><span>Alerts & Signals</span></button>
+    <div class="sidebar-bottom"><button onclick="logout()">Log out of MedTech 360</button></div>
   </aside>
-
   <main class="main">
     <header class="topbar">
       <div class="top-left">
-        <select id="domainSelect" class="domain-select" onchange="changeDomain(this.value)">
-          <option>Autoimmunity & Allergy</option>
-          <option>Diabetes & Blood Glucose Monitoring</option>
-          <option>Ophthalmology & Eye Health</option>
-          <option>Orthopedics & Sports Medicine</option>
-          <option>Advanced Wound Management</option>
-          <option>Clinical Laboratory Services</option>
-        </select>
+        <div class="crumb"><small id="breadcrumbSmall">MedTech 360 / Executive Hub</small><strong id="breadcrumbTitle">Industry Overview</strong></div>
       </div>
-      <div class="search"><input id="globalSearch" oninput="searchModules()" placeholder="Search modules, signals, evidence..."></div>
-      <div class="top-actions"><button class="icon-btn" onclick="openResearch()">i</button><button id="roleAction" class="action-btn" onclick="roleAction()">Export Snapshot</button><div class="avatar">M3</div></div>
+      <div class="top-actions">
+        <select id="topDomainSelect" class="top-domain" onchange="switchDomain(this.value)"></select>
+        <div class="search-box"><input id="globalSearch" onkeydown="if(event.key==='Enter')runGlobalSearch()" placeholder="Search capabilities, players, topics..." /></div>
+        <button class="logout-btn" onclick="logout()">Log out</button>
+        <div class="avatar" id="avatarLabel">AB</div>
+      </div>
     </header>
-
-    <div class="content">
-      <section id="executive" class="hero">
-        <div class="hero-grid">
-          <div>
-            <div class="kicker" style="margin-bottom:8px">Evalueserve MedTech Intelligence Workspace</div>
-            <h1><span id="heroDomain">Autoimmunity & Allergy</span> Intelligence Hub</h1>
-            <p id="heroText">Track market shifts, competitor moves, customer needs, evidence gaps and research outputs in one integrated decision environment.</p>
-            <div class="hero-actions"><button class="hero-primary" onclick="jump('signals')">Review Priority Signals</button><button class="hero-secondary" onclick="jump('ask')">Ask the Intelligence Hub</button></div>
-          </div>
-          <div class="hero-meta">
-            <div class="hero-stat"><b id="activeSignals">18</b><span>Active intelligence signals</span></div>
-            <div class="hero-stat"><b>2</b><span>Integrated solution pillars</span></div>
-            <div class="hero-stat"><b id="trackedPeers">8</b><span>Tracked peer / competitor set</span></div>
-            <div class="hero-stat"><b>360°</b><span>Research-to-action coverage</span></div>
-          </div>
-        </div>
-      </section>
-
-      <div class="kpi-grid">
-        <div class="kpi"><div><div class="kpi-label">Priority Signals</div><div class="kpi-value" id="kpi1">07</div></div><span class="kpi-trend">+2 this week</span></div>
-        <div class="kpi"><div><div class="kpi-label">Research Workstreams</div><div class="kpi-value">12</div></div><span class="kpi-trend">On track</span></div>
-        <div class="kpi"><div><div class="kpi-label">Evidence Items</div><div class="kpi-value" id="kpiEvidence">428</div></div><span class="kpi-trend">Curated</span></div>
-        <div class="kpi"><div><div class="kpi-label">Decision Opportunities</div><div class="kpi-value">05</div></div><span class="kpi-trend warn">3 need review</span></div>
-      </div>
-
-      <section id="signals" class="section">
-        <div class="section-head"><div><h2>Executive Intelligence Pulse</h2><p>Illustrative signals combining market monitoring, competitor activity and customer evidence.</p></div><button class="link-btn" onclick="showToast('Signal filters opened (prototype)')">Filter signals →</button></div>
-        <div class="grid-2">
-          <div class="card"><div class="card-title"><h3>Strategic Signal Radar</h3><small>Relative intensity</small></div><div class="chart-wrap">
-            <svg viewBox="0 0 430 245" width="100%" height="100%" aria-label="radar chart">
-              <g transform="translate(215,122)"><polygon points="0,-98 85,-49 85,49 0,98 -85,49 -85,-49" fill="#faf7fb" stroke="#e4dce7"/><polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="none" stroke="#e4dce7"/><polygon points="0,-45 39,-22 39,22 0,45 -39,22 -39,-22" fill="none" stroke="#e4dce7"/><line x1="0" y1="0" x2="0" y2="-98" stroke="#e4dce7"/><line x1="0" y1="0" x2="85" y2="-49" stroke="#e4dce7"/><line x1="0" y1="0" x2="85" y2="49" stroke="#e4dce7"/><line x1="0" y1="0" x2="0" y2="98" stroke="#e4dce7"/><line x1="0" y1="0" x2="-85" y2="49" stroke="#e4dce7"/><line x1="0" y1="0" x2="-85" y2="-49" stroke="#e4dce7"/><polygon id="radarPoly" points="0,-82 67,-39 59,34 0,68 -72,42 -53,-31" fill="rgba(236,0,91,.18)" stroke="#ec005b" stroke-width="3"/>
-              <text x="0" y="-108" text-anchor="middle" font-size="10" fill="#726a76">Product</text><text x="105" y="-50" font-size="10" fill="#726a76">Regulatory</text><text x="105" y="58" font-size="10" fill="#726a76">Partnerships</text><text x="0" y="117" text-anchor="middle" font-size="10" fill="#726a76">Commercial</text><text x="-137" y="58" font-size="10" fill="#726a76">Customer</text><text x="-135" y="-50" font-size="10" fill="#726a76">Technology</text></g>
-            </svg></div><div class="legend"><span>Current signal intensity</span><span>Priority watchlist</span></div></div>
-          <div class="card"><div class="card-title"><h3>Latest Signals & Alerts</h3><small id="signalDomainLabel">Autoimmunity & Allergy</small></div><div id="signalList" class="signal-list"></div></div>
-        </div>
-      </section>
-
-      <section id="ci" class="section">
-        <div class="section-head"><div><h2>Competitive Intelligence Solutions</h2><p>Always-on and deep-dive intelligence workflows spanning competitor, market, technology and strategic activity.</p></div><button class="link-btn" onclick="openResearch()">Why these modules? →</button></div>
-        <div id="ciModules" class="module-grid searchable">
-          <div class="module-card" data-search="company competitor profile strategy footprint financial organization"><div class="micon">CP</div><h4>Company Profiles</h4><p>360° competitor dossiers covering portfolio, footprint, organization, strategy, financial indicators and key moves.</p><span class="tag">Core CI</span></div>
-          <div class="module-card" data-search="news alerts monitoring product launch regulatory partnership m&a"><div class="micon">NA</div><h4>News & Alerts</h4><p>Continuous monitoring of launches, approvals, partnerships, M&A, funding, executive moves and market events.</p><span class="tag">Always-on</span></div>
-          <div class="module-card" data-search="social media sentiment share voice influencer customer"><div class="micon">SM</div><h4>Social Media & Digital Listening</h4><p>Share of voice, themes, sentiment, influencer activity, customer reactions and emerging digital narratives.</p><span class="tag">Signal mining</span></div>
-          <div class="module-card" data-search="strategy market positioning whitespace value proposition growth"><div class="micon">SP</div><h4>Strategy & Market Positioning</h4><p>Strategic priorities, market posture, whitespace, growth bets, value proposition and likely competitive implications.</p><span class="tag">Strategic</span></div>
-          <div class="module-card" data-search="product portfolio benchmark feature pipeline gap comparison"><div class="micon">PB</div><h4>Product & Portfolio Benchmarking</h4><p>Feature-level comparisons, portfolio gap analysis, pipeline tracking and differentiation matrices.</p><span class="tag">Benchmark</span></div>
-          <div class="module-card" data-search="market landscape size growth trends segments ecosystem"><div class="micon">ML</div><h4>Market & Ecosystem Landscape</h4><p>Market structure, segments, growth drivers, ecosystem participants, adjacencies and disruption watch.</p><span class="tag">Landscape</span></div>
-          <div class="module-card" data-search="conference congress event intelligence booth abstracts presentation"><div class="micon">CF</div><h4>Conference Intelligence</h4><p>Pre-event planning, live coverage and post-event synthesis across launches, abstracts, messaging and competitor presence.</p><span class="tag">Event CI</span></div>
-          <div class="module-card" data-search="regulatory clinical trial approvals evidence fda ce mark"><div class="micon">RC</div><h4>Regulatory & Clinical Intelligence</h4><p>Approvals, filings, clinical programs, evidence generation, endpoints and regulatory milestone tracking.</p><span class="tag">Evidence CI</span></div>
-          <div class="module-card" data-search="m&a partnership licensing alliance investment funding"><div class="micon">MA</div><h4>M&A, Partnerships & Investments</h4><p>Deal tracking, alliance logic, target mapping, investment signals and strategic implication assessment.</p><span class="tag">Corporate moves</span></div>
-          <div class="module-card" data-search="patent innovation technology robotics digital ai pipeline"><div class="micon">PT</div><h4>Technology & Patent Watch</h4><p>Emerging technologies, patent themes, digital solutions, AI, robotics and innovation pipeline monitoring.</p><span class="tag">Future watch</span></div>
-          <div class="module-card" data-search="pricing reimbursement market access channel contracting tender"><div class="micon">PA</div><h4>Pricing, Access & Channel Intelligence</h4><p>Pricing signals, reimbursement shifts, tender dynamics, channel models, contracting and access barriers.</p><span class="tag">Commercial CI</span></div>
-          <div class="module-card" data-search="sales enablement battlecard messaging objection competitor playbook"><div class="micon">SE</div><h4>Sales Enablement & Battlecards</h4><p>Field-ready competitor playbooks, objection handling, proof points, talk tracks and account opportunity triggers.</p><span class="tag">Activation</span></div>
-        </div>
-      </section>
-
-      <section id="benchmark" class="section">
-        <div class="section-head"><div><h2>Competitor Benchmark</h2><p>Illustrative peer matrix; values are placeholders for prototype demonstration and not research findings.</p></div><button class="link-btn" onclick="showToast('Benchmark export prepared (prototype)')">Export matrix →</button></div>
-        <div class="card matrix"><table><thead><tr><th>Peer set</th><th>Portfolio breadth</th><th>Innovation visibility</th><th>Commercial activity</th><th>Signal priority</th></tr></thead><tbody id="peerTable"></tbody></table></div>
-      </section>
-
-      <section id="pmr" class="section">
-        <div class="section-head"><div><h2>Primary Market Research Solutions</h2><p>Modular research capabilities that connect customer, clinician, buyer and expert evidence to business decisions.</p></div><button class="link-btn" onclick="showToast('PMR study builder opened (prototype)')">Build a study →</button></div>
-        <div id="pmrModules" class="module-grid searchable">
-          <div class="module-card" data-search="voice customer voc needs pain points satisfaction experience"><div class="micon">VC</div><h4>Voice of Customer (VoC)</h4><p>Needs, pain points, satisfaction drivers, unmet needs, decision criteria and experience improvement priorities.</p><span class="tag">Customer insight</span></div>
-          <div class="module-card" data-search="concept testing product proposition message appeal relevance"><div class="micon">CT</div><h4>Concept Testing</h4><p>Evaluate concept appeal, relevance, differentiation, credibility, adoption intent and optimization opportunities.</p><span class="tag">Innovation</span></div>
-          <div class="module-card" data-search="expert interview idi qualitative kols clinicians buyers"><div class="micon">EI</div><h4>Expert Interview Analysis</h4><p>IDI/KOL synthesis with themes, persona differences, verbatims, evidence mapping and implications.</p><span class="tag">Qualitative</span></div>
-          <div class="module-card" data-search="quantitative survey analytics crosstab statistical segmentation"><div class="micon">QS</div><h4>Quantitative Survey Analytics</h4><p>Cross-tabs, drivers, statistical analysis, segment cuts, heatmaps and interactive response exploration.</p><span class="tag">Quantitative</span></div>
-          <div class="module-card" data-search="conjoint discrete choice tradeoff feature price preference"><div class="micon">CJ</div><h4>Conjoint / Discrete Choice</h4><p>Quantify trade-offs, attribute utilities, feature preference, willingness-to-pay and scenario share simulations.</p><span class="tag">Choice modeling</span></div>
-          <div class="module-card" data-search="segmentation personas cluster behavior needs attitudinal"><div class="micon">SG</div><h4>Customer Segmentation & Personas</h4><p>Needs-, behavior- and attitude-based segments translated into actionable personas and targeting logic.</p><span class="tag">Segmentation</span></div>
-          <div class="module-card" data-search="journey mapping workflow patient hcp touchpoint friction"><div class="micon">JM</div><h4>Journey & Workflow Mapping</h4><p>Map user journeys, clinical workflows, touchpoints, friction, workarounds and intervention opportunities.</p><span class="tag">Experience</span></div>
-          <div class="module-card" data-search="pricing willingness pay van westendorp gabor granger value"><div class="micon">PR</div><h4>Pricing & Value Research</h4><p>Price sensitivity, willingness-to-pay, value drivers, packaging and purchase trade-offs.</p><span class="tag">Commercial</span></div>
-          <div class="module-card" data-search="usability human factors formative device interface adoption"><div class="micon">HF</div><h4>Usability & Human Factors Insight</h4><p>Understand use context, task friction, training needs, error points, confidence and adoption barriers.</p><span class="tag">Human factors</span></div>
-          <div class="module-card" data-search="message communication claims testing brand positioning"><div class="micon">MT</div><h4>Messaging & Claims Testing</h4><p>Test message hierarchy, proof points, claims, credibility, differentiation and stakeholder resonance.</p><span class="tag">Messaging</span></div>
-          <div class="module-card" data-search="brand tracking awareness consideration preference nps loyalty"><div class="micon">BT</div><h4>Brand & Experience Tracking</h4><p>Awareness, consideration, preference, advocacy, NPS-style measures and experience trends over time.</p><span class="tag">Tracking</span></div>
-          <div class="module-card" data-search="market opportunity adoption forecast demand intent patient volume"><div class="micon">OP</div><h4>Opportunity & Adoption Assessment</h4><p>Adoption intent, addressable demand, barriers, triggers, stakeholder readiness and scenario-based opportunity sizing.</p><span class="tag">Growth</span></div>
-        </div>
-      </section>
-
-      <section id="voice" class="section">
-        <div class="section-head"><div><h2>Voice & Evidence Dashboard</h2><p>Illustrative PMR visualization layer connecting stakeholder evidence to prioritization.</p></div><button class="link-btn" onclick="showToast('Persona filter applied (prototype)')">Change personas →</button></div>
-        <div class="grid-3">
-          <div class="card"><div class="card-title"><h3>Top Decision Drivers</h3><small>Relative importance</small></div><svg viewBox="0 0 330 210" width="100%" height="210">
-            <g font-size="10" fill="#6f6874"><text x="0" y="30">Clinical performance</text><text x="0" y="68">Workflow fit</text><text x="0" y="106">Evidence / trust</text><text x="0" y="144">Economics</text><text x="0" y="182">Digital integration</text></g>
-            <g transform="translate(112,10)"><rect x="0" y="7" width="190" height="16" rx="8" fill="#eee9ef"/><rect x="0" y="7" width="171" height="16" rx="8" fill="#49214f"/><rect x="0" y="45" width="190" height="16" rx="8" fill="#eee9ef"/><rect x="0" y="45" width="150" height="16" rx="8" fill="#6d4073"/><rect x="0" y="83" width="190" height="16" rx="8" fill="#eee9ef"/><rect x="0" y="83" width="136" height="16" rx="8" fill="#9b659e"/><rect x="0" y="121" width="190" height="16" rx="8" fill="#eee9ef"/><rect x="0" y="121" width="120" height="16" rx="8" fill="#c17ab1"/><rect x="0" y="159" width="190" height="16" rx="8" fill="#eee9ef"/><rect x="0" y="159" width="103" height="16" rx="8" fill="#ec005b"/></g></svg></div>
-          <div class="card"><div class="card-title"><h3>Evidence Mix</h3><small>Illustrative</small></div><div class="chart-wrap" style="height:210px"><svg viewBox="0 0 250 210" width="100%" height="100%"><circle cx="100" cy="100" r="65" fill="none" stroke="#eee9ef" stroke-width="27"/><circle cx="100" cy="100" r="65" fill="none" stroke="#49214f" stroke-width="27" stroke-dasharray="155 410" stroke-dashoffset="0" transform="rotate(-90 100 100)"/><circle cx="100" cy="100" r="65" fill="none" stroke="#ec005b" stroke-width="27" stroke-dasharray="102 410" stroke-dashoffset="-155" transform="rotate(-90 100 100)"/><circle cx="100" cy="100" r="65" fill="none" stroke="#c9b8d2" stroke-width="27" stroke-dasharray="82 410" stroke-dashoffset="-257" transform="rotate(-90 100 100)"/><text x="100" y="96" text-anchor="middle" fill="#49214f" font-weight="800" font-size="22">360°</text><text x="100" y="113" text-anchor="middle" fill="#777" font-size="9">evidence view</text><g font-size="9" fill="#6f6874"><text x="183" y="75">Qual IDIs</text><text x="183" y="100">Surveys</text><text x="183" y="125">Secondary</text></g><rect x="170" y="66" width="8" height="8" fill="#49214f"/><rect x="170" y="91" width="8" height="8" fill="#ec005b"/><rect x="170" y="116" width="8" height="8" fill="#c9b8d2"/></svg></div></div>
-          <div class="card"><div class="card-title"><h3>Research Pipeline</h3><small>Example workflow</small></div><div class="signal-list"><div class="signal"><div class="signal-ico">1</div><div><strong>Frame decision & hypotheses</strong><p>Business question, stakeholder scope, method fit.</p></div><span class="status high">Plan</span></div><div class="signal"><div class="signal-ico">2</div><div><strong>Collect customer evidence</strong><p>Qual, quant, digital / behavioral inputs.</p></div><span class="status med">Field</span></div><div class="signal"><div class="signal-ico">3</div><div><strong>Synthesize & activate</strong><p>Patterns, implications, recommendation and action.</p></div><span class="status low">Act</span></div></div></div>
-        </div>
-      </section>
-
-      <section id="ask" class="section">
-        <div class="section-head"><div><h2>Ask MedTech 360</h2><p>Prototype interaction showing how a future evidence-grounded assistant can surface cross-workstream insight.</p></div></div>
-        <div class="grid-2">
-          <div class="card"><div class="card-title"><h3>Intelligence Query</h3><small>Prototype response</small></div><div class="ask-card"><textarea id="askInput" placeholder="Example: What are the highest-priority competitor and customer signals in this domain?"></textarea><button onclick="askHub()">Ask</button></div><div id="answerBox" class="answer-box"></div></div>
-          <div class="research-banner"><div><h3>From evidence to action</h3><p>MedTech 360 is designed as a unified shell where Evalueserve CI and PMR outputs can be curated by domain, linked to source evidence and translated into decision-ready views.</p></div><button onclick="openResearch()">View design basis</button></div>
-        </div>
-      </section>
-
-      <div class="footer-note">MedTech 360 prototype • Evalueserve-inspired design language • Dashboard figures and benchmark scores are illustrative placeholders, not client research findings.</div>
-    </div>
+    <div id="pageContent" class="page"></div>
   </main>
 </section>
-
 <div id="toast" class="toast"></div>
-<div id="researchModal" class="modal" onclick="if(event.target===this)closeResearch()"><div class="modal-card"><button class="modal-close" onclick="closeResearch()">×</button><h2>Design & Research Basis</h2><p>This prototype uses the Evalueserve corporate visual language supplied in the project template: deep purple, bright magenta accents, white content surfaces, compact iconography, structured cards and dashboard-style data visualization.</p><h3>Public Evalueserve capability alignment</h3><p>The solution architecture also reflects Evalueserve's publicly described MedTech PMR and competitive intelligence capabilities, including primary data collection, market and competitor assessment, continuous competitor monitoring, product launches, regulatory approvals, partnerships, M&A, conference intelligence and strategic analysis.</p><ul><li>Evalueserve — Primary Market Research, MedTech</li><li>Evalueserve — Market & Competitive Intelligence</li><li>Evalueserve case studies for medical-device PMR, orthopedic competitive intelligence and CI dashboards</li></ul><p><strong>Important:</strong> All numeric KPIs, scores, signal counts and benchmark values shown in this frontend are illustrative demo data. Production implementation should connect authenticated enterprise data sources, approved research repositories and governed analytics services.</p></div></div>
-
-<script>
-const domainData={
-"Autoimmunity & Allergy":{signals:18,peers:8,evidence:428,kpi:7,focus:"Track assay innovation, testing algorithms, lab adoption, guideline shifts and customer evidence across allergy and autoimmune diagnostics.",companies:["Thermo Fisher Scientific","EUROIMMUN","Werfen","bioMérieux"],alerts:[["Portfolio","New assay / panel activity requires portfolio-gap review"],["Regulatory","Recent approval signals should be mapped to launch readiness"],["Customer","Lab workflow and test-menu simplification emerge as recurring needs"]],radar:"0,-84 66,-38 57,33 0,72 -74,43 -55,-32"},
-"Diabetes & Blood Glucose Monitoring":{signals:24,peers:7,evidence:512,kpi:9,focus:"Connect CGM/BGM innovation, digital ecosystems, channel strategy, evidence and patient / HCP adoption signals.",companies:["Abbott","Dexcom","Medtronic","Roche Diabetes Care"],alerts:[["Technology","Sensor and algorithm innovation remains a high-intensity watch area"],["Commercial","Channel and access moves warrant cross-market comparison"],["Customer","Wearability, ease of use and data integration shape adoption discussions"]],radar:"0,-90 73,-42 63,36 0,74 -67,39 -76,-44"},
-"Ophthalmology & Eye Health":{signals:21,peers:9,evidence:476,kpi:8,focus:"Monitor vision-care portfolios, surgical platforms, digital eye-health innovation, market positioning and clinician needs.",companies:["Alcon","Johnson & Johnson Vision","Bausch + Lomb","ZEISS Medical Technology"],alerts:[["Portfolio","Surgical and vision-care portfolio activity creates new comparison needs"],["Conference","Congress messaging can reveal shifts in strategic emphasis"],["Customer","Workflow, clinical outcomes and platform integration remain key evidence themes"]],radar:"0,-78 77,-44 66,38 0,67 -70,40 -63,-36"},
-"Orthopedics & Sports Medicine":{signals:27,peers:8,evidence:538,kpi:10,focus:"Integrate implant, enabling technology, robotics, sports medicine, procedural workflow and surgeon / hospital evidence.",companies:["Stryker","Zimmer Biomet","DePuy Synthes","Smith+Nephew"],alerts:[["Technology","Robotics and digital surgery remain strategic watch areas"],["Portfolio","Procedure-level portfolio gaps should be benchmarked against peer breadth"],["Customer","Surgeon workflow and hospital economics need to be read together"]],radar:"0,-93 72,-41 70,40 0,79 -63,37 -81,-47"},
-"Advanced Wound Management":{signals:16,peers:7,evidence:392,kpi:6,focus:"Track wound-care portfolio shifts, NPWT, advanced dressings, care pathways, channel models and clinician / patient experience.",companies:["Smith+Nephew","Mölnlycke Health Care","Convatec","Solventum"],alerts:[["Customer","Ease of use and care-setting workflow are high-value research themes"],["Portfolio","Advanced dressing and NPWT portfolios require pathway-level comparison"],["Commercial","Channel and care-setting shifts may alter adoption dynamics"]],radar:"0,-74 60,-35 52,30 0,73 -68,39 -58,-34"},
-"Clinical Laboratory Services":{signals:29,peers:8,evidence:604,kpi:11,focus:"Unify lab-services competitive moves, test-menu strategy, digital / analytics offerings, health-system needs and consumer testing signals.",companies:["Quest Diagnostics","Labcorp","Mayo Clinic Laboratories","ARUP Laboratories"],alerts:[["Digital","Analytics and workflow integration remain important differentiation areas"],["Customer","Health systems continue to value actionable, integrated operational insight"],["Portfolio","Specialty testing, outreach and consumer offerings need connected monitoring"]],radar:"0,-86 69,-40 75,43 0,82 -76,44 -70,-40"}
-};
-let currentRole="Viewer";let currentDomain="Autoimmunity & Allergy";
-function goRoles(){document.getElementById('loginScreen').classList.add('hidden');document.getElementById('roleScreen').classList.remove('hidden')}
-function credentialLogin(){const e=document.getElementById('email').value.trim();const p=document.getElementById('password').value;if(e==='demo@evalueserve.com'&&p==='MedTech360'){goRoles()}else{showToast('Use the prototype credentials shown below the form.')}}
-function chooseRole(role){currentRole=role;localStorage.setItem('medtech360Role',role);document.getElementById('roleLabel').textContent=role;document.getElementById('roleScreen').classList.add('hidden');document.getElementById('appScreen').classList.remove('hidden');document.getElementById('roleAction').textContent=role==='Hub Owner'?'Manage Hub':role==='Contributor'?'Add Insight':'Export Snapshot';changeDomain(currentDomain)}
-function logout(){localStorage.removeItem('medtech360Role');document.getElementById('appScreen').classList.add('hidden');document.getElementById('roleScreen').classList.add('hidden');document.getElementById('loginScreen').classList.remove('hidden')}
-function jump(id,btn){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active')}
-function changeDomain(name){currentDomain=name;const d=domainData[name];document.getElementById('heroDomain').textContent=name;document.getElementById('heroText').textContent=d.focus;document.getElementById('activeSignals').textContent=d.signals;document.getElementById('trackedPeers').textContent=d.peers;document.getElementById('kpi1').textContent=String(d.kpi).padStart(2,'0');document.getElementById('kpiEvidence').textContent=d.evidence;document.getElementById('signalDomainLabel').textContent=name;document.getElementById('radarPoly').setAttribute('points',d.radar);renderSignals(d);renderPeers(d)}
-function renderSignals(d){const types=['P','R','C'];document.getElementById('signalList').innerHTML=d.alerts.map((a,i)=>`<div class="signal"><div class="signal-ico">${types[i]}</div><div><strong>${a[0]}</strong><p>${a[1]}</p></div><span class="signal-time">${i+1}d ago</span></div>`).join('')}
-function renderPeers(d){const priorities=['high','med','low','med'];document.getElementById('peerTable').innerHTML=d.companies.map((c,i)=>{const a=88-i*9,b=82-i*7,m=76-i*5;return `<tr><td><strong>${c}</strong></td><td><div class="score"><i style="width:${a}%"></i></div></td><td><div class="score"><i style="width:${b}%"></i></div></td><td><div class="score"><i style="width:${m}%"></i></div></td><td><span class="status ${priorities[i]}">${priorities[i]==='high'?'High':priorities[i]==='med'?'Medium':'Watch'}</span></td></tr>`}).join('')}
-function searchModules(){const q=document.getElementById('globalSearch').value.toLowerCase().trim();document.querySelectorAll('.searchable .module-card').forEach(c=>{c.style.display=(!q||c.dataset.search.includes(q)||c.innerText.toLowerCase().includes(q))?'block':'none'})}
-function roleAction(){showToast(currentRole==='Hub Owner'?'Hub governance controls opened (prototype)':currentRole==='Contributor'?'Add-insight workflow opened (prototype)':'Snapshot export prepared (prototype)')}
-function askHub(){const q=document.getElementById('askInput').value.trim();const box=document.getElementById('answerBox');if(!q){showToast('Enter a business question first.');return}const d=domainData[currentDomain];box.style.display='block';box.innerHTML=`<strong>Prototype synthesis — ${currentDomain}</strong><br>${d.focus} Current illustrative priority signals cluster around <b>${d.alerts.map(x=>x[0].toLowerCase()).join(', ')}</b>. A production response would cite the underlying CI and PMR evidence, show source-level traceability, and separate observed facts from analyst interpretation.`}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
-function openResearch(){document.getElementById('researchModal').classList.add('show')}function closeResearch(){document.getElementById('researchModal').classList.remove('show')}
-(function(){renderSignals(domainData[currentDomain]);renderPeers(domainData[currentDomain]);const saved=localStorage.getItem('medtech360Role');if(saved)currentRole=saved})();
-</script>
+<script src="data.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
