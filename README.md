@@ -170,3 +170,28 @@ The six CI modules other than Company Profiles have been further enriched with a
 - **Conference & KOL Intelligence:** event status / theme / year / company-relevance filters; KPI strip; chronological calendar; theme frequency; faculty/KOL watchlist; event-company relevance matrix; conference-linked launch/evidence tracker and official event links.
 
 The supplementary 2025–2026 research uses company newsrooms, investor releases, regulator information and official conference sites wherever available. Estimated or model-derived metrics are labeled as directional / illustrative.
+
+
+## Primary Market Research dashboards
+
+The PMR segment has been streamlined to three dedicated analysis modules:
+- **Voice of Customer Study**
+- **Expert & KOL Interview Analysis**
+- **Quantitative Survey Analysis**
+
+The previous **Concept & Product Testing** and **Pricing & Willingness-to-Pay** navigation sections have been removed.
+
+For each of the six MedTech domains, the prototype assumes a **seven-project PMR program** with four qualitative / interview-led projects and three quantitative surveys. The projects intentionally cover diverse methodologies: end-user VOC IDIs, patient / caregiver journey interviews, contextual workflow research, KOL future-state interviews, adoption & access survey, product / service experience benchmark, and decision-driver / readiness survey.
+
+All respondent values, quotations, significance outputs, segments and recommendations are explicitly synthetic demo data. Section-specific filters dynamically recalculate the displayed metrics, matrices and charts.
+
+### Voice of Customer
+Includes project / persona / region / care-setting / theme filters, need-state opportunity matrix, theme severity, persona mix, unmet-need and adoption views, persona-by-theme heatmap, domain-specific journey friction, decision drivers, synthetic verbatim evidence and prioritized recommendations.
+
+### Expert & KOL Interview Analysis
+Includes project / expert-type / region / theme / consensus filters, theme salience vs consensus, momentum, expert-mix views, expert-by-theme matrix, cross-project recurrence, project synthesis, synthetic KOL evidence and recommendation roadmap.
+
+### Quantitative Survey Analysis
+Includes survey / persona / region / care-setting / outcome filters, dynamic analytical base, sample composition, respondent segments, toplines, importance-performance matrix, persona-by-attribute crosstabs, driver strength, mean scores, illustrative significance flags and segment profiles.
+
+The dashboard methodology links to AHRQ patient-experience / narrative guidance and FDA patient-preference information as public methodological context; these sources do not validate the synthetic results.
