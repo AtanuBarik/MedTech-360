@@ -156,3 +156,17 @@ All remaining CI subsections now have dedicated interactive pages:
 - **Conference & KOL Intelligence** — status, theme, year and company-relevance filters; event timing / theme charts, past and upcoming conference cards, venue/date, selected KOL / faculty names and direct conference-site links.
 
 The CI news dataset is curated from company newsrooms, regulatory sources and reputable distribution wires and excludes stock-price / market-share news. It is designed as a decision-support research layer rather than a claim of exhaustive web capture.
+
+
+### Competitive Intelligence v3
+
+The six CI modules other than Company Profiles have been further enriched with a larger one-year public-source research layer and more decision-oriented analytics.
+
+- **News & Alerts:** five cascading filters including Priority; KPI strip; 12-month news velocity; company volume; theme mix; source-authority mix; priority mix; company-by-theme heatmap; executive signal summary; milestone timeline; and detailed source-linked news cards.
+- **Product & Portfolio Benchmarking:** two-company comparison with category, region and benchmark-lens filters; capability and feature heatmaps; quarterly innovation-signal trendlines; regional footprint matrix; portfolio overlap / whitespace; and detailed product evidence tables.
+- **M&A Partnerships & Investment:** deal KPIs, quarterly transaction velocity, company activity, structure mix, rationale mix, company-by-rationale matrix, integration-complexity watchlist and transaction-by-transaction implication analysis.
+- **Social & Digital Media:** dynamic company / platform / theme / period filters; modeled share of voice, cadence trend, sentiment, platform mix, content-type mix, company-theme matrix, recent source-linked public-content signals and public social search links. Metrics requiring authenticated social APIs remain clearly labeled as demo estimates.
+- **Strategy & Market Positioning:** company / region / strategy-lens / evidence-period filters; innovation-vs-digital map, one-year strategy-signal matrix, strategy-emphasis heatmap, strategic archetypes, regional presence and detailed monitoring cards.
+- **Conference & KOL Intelligence:** event status / theme / year / company-relevance filters; KPI strip; chronological calendar; theme frequency; faculty/KOL watchlist; event-company relevance matrix; conference-linked launch/evidence tracker and official event links.
+
+The supplementary 2025–2026 research uses company newsrooms, investor releases, regulator information and official conference sites wherever available. Estimated or model-derived metrics are labeled as directional / illustrative.
