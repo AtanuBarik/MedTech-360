@@ -118,6 +118,7 @@ function renderSubsegment(type,id){
   if(!item){navigate(type);return}
   if(type==='ci'&&id==='company-profiles'){renderCompanyProfilesPage();return}
   if(type==='ci'&&['news-alerts','product-portfolio','ma-partnerships','social-digital','strategy-positioning','conference-kol'].includes(id)){renderCIIntelligence(id);return}
+  if(type==='pmr'&&['voc','expert-interviews','quant-surveys'].includes(id)){renderPMRIntelligence(id);return}
   const d=DOMAIN_DATA[currentDomain],en=enrichment();
   const name=type==='ci'?'Competitive Intelligence':'Primary Market Research';
   const bp=window.MODULE_BLUEPRINTS&&MODULE_BLUEPRINTS[type]&&MODULE_BLUEPRINTS[type][id];
