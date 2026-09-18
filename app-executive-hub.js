@@ -10,7 +10,7 @@ function execNews(){
 }
 function execPriority(n){
   if(["Regulatory Milestone","Clinical Trial Update","M&A"].includes(n.milestone))return "High";
-  if(["Leadership Changes","Partnership, M&A","Clinical, R&D"].includes(ciTheme?ciTheme(n):n.theme))return "Medium";
+  if(["Leadership Changes","Partnership, M&A","Clinical, R&D"].includes(typeof ciTheme==="function"?ciTheme(n):n.theme))return "Medium";
   return "Routine";
 }
 function execCurrentPmrProjects(){
