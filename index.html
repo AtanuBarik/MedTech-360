@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MedTech 360 | Evalueserve</title>
   <meta name="description" content="Evalueserve MedTech 360 - Competitive Intelligence and Primary Market Research workspace." />
-  <link rel="stylesheet" href="styles-base.css?v=20260918w" />
-  <link rel="stylesheet" href="styles-app.css?v=20260918w" />
-  <link rel="stylesheet" href="styles-pages.css?v=20260918w" />
+  <link rel="stylesheet" href="styles-base.css?v=20260918x" />
+  <link rel="stylesheet" href="styles-app.css?v=20260918x" />
+  <link rel="stylesheet" href="styles-pages.css?v=20260918x" />
 </head>
 <body>
 <section id="loginScreen" class="auth-screen">
@@ -70,13 +70,14 @@
     <div class="workspace-pill">Current workspace<strong id="sideRole">Viewer</strong><span id="sideDomain">Autoimmunity & Allergy</span></div>
     <div class="nav-label">Workspace</div>
     <button id="navExecutive" class="nav-btn active" onclick="navigate('executive')"><span class="nav-ico">EH</span><span>Executive Hub</span></button>
+    <button id="navIndustry" class="nav-btn" onclick="navigate('industry')"><span class="nav-ico">IO</span><span>Industry Overview</span></button>
     <div class="nav-label">Intelligence & Research</div>
     <button id="navCi" class="nav-parent" onclick="openSegment('ci')"><span class="nav-ico">CI</span><span>Competitive Intelligence</span><span class="chev">›</span></button>
     <div id="ciSubmenu" class="submenu"></div>
     <button id="navPmr" class="nav-parent" onclick="openSegment('pmr')"><span class="nav-ico">PM</span><span>Primary Market Research</span><span class="chev">›</span></button>
     <div id="pmrSubmenu" class="submenu"></div>
     <div class="nav-label">Quick actions</div>
-    <button class="nav-btn" onclick="showToast('Knowledge repository opened (prototype)')"><span class="nav-ico">KR</span><span>Knowledge Repository</span></button>
+    <button id="navRepository" class="nav-btn" onclick="navigate('repository')"><span class="nav-ico">KR</span><span>Knowledge Repository</span></button>
     <div class="sidebar-bottom"><button onclick="logout()">Log out of MedTech 360</button></div>
   </aside>
   <main class="main">
@@ -95,34 +96,37 @@
   </main>
 </section>
 <div id="toast" class="toast"></div>
-<script src="data-base.js?v=20260918w"></script>
-<script src="data-domains-1.js?v=20260918w"></script>
-<script src="data-domains-2.js?v=20260918w"></script>
-<script src="data-domains-3.js?v=20260918w"></script>
-<script src="data-evidence.js?v=20260918w"></script>
-<script src="data-enrichment.js?v=20260918w"></script>
-<script src="data-executive.js?v=20260918w"></script>
-<script src="data-executive-strategy.js?v=20260918w"></script>
-<script src="data-ci.js?v=20260918w"></script>
-<script src="data-pmr.js?v=20260918w"></script>
-<script src="data-pmr-demo.js?v=20260918w"></script>
-<script src="data-pmr-demo-v2.js?v=20260918w"></script>
-<script src="data-pageviews.js?v=20260918w"></script>
-<script src="data-company-profiles-1.js?v=20260918w"></script>
-<script src="data-company-profiles-2.js?v=20260918w"></script>
-<script src="data-company-profiles-3.js?v=20260918w"></script>
-<script src="data-company-profiles-4.js?v=20260918w"></script>
-<script src="data-ci-intelligence.js?v=20260918w"></script>
-<script src="data-ci-intelligence-extra.js?v=20260918w"></script>
-<script src="data-ci-intelligence-more-1.js?v=20260918w"></script>
-<script src="data-ci-intelligence-more-2.js?v=20260918w"></script>
-<script src="app-core.js?v=20260918w"></script>
-<script src="app-executive.js?v=20260918w"></script>
-<script src="app-company-profiles.js?v=20260918w"></script>
-<script src="app-ci-intelligence.js?v=20260918w"></script>
-<script src="app-ci-intelligence-v2.js?v=20260918w"></script>
-<script src="app-pmr-intelligence.js?v=20260918w"></script>
-<script src="app-pmr-intelligence-v2.js?v=20260918w"></script>
-<script src="app-subpages.js?v=20260918w"></script>
+<script src="data-base.js?v=20260918x"></script>
+<script src="data-domains-1.js?v=20260918x"></script>
+<script src="data-domains-2.js?v=20260918x"></script>
+<script src="data-domains-3.js?v=20260918x"></script>
+<script src="data-evidence.js?v=20260918x"></script>
+<script src="data-enrichment.js?v=20260918x"></script>
+<script src="data-executive.js?v=20260918x"></script>
+<script src="data-executive-strategy.js?v=20260918x"></script>
+<script src="data-executive-daily.js?v=20260918x"></script>
+<script src="data-ci.js?v=20260918x"></script>
+<script src="data-pmr.js?v=20260918x"></script>
+<script src="data-pmr-demo.js?v=20260918x"></script>
+<script src="data-pmr-demo-v2.js?v=20260918x"></script>
+<script src="data-pageviews.js?v=20260918x"></script>
+<script src="data-company-profiles-1.js?v=20260918x"></script>
+<script src="data-company-profiles-2.js?v=20260918x"></script>
+<script src="data-company-profiles-3.js?v=20260918x"></script>
+<script src="data-company-profiles-4.js?v=20260918x"></script>
+<script src="data-ci-intelligence.js?v=20260918x"></script>
+<script src="data-ci-intelligence-extra.js?v=20260918x"></script>
+<script src="data-ci-intelligence-more-1.js?v=20260918x"></script>
+<script src="data-ci-intelligence-more-2.js?v=20260918x"></script>
+<script src="app-core.js?v=20260918x"></script>
+<script src="app-executive.js?v=20260918x"></script>
+<script src="app-executive-hub.js?v=20260918x"></script>
+<script src="app-company-profiles.js?v=20260918x"></script>
+<script src="app-ci-intelligence.js?v=20260918x"></script>
+<script src="app-ci-intelligence-v2.js?v=20260918x"></script>
+<script src="app-pmr-intelligence.js?v=20260918x"></script>
+<script src="app-pmr-intelligence-v2.js?v=20260918x"></script>
+<script src="app-knowledge-repository.js?v=20260918x"></script>
+<script src="app-subpages.js?v=20260918x"></script>
 </body>
 </html>
