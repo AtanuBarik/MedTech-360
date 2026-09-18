@@ -99,7 +99,7 @@ function renderVOCPage(){
   const base=pmrFilteredBase(s.project==="All qualitative projects"?qual.reduce((a,p)=>a+p.sample,0):(qual.find(p=>p.id===s.project)?.sample||0),s);
   const pref=(v2.voc?.preferences||[]).filter(x=>s.persona==="All personas"||x.persona===s.persona);
   const readiness=(v2.voc?.readiness||[]).filter(x=>s.persona==="All personas"||x.persona===s.persona);
-  $('breadcrumbSmall').textContent='Primary Market Research / Voice of Customer Study';$('breadcrumbTitle').textContent=currentDomain+' — Voice of Customer';
+  $('breadcrumbSmall').textContent='Primary Market Research / Voice of customer Study';$('breadcrumbTitle').textContent=currentDomain+' — Voice of customer';
   $('pageContent').innerHTML=pmrPageHead("Voice of customer study",'A study-style VOC workspace for <b>'+esc(currentDomain)+'</b> that brings together end-user interviews, journey research and workflow observations across physicians, nurses, administrators, patients and other customer types.')+
     '<section class="pmr-filter-shell five">'+pmrSelect("Project","project",projectOptions,s.project,"voc")+pmrSelect("Persona","persona",["All personas",...cfg.personas],s.persona,"voc")+pmrSelect("Region","region",["All regions",...cfg.regions],s.region,"voc")+pmrSelect("Care setting","setting",["All settings",...cfg.settings],s.setting,"voc")+pmrSelect("Theme","theme",["All themes",...cfg.themes],s.theme,"voc")+'</section>'+
     '<section class="section">'+pmrKpis([
@@ -140,7 +140,7 @@ function renderExpertPage(){
   const d=pmrData(),cfg=d.config,v2=pmrV2(),s=pmrIntelState["expert-interviews"],projects=pmrExpertProjects(),projectOptions=[{value:"All interview projects",label:"All interview projects"},...projects.map(p=>({value:p.id,label:p.name}))];
   let themes=pmrExpertThemeRows(s);if(s.consensus==="High consensus")themes=themes.filter(x=>x.consensus>=80);if(s.consensus==="Mixed")themes=themes.filter(x=>x.consensus>=65&&x.consensus<80);if(s.consensus==="Divergent")themes=themes.filter(x=>x.consensus<65);
   const experts=s.expert==="All expert types"?d.expertMetrics:d.expertMetrics.filter(x=>x.persona===s.expert),base=pmrFilteredBase(s.project==="All interview projects"?projects.reduce((a,p)=>a+p.sample,0):(projects.find(p=>p.id===s.project)?.sample||0),s);
-  $('breadcrumbSmall').textContent='Primary Market Research / Expert & KOL Interview Analysis';$('breadcrumbTitle').textContent=currentDomain+' — Expert & KOL Analysis';
+  $('breadcrumbSmall').textContent='Primary Market Research / Expert & KOL Interview Analysis';$('breadcrumbTitle').textContent=currentDomain+' — Expert & KOL analysis';
   $('pageContent').innerHTML=pmrPageHead("Expert & KOL interview analysis",'A cross-project synthesis of KOL interviews, expert transcripts and qualitative final reports for <b>'+esc(currentDomain)+'</b>, highlighting consensus, disagreement, emerging signals, evidence expectations, risks and implications.')+
     '<section class="pmr-filter-shell five">'+pmrSelect("Project","project",projectOptions,s.project,"expert-interviews")+pmrSelect("Expert type","expert",["All expert types",...cfg.expertTypes],s.expert,"expert-interviews")+pmrSelect("Region","region",["All regions",...cfg.regions],s.region,"expert-interviews")+pmrSelect("Theme","theme",["All themes",...cfg.themes],s.theme,"expert-interviews")+pmrSelect("Consensus","consensus",["All consensus levels","High consensus","Mixed","Divergent"],s.consensus,"expert-interviews")+'</section>'+
     '<section class="section">'+pmrKpis([
@@ -183,7 +183,7 @@ function renderQuantPage(){
   const strongest=rows.slice().sort((a,b)=>b.driver-a.driver)[0],gap=rows.slice().sort((a,b)=>(b.importance-b.satisfaction)-(a.importance-a.satisfaction))[0];
   const readiness=(v2.voc?.readiness||[]).filter(x=>s.persona==="All personas"||x.persona===s.persona);
   const outcomes=["Overall experience","Adoption intent","Future preference","Digital readiness","Recommendation / advocacy"];
-  $('breadcrumbSmall').textContent='Primary Market Research / Quantitative Survey Analysis';$('breadcrumbTitle').textContent=currentDomain+' — Quantitative Survey';
+  $('breadcrumbSmall').textContent='Primary Market Research / Quantitative survey Analysis';$('breadcrumbTitle').textContent=currentDomain+' — Quantitative survey';
   $('pageContent').innerHTML=pmrPageHead("Quantitative survey analysis",'A project-style analytical workspace for <b>'+esc(currentDomain)+'</b>, showing how Evalueserve could go beyond standard survey charting with dynamic cross-tabs, derived segments, drivers, subgroup deltas, open-text coding and action-oriented synthesis.')+
     '<section class="pmr-filter-shell five">'+pmrSelect("Survey project","project",projects.map(p=>({value:p.id,label:p.name})),s.project,"quant-surveys")+pmrSelect("Persona","persona",["All personas",...cfg.personas],s.persona,"quant-surveys")+pmrSelect("Region","region",["All regions",...cfg.regions],s.region,"quant-surveys")+pmrSelect("Care setting","setting",["All settings",...cfg.settings],s.setting,"quant-surveys")+pmrSelect("Outcome","outcome",outcomes,s.outcome,"quant-surveys")+'</section>'+
     '<section class="section">'+pmrKpis([
