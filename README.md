@@ -36,9 +36,13 @@ Market Landscape & Sizing; Company Profiles; News & Alerts; Strategy & Market Po
 
 ## Primary Market Research sub-segments
 
-Voice of Customer Study; Expert & KOL Interview Analysis; Concept & Product Testing; Quantitative Survey Analysis; Conjoint / Discrete Choice; Pricing & Willingness-to-Pay; Segmentation & Personas; Customer Journey & UX; Message & Claims Testing; Adoption & Readiness; Satisfaction & Loyalty; Workflow & Unmet Needs.
+Voice of Customer Study; Expert & KOL Interview Analysis; Concept & Product Testing; Quantitative Survey Analysis; Conjoint / Discrete Choice; Pricing & Willingness-to-Pay; Segmentation & Personas; Customer Journey & UX; Message & Claims Testing; Adoption & Readiness; Satisfaction & Loyalty; Workflow & Unmet Needs; MaxDiff / Prioritization; Human Factors / UX / Usability; Launch Readiness & Demand Forecast; AI-assisted Open-text Analytics.
 
 Each sub-segment has its own routed page (`#ci/...` or `#pmr/...`) with domain research context, relevant datapoints, analytical views, business questions, deliverables, recommended cuts, and source basis.
+
+## Interactive filters
+
+The dashboard now includes persistent filters for **company**, **theme**, and **dataset layer**. Dataset layers include all evidence, public market data, competitive signals, PMR blueprint, and illustrative demo views. Filters persist as the user navigates between Executive Hub, CI, and PMR pages within the selected domain.
 
 ## Data note
 
@@ -50,6 +54,7 @@ Factual KPI cards and research statements are tied to external sources listed in
 - `styles-base.css`, `styles-app.css`, `styles-pages.css` – Evalueserve-inspired responsive design system and page layouts
 - `data-base.js`, `data-domains-1.js` ... `data-domains-3.js` – domain research content
 - `data-evidence.js` – current public-source evidence anchors for all six domains
+- `data-enrichment.js` – market forecasts, competitor universes, current signals, domain themes, and domain-specific CI / PMR lenses
 - `data-ci.js`, `data-pmr.js` – CI/PMR capability taxonomy
 - `data-pageviews.js` – module-specific datapoints, analytical lenses, and recommended visualizations for every sub-segment
 - `app-core.js`, `app-executive.js`, `app-subpages.js` – navigation, routing, role/domain selection, page rendering and interactions
