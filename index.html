@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MedTech 360 | Evalueserve</title>
   <meta name="description" content="Evalueserve MedTech 360 - Competitive Intelligence and Primary Market Research workspace." />
-  <link rel="stylesheet" href="styles-base.css?v=20260918g" />
-  <link rel="stylesheet" href="styles-app.css?v=20260918g" />
-  <link rel="stylesheet" href="styles-pages.css?v=20260918g" />
+  <link rel="stylesheet" href="styles-base.css?v=20260918h" />
+  <link rel="stylesheet" href="styles-app.css?v=20260918h" />
+  <link rel="stylesheet" href="styles-pages.css?v=20260918h" />
 </head>
 <body>
 <section id="loginScreen" class="auth-screen">
@@ -86,31 +86,27 @@
       </div>
       <div class="top-actions">
         <select id="topDomainSelect" class="top-domain" onchange="switchDomain(this.value)"></select>
-        <select id="companyFilter" class="top-filter" onchange="updateGlobalFilter('company',this.value)" title="Company filter"></select>
-        <select id="themeFilter" class="top-filter" onchange="updateGlobalFilter('theme',this.value)" title="Theme filter"></select>
-        <select id="datasetFilter" class="top-filter dataset-filter" onchange="updateGlobalFilter('dataset',this.value)" title="Dataset filter"></select>
         <div class="search-box"><input id="globalSearch" onkeydown="if(event.key==='Enter')runGlobalSearch()" placeholder="Search capabilities, players, topics..." /></div>
         <button class="logout-btn" onclick="logout()">Log out</button>
         <div class="avatar" id="avatarLabel">AB</div>
       </div>
     </header>
-    <div id="filterRibbon" class="filter-ribbon"></div>
     <div id="pageContent" class="page"></div>
   </main>
 </section>
 <div id="toast" class="toast"></div>
-<script src="data-base.js?v=20260918g"></script>
-<script src="data-domains-1.js?v=20260918g"></script>
-<script src="data-domains-2.js?v=20260918g"></script>
-<script src="data-domains-3.js?v=20260918g"></script>
-<script src="data-evidence.js?v=20260918g"></script>
-<script src="data-enrichment.js?v=20260918g"></script>
-<script src="data-executive.js?v=20260918g"></script>
-<script src="data-ci.js?v=20260918g"></script>
-<script src="data-pmr.js?v=20260918g"></script>
-<script src="data-pageviews.js?v=20260918g"></script>
-<script src="app-core.js?v=20260918g"></script>
-<script src="app-executive.js?v=20260918g"></script>
-<script src="app-subpages.js?v=20260918g"></script>
+<script src="data-base.js?v=20260918h"></script>
+<script src="data-domains-1.js?v=20260918h"></script>
+<script src="data-domains-2.js?v=20260918h"></script>
+<script src="data-domains-3.js?v=20260918h"></script>
+<script src="data-evidence.js?v=20260918h"></script>
+<script src="data-enrichment.js?v=20260918h"></script>
+<script src="data-executive.js?v=20260918h"></script>\n<script src="data-executive-strategy.js?v=20260918h"></script>
+<script src="data-ci.js?v=20260918h"></script>
+<script src="data-pmr.js?v=20260918h"></script>
+<script src="data-pageviews.js?v=20260918h"></script>
+<script src="app-core.js?v=20260918h"></script>
+<script src="app-executive.js?v=20260918h"></script>
+<script src="app-subpages.js?v=20260918h"></script>
 </body>
 </html>
