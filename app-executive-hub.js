@@ -31,9 +31,22 @@ function execSelect(label,key,values,value){
   return '<label>'+esc(label)+'<select onchange="updateExecutiveAssistant(\''+key+'\',this.value)">'+values.map(v=>'<option '+(v===value?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></label>';
 }
 function execStatusBadge(priority){return '<span class="exec-priority '+String(priority).toLowerCase()+'">'+esc(priority)+' priority</span>'}
+function execVisualIcon(kind){
+  const map={"Competitive signal":"↗","PMR milestone":"◎","Market risk":"!","signal":"◆","pmr":"◌","macro":"◫","customer":"◉","assistant":"✦"};
+  return '<span class="exec-visual-icon">'+(map[kind]||"◆")+'</span>';
+}
+function execCompanyVisual(name){
+  if(!name)return "";
+  if(typeof cpCompanyLogo==="function")return cpCompanyLogo(name);
+  if(typeof companyLogo==="function")return companyLogo(name);
+  return '<span class="company-fallback">'+esc(String(name).slice(0,2).toUpperCase())+'</span>';
+}
 function execAttentionCards(){
-  const items=execUrgentSignals();
-  return '<div class="daily-attention-grid">'+items.map(x=>'<article><div class="daily-attention-top"><span>'+esc(x.kind)+'</span>'+execStatusBadge(x.priority)+'</div><h3>'+esc(x.title)+'</h3><p>'+esc(x.detail)+'</p><div class="daily-attention-foot"><small>'+esc(x.date)+'</small>'+(x.url?'<a href="'+x.url+'" target="_blank" rel="noopener">Open source ↗</a>':x.route?'<button onclick="navigate(\''+x.route+'\')">Open section →</button>':'')+'</div><div class="daily-action"><b>Suggested action</b><span>'+esc(x.action)+'</span></div></article>').join('')+'</div>';
+  const items=execUrgentSignals(),allNews=execNews();
+  return '<div class="daily-attention-grid">'+items.map(x=>{
+    const matched=x.kind==="Competitive signal"?allNews.find(n=>n.title===x.title):null;
+    return '<article><div class="daily-attention-top"><div class="attention-kind">'+execVisualIcon(x.kind)+(matched?execCompanyVisual(matched.company):"")+'<span>'+esc(x.kind)+'</span></div>'+execStatusBadge(x.priority)+'</div><h3>'+esc(x.title)+'</h3><p>'+esc(x.detail)+'</p><div class="daily-attention-foot"><small>'+esc(x.date)+'</small>'+(x.url?'<a href="'+x.url+'" target="_blank" rel="noopener">Open source ↗</a>':x.route?'<button onclick="navigate(\''+x.route+'\')">Open section →</button>':'')+'</div><div class="daily-action"><b>Suggested action</b><span>'+esc(x.action)+'</span></div></article>';
+  }).join('')+'</div>';
 }
 function execPmrActions(){
   const rows=execCurrentPmrProjects(),d=execPmr();
@@ -63,7 +76,7 @@ function execCustomerSignals(){
 }
 function execSignalFeed(){
   const rows=execNews().slice(0,8);
-  return '<div class="exec-signal-feed">'+rows.map(n=>'<article><time>'+esc(n.date)+'</time><div><div class="exec-signal-meta"><span>'+esc(n.company)+'</span><span>'+esc(n.theme||"Other")+'</span>'+execStatusBadge(execPriority(n))+'</div><strong>'+esc(n.title)+'</strong><p>'+esc(n.summary)+'</p><a href="'+n.url+'" target="_blank" rel="noopener">'+esc(n.source||"Source")+' ↗</a></div></article>').join('')+'</div>';
+  return '<div class="exec-signal-feed">'+rows.map(n=>'<article><time>'+esc(n.date)+'</time><div class="exec-signal-body"><div class="exec-signal-company">'+execCompanyVisual(n.company)+'<strong>'+esc(n.company)+'</strong></div><div class="exec-signal-meta"><span>'+esc(n.theme||"Other")+'</span>'+execStatusBadge(execPriority(n))+'</div><strong>'+esc(n.title)+'</strong><p>'+esc(n.summary)+'</p><a href="'+n.url+'" target="_blank" rel="noopener">'+esc(n.source||"Source")+' ↗</a></div></article>').join('')+'</div>';
 }
 function executiveExampleQuestion(q){$('executiveChatInput').value=q;runExecutiveChatbot()}
 function execAssistantSources(news){
