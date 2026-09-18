@@ -11,7 +11,8 @@ function renderSegmentOverview(type){
     ' The current view is configured for <b>'+esc(currentDomain)+'</b> and '+esc(theme)+'.</p></div></div>'+
     activeFilterNote()+
     '<div class="research-note"><strong>Domain context:</strong> '+esc(d.landscape)+' '+(en.market?'<b>Public market context:</b> '+esc(en.market.label)+' is estimated at $'+en.market.current.toFixed(2)+'B in '+en.market.currentYear+'.':'')+'</div>'+
-    '<section class="section"><div class="capability-grid">'+list.map(x=>'<button class="cap-card" onclick="navigate(\''+type+'\',\''+x.id+'\')"><div class="cap-icon">'+x.icon+'</div><h3>'+esc(x.title)+'</h3><p>'+esc(x.overview)+'</p><span class="go">Open dedicated page →</span></button>').join('')+'</div></section>';
+    '<section class="section"><div class="capability-grid">'+list.map(x=>'<button class="cap-card" onclick="navigate(\''+type+'\',\''+x.id+'\')"><div class="cap-icon">'+x.icon+'</div><h3>'+esc(x.title)+'</h3><p>'+esc(x.overview)+'</p><span class="go">Open dedicated page →</span></button>').join('')+'</div></section>'+
+    (type==='pmr'&&typeof renderPMRPortfolioOverview==='function'?renderPMRPortfolioOverview():'');
 }
 
 function scoreFrom(id,offset){let s=0;for(const c of id+currentDomain)s=(s+c.charCodeAt(0))%31;return Math.min(96,58+s+offset)}
