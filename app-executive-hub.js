@@ -74,7 +74,9 @@ function runExecutiveChatbot(){
   const q=input.value.trim();if(!q){showToast("Enter a business question first.");return}
   box.innerHTML='<div class="assistant-thinking"><span></span><span></span><span></span> Synthesizing public intelligence and PMR evidence…</div>';
   setTimeout(()=>{
-    const news=execNews(),pmr=execPmr(),ex=typeof executiveData==="function"?executiveData():null,st=typeof executiveStrategy==="function"?executiveStrategy():{},low=q.toLowerCase();
+    const news=execNews(),pmr=execPmr(),ex=typeof executiveData==="function"?executiveData():null,st=typeof executiveStrategy==="function"?executiveStrategy():{};
+    const low=(q+" "+executiveAssistantState.need).toLowerCase();
+    const regionMacro=(execDaily().macro||[]).filter(m=>executiveAssistantState.region==="Global"||(m.regions||[]).includes("Global")||(m.regions||[]).includes(executiveAssistantState.region));
     let headline="Integrated executive answer",body=[],actions=[];
     if(/customer|voc|persona|need|pain|adoption|preference/.test(low)){
       headline="Customer and adoption perspective";
@@ -97,15 +99,15 @@ function runExecutiveChatbot(){
       actions.push("Open Industry overview for detailed market growth, regional sizing and competitive structure.");
     }else if(/risk|macro|econom|reimburse|cost|budget/.test(low)){
       headline="Risk and macro perspective";
-      (execDaily().macro||[]).slice(0,3).forEach(m=>body.push(m.factor+" ("+m.direction+"): "+m.detail));
+      (regionMacro.length?regionMacro:(execDaily().macro||[])).slice(0,3).forEach(m=>body.push(m.factor+" ("+m.direction+"): "+m.detail));
       actions.push("Confirm which macro factors should be added to the account or portfolio risk register.");
     }else{
       if(news[0])body.push("Latest public signal: "+news[0].company+" — "+news[0].title+".");
       if(pmr?.v2?.headline)body.push("Customer signal: "+pmr.v2.headline);
       if((st.trends||[])[0])body.push("Industry trend: "+st.trends[0].title+" — "+st.trends[0].text);
-      actions.push("Use the source links below and the PMR workspace to validate the decision context.");
+      actions.push("Use the source links below and the PMR workspace to validate the decision context for "+executiveAssistantState.team+".");
     }
-    box.innerHTML='<div class="assistant-response-head"><span>'+esc(executiveAssistantState.team)+'</span><b>'+esc(executiveAssistantState.region)+'</b></div><h3>'+esc(headline)+'</h3>'+
+    box.innerHTML='<div class="assistant-response-head"><span>'+esc(executiveAssistantState.team)+'</span><span>'+esc(executiveAssistantState.need)+'</span><b>'+esc(executiveAssistantState.region)+'</b></div><h3>'+esc(headline)+'</h3>'+
       '<div class="assistant-answer">'+body.map(x=>'<p>'+esc(x)+'</p>').join('')+'</div>'+
       '<div class="assistant-actions"><strong>Recommended next action</strong>'+actions.map(x=>'<p>→ '+esc(x)+'</p>').join('')+'</div>'+
       '<div class="assistant-sources"><strong>Public-source evidence</strong>'+execAssistantSources(news)+'</div>'+
