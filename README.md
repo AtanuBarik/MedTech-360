@@ -195,3 +195,33 @@ Includes project / expert-type / region / theme / consensus filters, theme salie
 Includes survey / persona / region / care-setting / outcome filters, dynamic analytical base, sample composition, respondent segments, toplines, importance-performance matrix, persona-by-attribute crosstabs, driver strength, mean scores, illustrative significance flags and segment profiles.
 
 The dashboard methodology links to AHRQ patient-experience / narrative guidance and FDA patient-preference information as public methodological context; these sources do not validate the synthetic results.
+
+
+### PMR v2 enrichment
+
+The Primary Market Research area now has a second-level enrichment layer designed to look like completed / ongoing client studies rather than generic capability examples.
+
+**Primary Market Research landing page**
+- Detailed portfolio tracker covering all seven domain-specific demo projects
+- Status, method and period filters
+- Completed / active counts, total respondent base, methodology mix and project progress
+- Project-level status, owner, fieldwork dates, sample, markets, current stage and next milestone
+
+**Voice of Customer**
+- Simplified qualitative approach: customer goals, pain points, decision triggers, journey moments, information sources and supplier-support expectations
+- Persona-specific preference cards and Readiness × Friction map
+- Persona × Theme coding matrix, theme / implication table, cross-customer patterns and verbatim evidence
+- Risk assessment, Executive Recommendations and action roadmap
+
+**Expert & KOL Interview Analysis**
+- Theme heatmap, Readiness × Friction view, Expert Insight Feed, consensus / divergence table
+- Expert mix, innovation outlook, evidence expectations, cross-project recurrence and strategic hypotheses
+- Risk assessment, Executive Recommendations and validation roadmap
+
+**Quantitative Survey Analysis**
+- Filtered analytical base, sample mix, segment mix, Likert-style response distribution and outcome trend
+- Importance × Performance, Readiness × Friction, Persona × Theme matrix
+- Driver analysis, persona preference deltas, open-text coding and statistical detail
+- Persona-specific preferences, risk assessment, Executive Recommendations and roadmap
+
+All respondent-level findings remain explicitly synthetic demo data.
