@@ -29,6 +29,15 @@ function navigate(type,id){currentPage={type,id};window.location.hash=id?`${type
 function renderCurrentPage(){if(currentPage.type==='executive')renderExecutive();else if(!currentPage.id)renderSegmentOverview(currentPage.type);else renderSubsegment(currentPage.type,currentPage.id)}
 
 function lineChart(values,labels){const W=560,H=210,p=28,max=Math.max(...values)+5,min=Math.min(...values)-5;const pts=values.map((v,i)=>{const x=p+i*(W-p*2)/(values.length-1),y=H-p-(v-min)*(H-p*2)/(max-min);return [x,y]}),poly=pts.map(a=>a.join(',')).join(' ');return `<svg viewBox="0 0 ${W} ${H}" aria-label="Indexed trend chart"><g stroke="#eee8ef" stroke-width="1">${[0,1,2,3].map(i=>`<line x1="${p}" y1="${40+i*40}" x2="${W-p}" y2="${40+i*40}"/>`).join('')}</g><polyline fill="none" stroke="#4a2351" stroke-width="4" points="${poly}"/><polyline fill="none" stroke="#e8005a" stroke-width="9" opacity=".08" points="${poly}"/>${pts.map((a,i)=>`<circle cx="${a[0]}" cy="${a[1]}" r="5" fill="#e8005a"/><text x="${a[0]}" y="${H-7}" text-anchor="middle" font-size="10" fill="#756d79">${labels[i]}</text><text x="${a[0]}" y="${a[1]-10}" text-anchor="middle" font-size="9" font-weight="700" fill="#4a2351">${values[i]}</text>`).join('')}</svg>`}
-function sourcesHtml(d){return `<div class="source-list">${d.sources.map(s=>`<div class="source-item"><a href="${s.url}" target="_blank" rel="noopener">${esc(s.title)} ↗</a><p>${esc(s.fact)}</p><div class="source-date">${esc(s.date)}</div></div>`).join('')}</div>`}
-function pageFacts(d){return `<div class="fact-grid">${d.metrics.map(m=>`<div class="fact-card"><div class="flabel">${esc(m.label)}</div><div class="fvalue">${esc(m.value)}</div><div class="fnote">${esc(m.note)}</div></div>`).join('')}</div>`}
-
+function sourcesHtml(d){
+  const ev=(window.DOMAIN_EVIDENCE&&DOMAIN_EVIDENCE[currentDomain])||{};
+  const combined=[...(ev.sources||[]),...(d.sources||[])];
+  const seen=new Set();
+  const unique=combined.filter(s=>{const k=s.url||s.title;if(seen.has(k))return false;seen.add(k);return true});
+  return '<div class="source-list">'+unique.map(s=>'<div class="source-item"><a href="'+s.url+'" target="_blank" rel="noopener">'+esc(s.title)+' ↗</a><p>'+esc(s.fact)+'</p><div class="source-date">'+esc(s.date)+'</div></div>').join('')+'</div>';
+}
+function pageFacts(d){
+  const ev=(window.DOMAIN_EVIDENCE&&DOMAIN_EVIDENCE[currentDomain])||{};
+  const facts=(ev.facts&&ev.facts.length)?ev.facts:d.metrics;
+  return '<div class="fact-grid">'+facts.map(m=>'<div class="fact-card"><div class="flabel">'+esc(m.label)+'</div><div class="fvalue">'+esc(m.value)+'</div><div class="fnote">'+esc(m.note)+(m.source!==undefined?' <span class="source-chip">S'+(m.source+1)+'</span>':'')+'</div></div>').join('')+'</div>';
+}
