@@ -94,7 +94,8 @@ window.DOMAIN_ENRICHMENT = {
     themes:["Joint reconstruction","Sports medicine","Trauma / extremities","Robotics","Navigation","ASC site of care","Contracting","Registries / PROMs","Digital rehab","M&A / portfolio shifts"],
     signals:[
       {date:"10 Feb 2026",type:"Financial",company:"Zimmer Biomet",title:"Zimmer Biomet reports $8.232B FY2025 net sales",detail:"Full-year sales rose 7.2% reported; enabling technology and digital initiatives remain relevant alongside implant performance.",url:"https://investor.zimmerbiomet.com/news-and-events/news/2026/02-10-2026-113027310"},
-      {date:"Aug 2026",type:"Market",company:"Category",title:"Orthopedic devices market estimate updated",detail:"Fortune Business Insights estimates $68.48B in 2026 and $105.45B by 2034; joint reconstruction is projected at 37.51% of 2026 market.",url:"https://www.fortunebusinessinsights.com/orthopedic-devices-market-102586"}
+      {date:"Aug 2026",type:"Market",company:"Category",title:"Orthopedic devices market estimate updated",detail:"Fortune Business Insights estimates $68.48B in 2026 and $105.45B by 2034; joint reconstruction is projected at 37.51% of 2026 market.",url:"https://www.fortunebusinessinsights.com/orthopedic-devices-market-102586"},
+      {date:"2026",type:"Innovation",company:"Smith+Nephew",title:"Smith+Nephew highlights M-TECH and Biologics innovation platforms",detail:"Smith+Nephew says it launched 75+ new products in 2021–25 and that more than 60% of 2025 revenue growth came from products launched in the prior five years, with CORI, TESSA, LEAF and biologics cited as strategic innovation platforms.",url:"https://www.smith-nephew.com/en/who-we-are/innovation"}
     ],
     ciLenses:[
       {ids:["product-portfolio"],title:"Implant portfolio & procedure map",scope:"Hip, knee, shoulder, sports, trauma, extremities, fixation and biologics.",visual:"Procedure-by-product matrix"},
