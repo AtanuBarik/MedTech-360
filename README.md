@@ -225,3 +225,18 @@ The Primary Market Research area now has a second-level enrichment layer designe
 - Persona-specific preferences, risk assessment, Executive Recommendations and roadmap
 
 All respondent-level findings remain explicitly synthetic demo data.
+
+
+## Navigation update — Executive Hub, Industry Overview & Knowledge Repository
+
+The platform navigation now separates the executive landing experience from the detailed industry dashboard:
+
+- **Executive Hub** is the landing page and daily decision center. It combines immediate-attention signals, active PMR action items, industry trends and dynamics, macro factors, regional buzz, customer signals, recent public intelligence and a contextual executive assistant.
+- **Industry Overview** is the renamed former Executive Hub industry page. It retains market size, growth, regional opportunity, segment mix, key players, competitive structure, ecosystem, drivers, risks, trends and strategic opportunities.
+- **Knowledge Repository** is now a dedicated document and evidence hub with domain-specific internal assets, direct source links, local upload UI and prototype connectors for OneDrive, Google Drive, Google Cloud Storage, Contify, Sprinklr, PubMed, Google Scholar, PharmaTell and AlphaSense.
+
+### Executive intelligence assistant
+The Executive Hub assistant allows the user to select team, information need and region before asking a business question. In the static GitHub Pages prototype it synthesizes source-linked public intelligence already ingested into MedTech 360 with the synthetic PMR dataset. Live internet retrieval and live enterprise-source ingestion require secured backend search, OAuth and AI connectors.
+
+### Knowledge Repository prototype behavior
+Local file selection is browser-session only in the static frontend. Connector buttons demonstrate the target experience and do not authenticate to third-party systems until production APIs / enterprise connectors are wired.
