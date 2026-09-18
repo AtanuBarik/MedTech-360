@@ -71,8 +71,38 @@ function filteredSignals(){
     return companyOk&&themeOk;
   });
 }
-function openSegment(type){const parent=$(type==='ci'?'navCi':'navPmr'),sub=$(type==='ci'?'ciSubmenu':'pmrSubmenu');const willOpen=!sub.classList.contains('open');document.querySelectorAll('.submenu').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.nav-parent').forEach(x=>x.classList.remove('open'));if(willOpen){sub.classList.add('open');parent.classList.add('open')}navigate(type)}
-function setActiveNav(type,id){document.querySelectorAll('.nav-btn,.nav-parent,.subnav-btn').forEach(x=>x.classList.remove('active'));if(type==='executive')$('navExecutive').classList.add('active');if(type==='ci'){$('navCi').classList.add('active');$('ciSubmenu').classList.add('open');$('navCi').classList.add('open')}if(type==='pmr'){$('navPmr').classList.add('active');$('pmrSubmenu').classList.add('open');$('navPmr').classList.add('open')}if(id){const el=document.querySelector('[data-route="'+type+'/'+id+'"]');if(el)el.classList.add('active')}}
+function openSegment(type){
+  const parent=$(type==='ci'?'navCi':'navPmr'),sub=$(type==='ci'?'ciSubmenu':'pmrSubmenu');
+  const willOpen=!sub.classList.contains('open');
+  document.querySelectorAll('.submenu').forEach(x=>{if(x!==sub)x.classList.remove('open')});
+  document.querySelectorAll('.nav-parent').forEach(x=>{if(x!==parent)x.classList.remove('open')});
+  sub.classList.toggle('open',willOpen);
+  parent.classList.toggle('open',willOpen);
+  navigate(type);
+}
+function setActiveNav(type,id){
+  document.querySelectorAll('.nav-btn,.nav-parent,.subnav-btn').forEach(x=>x.classList.remove('active'));
+  if(type==='executive'){
+    $('navExecutive').classList.add('active');
+    document.querySelectorAll('.submenu').forEach(x=>x.classList.remove('open'));
+    document.querySelectorAll('.nav-parent').forEach(x=>x.classList.remove('open'));
+  }
+  if(type==='ci'){
+    $('navCi').classList.add('active');
+    if(id){
+      $('ciSubmenu').classList.add('open');$('navCi').classList.add('open');
+      $('pmrSubmenu').classList.remove('open');$('navPmr').classList.remove('open');
+    }
+  }
+  if(type==='pmr'){
+    $('navPmr').classList.add('active');
+    if(id){
+      $('pmrSubmenu').classList.add('open');$('navPmr').classList.add('open');
+      $('ciSubmenu').classList.remove('open');$('navCi').classList.remove('open');
+    }
+  }
+  if(id){const el=document.querySelector('[data-route="'+type+'/'+id+'"]');if(el)el.classList.add('active')}
+}
 function navigate(type,id){currentPage={type,id};window.location.hash=id?type+'/'+id:type;setActiveNav(type,id);renderCurrentPage();window.scrollTo({top:0,behavior:'smooth'})}
 function renderCurrentPage(){if(currentPage.type==='executive')renderExecutive();else if(!currentPage.id)renderSegmentOverview(currentPage.type);else renderSubsegment(currentPage.type,currentPage.id)}
 
