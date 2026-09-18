@@ -11,7 +11,7 @@ function cpUnique(arr){return [...new Set(arr.filter(Boolean))].sort((a,b)=>a.lo
 function cpOptions(values,selected){return values.map(v=>'<option value="'+esc(v)+'" '+(v===selected?'selected':'')+'>'+esc(v)+'</option>').join('')}
 function cpLogoMark(name){
   const domain=typeof companyDomain==='function'?companyDomain(name):null;
-  const initials=name.split(/\\s|\\//).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();
+  const initials=name.replaceAll('/',' ').split(/\\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase();
   return '<span class="cp-tab-logo">'+(domain?'<img src="https://www.google.com/s2/favicons?domain='+domain+'&sz=64" alt="" onerror="this.style.display=\\'none\\';this.nextElementSibling.style.display=\\'block\\'"/><b style="display:none">'+esc(initials)+'</b>':'<b>'+esc(initials)+'</b>')+'</span>';
 }
 function cpMatches(p){
