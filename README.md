@@ -142,3 +142,17 @@ The Company Profiles module now covers **39 company/domain profiles** across the
 The four filters are cascading and dynamic. Selecting **Region**, **Portfolio & Services**, or **Focus of Company** changes the compatible company options and scopes the related regional / product evidence. The separate row of company buttons was removed; only the selected company's logo and profile are shown.
 
 Additional visual analytics include revenue trendlines, annual revenue-growth bars, portfolio-breadth index, regional operating-footprint evidence, strategy-emphasis index, financial KPI tiles, competitive synthesis, risk watchpoints and expanded business-model / market-access content. Analyst indices are explicitly labeled as illustrative demo visualizations.
+
+
+## Competitive Intelligence workstreams v2
+
+All remaining CI subsections now have dedicated interactive pages:
+
+- **News & Alerts** — local Company, Theme, Time Period and Source filters; curated source-linked news feed; news volume by company; monthly news flow; theme mix; selected-period summary; regulatory, clinical-trial and executive-movement milestones. The theme taxonomy follows Clinical, R&D; Financials; Leadership Changes; Organizational Updates; Other; Partnership, M&A; and Product & Services.
+- **Product & Portfolio Benchmarking** — two-company comparison, category / region / benchmark-lens filters, capability bars, product-level table, category overlap and whitespace analysis, and strategy read-through.
+- **M&A Partnerships & Investment** — company, deal-type, period and rationale filters; deal counts, structure and rationale visuals; transaction timeline and explicit analyst implication.
+- **Social & Digital Media** — company, platform, theme and time filters; directional post-frequency, sentiment, engagement and theme views; public LinkedIn / YouTube / X / Instagram search links; recent public-content signals. Metrics requiring platform APIs are clearly labeled as demo estimates.
+- **Strategy & Market Positioning** — company, region and strategy-lens filters; innovation-vs-digital positioning map, multi-company strategy heatmap, narrative strategy cards and risk watchpoints.
+- **Conference & KOL Intelligence** — status, theme, year and company-relevance filters; event timing / theme charts, past and upcoming conference cards, venue/date, selected KOL / faculty names and direct conference-site links.
+
+The CI news dataset is curated from company newsrooms, regulatory sources and reputable distribution wires and excludes stock-price / market-share news. It is designed as a decision-support research layer rather than a claim of exhaustive web capture.
