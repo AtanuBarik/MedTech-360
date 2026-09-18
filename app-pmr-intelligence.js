@@ -30,7 +30,15 @@ function pmrResearchPortfolio(){
   const d=pmrData();
   return '<div class="pmr-project-strip">'+d.projects.map(p=>'<article><span>'+esc(p.period)+'</span><strong>'+esc(p.name)+'</strong><p>'+esc(p.type)+' · n='+p.sample+'</p><small>'+esc(p.purpose)+'</small></article>').join('')+'</div>';
 }
-function pmrFilterText(s){return Object.entries(s).filter(([k,v])=>!["project"].includes(k)&&!String(v).toLowerCase().startsWith("all ")).map(([k,v])=>String(v)).join("|")}
+function pmrFilterText(s){return Object.entries(s).filter(([k,v])=>v!==""&&!String(v).toLowerCase().startsWith("all ")).map(([k,v])=>String(v)).join("|")}
+function pmrFilteredBase(base,state){
+  let factor=1;
+  if(state.persona&&state.persona!=="All personas")factor*=.24;
+  if(state.expert&&state.expert!=="All expert types")factor*=.24;
+  if(state.region&&state.region!=="All regions")factor*=.34;
+  if(state.setting&&state.setting!=="All settings")factor*=.46;
+  return Math.max(3,Math.round(base*factor));
+}
 function pmrAdj(base,label,state,spread=10){
   const f=pmrFilterText(state),delta=f?(pmrHash(currentDomain+"|"+label+"|"+f)%(spread*2+1)-spread):0;
   return pmrClamp(base+delta);
@@ -124,7 +132,7 @@ function renderVOCPage(){
   const qual=d.projects.filter(p=>["In-depth interviews","Patient / caregiver interviews","Workflow observation + IDI"].includes(p.type));
   const projectOptions=[{value:"All qualitative projects",label:"All qualitative projects"},...qual.map(p=>({value:p.id,label:p.name}))];
   const themes=pmrThemeRows(s),personas=pmrPersonaRows(s);
-  const totalInterviews=s.project==="All qualitative projects"?qual.reduce((a,p)=>a+p.sample,0):(qual.find(p=>p.id===s.project)?.sample||0);
+  const totalInterviews=pmrFilteredBase(s.project==="All qualitative projects"?qual.reduce((a,p)=>a+p.sample,0):(qual.find(p=>p.id===s.project)?.sample||0),s);
   const selectedProject=qual.find(p=>p.id===s.project);
   const topTheme=themes.slice().sort((a,b)=>b.severity-a.severity)[0];
   const largestGap=themes.slice().sort((a,b)=>(b.importance-b.satisfaction)-(a.importance-a.satisfaction))[0];
@@ -180,7 +188,7 @@ function renderExpertPage(){
   if(s.consensus==="Divergent")themes=themes.filter(x=>x.consensus<60);
   const experts=s.expert==="All expert types"?d.expertMetrics:d.expertMetrics.filter(x=>x.persona===s.expert);
   const selectedProject=projects.find(p=>p.id===s.project);
-  const interviewBase=s.project==="All interview projects"?projects.reduce((a,p)=>a+p.sample,0):(selectedProject?.sample||0);
+  const interviewBase=pmrFilteredBase(s.project==="All interview projects"?projects.reduce((a,p)=>a+p.sample,0):(selectedProject?.sample||0),s);
   const highConsensus=themes.filter(x=>x.consensus>=80).length,divergent=themes.filter(x=>x.consensus<65).length;
   $('breadcrumbSmall').textContent='Primary Market Research / Expert & KOL Interview Analysis';$('breadcrumbTitle').textContent=currentDomain+' — Expert & KOL Analysis';
   $('pageContent').innerHTML=pmrPageHead("Expert & KOL Interview Analysis",'Cross-project qualitative synthesis for <b>'+esc(currentDomain)+'</b>, combining expert transcripts, final reports and project outputs into themes, consensus, divergence, evidence strength, future-state signals and strategic recommendations.')+
@@ -221,13 +229,13 @@ function pmrSurveyRows(state){
   }));
 }
 function pmrSampleComposition(project,state){
-  const cfg=pmrCfg(),n=project?.sample||0;
+  const cfg=pmrCfg(),n=pmrFilteredBase(project?.sample||0,state);
   const personas=state.persona==="All personas"?cfg.personas:[state.persona];
   let weights=personas.map(p=>10+(pmrHash(project.id+p)%25)),sum=weights.reduce((a,b)=>a+b,0)||1;
   return personas.map((p,i)=>({label:p,value:Math.round(n*weights[i]/sum)}));
 }
 function pmrRegionComposition(project,state){
-  const cfg=pmrCfg(),regions=state.region==="All regions"?cfg.regions:[state.region],n=project?.sample||0;
+  const cfg=pmrCfg(),regions=state.region==="All regions"?cfg.regions:[state.region],n=pmrFilteredBase(project?.sample||0,state);
   let weights=regions.map(r=>15+(pmrHash(project.id+r)%25)),sum=weights.reduce((a,b)=>a+b,0)||1;
   return regions.map((r,i)=>({label:r,value:Math.round(n*weights[i]/sum)}));
 }
@@ -256,7 +264,7 @@ function renderQuantPage(){
       pmrSelect("Outcome","outcome",outcomes,s.outcome,"quant-surveys")+
     '</section>'+
     '<section class="section">'+pmrKpis([
-      {label:"Survey sample",value:"n="+project.sample,note:project.method},
+      {label:"Survey sample",value:"n="+pmrFilteredBase(project.sample,s),note:(pmrFilteredBase(project.sample,s)===project.sample?"Full sample":"Filtered analytical base")+" · "+project.method},
       {label:"Quality pass",value:d.fieldwork.qualityPass+"%",note:"Synthetic QC index"},
       {label:"Mean completion",value:(9+(pmrHash(project.id+"loi")%6))+" min",note:"Prototype estimate"},
       {label:"Strongest driver",value:strongest?.label||"N/A",note:"β "+(strongest?.driver||0).toFixed(2)},
