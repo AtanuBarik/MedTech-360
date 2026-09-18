@@ -251,6 +251,46 @@ window.MODULE_BLUEPRINTS = {
         ["Unmet need","Importance, current solution gap, desired state","Opportunity matrix"]
       ],
       lenses:["Workflow step","Role","Setting","System","Severity","Frequency"]
+    },
+    "maxdiff": {
+      objective:"Force explicit prioritization when long feature, need, message or outcome lists make rating scales insufficiently discriminating.",
+      dataRows:[
+        ["Choice task","Best item, worst item, task set","Best-worst response table"],
+        ["Priority score","Best count, worst count, standardized score","Priority bars"],
+        ["Segment delta","Priority by persona / cluster / geography","Segment comparison"],
+        ["Action set","Top tier, middle tier, deprioritize","Priority matrix"]
+      ],
+      lenses:["Item","Persona","Segment","Geography","Wave","Product"]
+    },
+    "human-factors": {
+      objective:"Understand whether a product, interface or service can be used safely, efficiently and confidently in its intended workflow.",
+      dataRows:[
+        ["Task","Task step, completion, time, assistance","Task scorecard"],
+        ["Error","Error type, severity, recovery","Error heatmap"],
+        ["Comprehension","Instruction, label, alert, interpretation","Comprehension matrix"],
+        ["Training","Learning curve, support need, confidence","Training burden view"]
+      ],
+      lenses:["User type","Task","Use environment","Experience","Device / software","Severity"]
+    },
+    "launch-readiness": {
+      objective:"Connect adoption intent, segment readiness, evidence thresholds and channel constraints to practical launch scenarios.",
+      dataRows:[
+        ["Adoption stage","Awareness, consideration, trial, intended use","Adoption funnel"],
+        ["Readiness","Evidence, workflow, budget, access, training","Readiness heatmap"],
+        ["Demand input","Eligible base, intent, frequency, scenario assumptions","Demand model"],
+        ["Launch action","Barrier, intervention, owner, timing","Action roadmap"]
+      ],
+      lenses:["Segment","Persona","Geography","Channel","Scenario","Launch phase"]
+    },
+    "open-text-ai": {
+      objective:"Use governed text analytics to make qualitative evidence searchable and comparable while preserving links to the original verbatim.",
+      dataRows:[
+        ["Theme","Theme, subtheme, frequency, salience","Theme tree"],
+        ["Verbatim","Quote, respondent, context, source location","Verbatim explorer"],
+        ["Tone","Positive / neutral / negative or custom coding","Tone trend"],
+        ["Difference","Theme by persona, market, wave, product","Theme heatmap"]
+      ],
+      lenses:["Theme","Persona","Geography","Study","Wave","Product / concept"]
     }
   }
 };
