@@ -2,7 +2,7 @@ window.PMR_SUBSEGMENTS = [
   {
     id:"voc",
     icon:"VC",
-    title:"Voice of Customer Study",
+    title:"Voice of customer study",
     overview:"Analyze primary interviews with physicians, nurses, surgeons, laboratory professionals, patients, caregivers and other end users to identify unmet needs, workflow friction, decision drivers, experience gaps and improvement priorities.",
     questions:[
       "Which needs and pain points matter most by stakeholder, care setting and geography?",
@@ -21,7 +21,7 @@ window.PMR_SUBSEGMENTS = [
   {
     id:"expert-interviews",
     icon:"EI",
-    title:"Expert & KOL Interview Analysis",
+    title:"Expert & KOL interview analysis",
     overview:"Synthesize multiple qualitative PMR projects, expert interviews, transcripts and final reports into cross-project themes, consensus, divergence, evidence strength, future outlook and strategic recommendations.",
     questions:[
       "Where is there expert consensus versus meaningful disagreement?",
@@ -40,7 +40,7 @@ window.PMR_SUBSEGMENTS = [
   {
     id:"quant-surveys",
     icon:"QS",
-    title:"Quantitative Survey Analysis",
+    title:"Quantitative survey analysis",
     overview:"Analyze complex primary survey datasets beyond standard charting: dynamic cross-tabs, subgroup significance, derived indices, drivers, segmentation, correlations, priority matrices and decision-ready interactive views.",
     questions:[
       "Which differences are statistically and commercially meaningful across segments?",
