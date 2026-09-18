@@ -116,6 +116,7 @@ function renderSubsegment(type,id){
   const list=type==='ci'?CI_SUBSEGMENTS:PMR_SUBSEGMENTS;
   const item=list.find(x=>x.id===id);
   if(!item){navigate(type);return}
+  if(type==='ci'&&id==='company-profiles'){renderCompanyProfilesPage();return}
   const d=DOMAIN_DATA[currentDomain],en=enrichment();
   const name=type==='ci'?'Competitive Intelligence':'Primary Market Research';
   const bp=window.MODULE_BLUEPRINTS&&MODULE_BLUEPRINTS[type]&&MODULE_BLUEPRINTS[type][id];
