@@ -53,3 +53,23 @@ a{color:inherit}
 .role-grid{gap:20px}
 .role-card{padding:28px}
 .field input,.field select{padding:14px 15px}
+
+
+/* 2026-09-25 role-first onboarding */
+.onboarding-wrap{max-width:1380px}
+.onboarding-steps{max-width:760px;margin:0 auto 34px;display:grid;grid-template-columns:34px 1fr 34px 1fr 34px 1fr 34px;grid-template-rows:34px auto;align-items:center}
+.onboarding-steps span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#ece7ee;color:#8b7e8d;font-weight:900;border:2px solid #e1d9e4;z-index:2}
+.onboarding-steps span.active{background:var(--ev-magenta);border-color:var(--ev-magenta);color:#fff;box-shadow:0 0 0 7px rgba(232,0,90,.08)}
+.onboarding-steps span.done{background:var(--ev-purple);border-color:var(--ev-purple);color:#fff}
+.onboarding-steps i{height:2px;background:#ded5e1}
+.onboarding-steps small{grid-row:2;text-align:center;margin-top:9px;color:#8b818e;font-size:12px;font-weight:800}
+.onboarding-steps small:nth-of-type(1){grid-column:1}.onboarding-steps small:nth-of-type(2){grid-column:3}.onboarding-steps small:nth-of-type(3){grid-column:5}.onboarding-steps small:nth-of-type(4){grid-column:7}
+.business-role-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;align-items:stretch}
+.business-role-card{grid-column:span 2;display:flex;flex-direction:column}
+.business-role-card:nth-child(4){grid-column:2/span 2}.business-role-card:nth-child(5){grid-column:4/span 2}
+.business-role-card p{min-height:70px}.business-role-card ul{flex:1}.business-role-card button{margin-top:auto}
+.domain-selection-panel{padding:30px}.domain-select-field{margin:0;min-width:340px}
+.onboarding-actions{display:flex;justify-content:flex-end;margin-top:24px}.onboarding-actions .primary-btn{min-width:240px;padding:14px 20px}
+.access-role-grid{max-width:1100px;margin:0 auto}.role-top{gap:16px}.role-top .ev-logo{margin-right:auto}.role-top .secondary-btn:first-child+.ev-logo{margin-left:auto}
+@media(max-width:1100px){.business-role-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.business-role-card,.business-role-card:nth-child(4),.business-role-card:nth-child(5){grid-column:auto}.business-role-card:last-child{grid-column:1/-1;max-width:560px;justify-self:center}}
+@media(max-width:760px){.business-role-grid,.domain-grid,.role-grid{grid-template-columns:1fr}.business-role-card:last-child{grid-column:auto}.selection-panel-head{align-items:stretch;flex-direction:column}.domain-select-field{min-width:0;width:100%}.onboarding-steps{transform:scale(.88);transform-origin:center top}.role-title h1{font-size:38px}}
