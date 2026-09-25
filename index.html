@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MedTech 360 | Evalueserve</title>
   <meta name="description" content="Evalueserve MedTech 360 - Competitive Intelligence and Primary Market Research workspace." />
-  <link rel="stylesheet" href="styles-base.css?v=20260918y" />
-  <link rel="stylesheet" href="styles-app.css?v=20260918y" />
-  <link rel="stylesheet" href="styles-pages.css?v=20260918y" />
+  <link rel="stylesheet" href="styles-base.css?v=20260925a" />
+  <link rel="stylesheet" href="styles-app.css?v=20260925a" />
+  <link rel="stylesheet" href="styles-pages.css?v=20260925a" />
 </head>
 <body>
 <section id="loginScreen" class="auth-screen">
@@ -19,7 +19,7 @@
       <p>A role-based intelligence workspace connecting industry research, competitive intelligence, primary market research, domain expertise, and decision-ready analytics for MedTech teams.</p>
     </div>
     <div class="domain-pills">
-      <span>Autoimmunity & Allergy</span><span>Diabetes & BGM</span><span>Ophthalmology</span><span>Orthopedics</span><span>Advanced Wound Management</span><span>Clinical Laboratory Services</span>
+      <span>Immunodiagnostics</span><span>Diabetes Monitoring & BGM</span><span>Eye Health</span><span>Orthopedics & Sports medicine</span><span>Advanced wound management</span><span>Clinical laboratory services</span>
     </div>
   </div>
   <div class="auth-panel">
@@ -42,24 +42,73 @@
     <div class="ev-logo">EVALUESERVE<span>.</span></div>
     <button class="secondary-btn" onclick="logout()">Sign out</button>
   </div>
-  <div class="role-wrap">
-    <div class="role-title">
-      <div class="kicker">Personalize your workspace</div>
-      <h1>Select a domain and your role</h1>
-      <p>The selected domain determines the industry research and intelligence views shown when you enter the platform. You can switch domains later from the dashboard.</p>
+  <div class="role-wrap onboarding-wrap">
+    <div class="onboarding-steps" aria-label="Onboarding progress">
+      <span class="done">1</span><i></i><span class="active">2</span><i></i><span>3</span><i></i><span>4</span>
+      <small>Sign in</small><small>Business role</small><small>Domain</small><small>Access type</small>
     </div>
-    <section class="selection-panel">
+    <div class="role-title">
+      <div class="kicker">Personalize your intelligence experience</div>
+      <h1>What is your role?</h1>
+      <p>Your role determines which decisions, signals, modules and assistant responses are prioritized throughout MedTech 360.</p>
+    </div>
+    <div class="business-role-grid">
+      <article class="role-card business-role-card"><div class="role-icon">EL</div><h3>Executive Leadership Team</h3><p>Enterprise growth, portfolio performance, strategic risks, critical competitive moves and decision-ready executive signals.</p><ul><li>Executive decision cockpit</li><li>Growth & risk priorities</li><li>Cross-domain strategic synthesis</li></ul><button onclick="chooseBusinessRole('Executive Leadership Team')">Continue as Executive Leadership</button></article>
+      <article class="role-card business-role-card"><div class="role-icon">PP</div><h3>Product & Portfolio Management Team</h3><p>Portfolio attractiveness, product gaps, lifecycle opportunities, customer needs, feature benchmarks and innovation priorities.</p><ul><li>Portfolio & whitespace views</li><li>Product / feature intelligence</li><li>VOC-linked opportunity signals</li></ul><button onclick="chooseBusinessRole('Product & Portfolio Management Team')">Continue as Product & Portfolio</button></article>
+      <article class="role-card business-role-card"><div class="role-icon">MC</div><h3>Marketing, Branding & Commercial Excellence Team</h3><p>Commercial positioning, messaging, customer segments, pricing, reimbursement intelligence and go-to-market performance.</p><ul><li>Brand & competitor positioning</li><li>Pricing + reimbursement lens</li><li>Customer & channel intelligence</li></ul><button onclick="chooseBusinessRole('Marketing, Branding & Commercial Excellence Team')">Continue as Marketing & Commercial</button></article>
+      <article class="role-card business-role-card"><div class="role-icon">SB</div><h3>Strategy & Business Development Team</h3><p>Market attractiveness, adjacencies, partnerships, M&A signals, competitor strategy and strategic opportunity assessment.</p><ul><li>Partnership / M&A watch</li><li>Market & adjacency scouting</li><li>Strategic competitor moves</li></ul><button onclick="chooseBusinessRole('Strategy & Business Development Team')">Continue as Strategy & BD</button></article>
+      <article class="role-card business-role-card"><div class="role-icon">MR</div><h3>Medical & Clinical Affairs, R&D & Innovation Team</h3><p>Clinical evidence, unmet needs, emerging technology, workflow gaps, innovation signals and research-led opportunity areas.</p><ul><li>Clinical & evidence signals</li><li>Unmet-need synthesis</li><li>R&D / innovation scouting</li></ul><button onclick="chooseBusinessRole('Medical & Clinical Affairs, R&D & Innovation Team')">Continue as Medical / R&D</button></article>
+    </div>
+  </div>
+</section>
+
+<section id="domainScreen" class="role-screen hidden">
+  <div class="role-top">
+    <button class="secondary-btn" onclick="goBackToRole()">← Back</button>
+    <div class="ev-logo">EVALUESERVE<span>.</span></div>
+    <button class="secondary-btn" onclick="logout()">Sign out</button>
+  </div>
+  <div class="role-wrap onboarding-wrap">
+    <div class="onboarding-steps" aria-label="Onboarding progress">
+      <span class="done">1</span><i></i><span class="done">2</span><i></i><span class="active">3</span><i></i><span>4</span>
+      <small>Sign in</small><small>Business role</small><small>Domain</small><small>Access type</small>
+    </div>
+    <div class="role-title">
+      <div class="kicker">Choose your MedTech domain</div>
+      <h1>Which market should we focus on?</h1>
+      <p>The selected domain controls the market data, competitive landscape, PMR evidence, company profiles and role-specific assistant context shown in the platform.</p>
+    </div>
+    <section class="selection-panel domain-selection-panel">
       <div class="selection-panel-head">
-        <div><h2>1. Choose MedTech domain</h2><p>Select the domain you want to land on in the Executive Hub.</p></div>
-        <div class="field" style="margin:0;min-width:260px"><label>Selected domain</label><select id="roleDomainSelect" onchange="selectDomain(this.value)"></select></div>
+        <div><h2>Domain intelligence workspace</h2><p>You can switch domains later without changing your role or access type.</p></div>
+        <div class="field domain-select-field"><label>Selected domain</label><select id="roleDomainSelect" onchange="selectDomain(this.value)"></select></div>
       </div>
       <div id="domainGrid" class="domain-grid"></div>
+      <div class="onboarding-actions"><button class="primary-btn" onclick="continueToAccess()">Continue to access type →</button></div>
     </section>
-    <div class="selection-panel-head" style="margin:0 0 12px 2px"><div><h2>2. Choose workspace role</h2><p>Role controls the actions surfaced in the prototype.</p></div></div>
-    <div class="role-grid">
-      <article class="role-card"><div class="role-icon">H</div><h3>Hub Owner</h3><p>Govern the workspace, curate intelligence priorities, and manage how domain teams consume insights.</p><ul><li>Manage modules & users</li><li>Prioritize intelligence signals</li><li>Configure views & taxonomy</li></ul><button onclick="chooseRole('Hub Owner')">Enter as Hub Owner</button></article>
-      <article class="role-card"><div class="role-icon">C</div><h3>Contributor</h3><p>Add intelligence, research outputs, expert findings, and decision context to shared workstreams.</p><ul><li>Add and tag intelligence</li><li>Upload research outputs</li><li>Create commentary & actions</li></ul><button onclick="chooseRole('Contributor')">Enter as Contributor</button></article>
-      <article class="role-card"><div class="role-icon">V</div><h3>Viewer</h3><p>Explore evidence, dashboards, reports, market signals, and client-ready decision views.</p><ul><li>Consume approved insights</li><li>Filter by domain & segment</li><li>Export prototype snapshots</li></ul><button onclick="chooseRole('Viewer')">Enter as Viewer</button></article>
+  </div>
+</section>
+
+<section id="accessScreen" class="role-screen hidden">
+  <div class="role-top">
+    <button class="secondary-btn" onclick="goBackToDomain()">← Back</button>
+    <div class="ev-logo">EVALUESERVE<span>.</span></div>
+    <button class="secondary-btn" onclick="logout()">Sign out</button>
+  </div>
+  <div class="role-wrap onboarding-wrap">
+    <div class="onboarding-steps" aria-label="Onboarding progress">
+      <span class="done">1</span><i></i><span class="done">2</span><i></i><span class="done">3</span><i></i><span class="active">4</span>
+      <small>Sign in</small><small>Business role</small><small>Domain</small><small>Access type</small>
+    </div>
+    <div class="role-title">
+      <div class="kicker">Set workspace permissions</div>
+      <h1>How will you use MedTech 360?</h1>
+      <p>Access type controls the actions available in the workspace. Your selected business role and domain continue to determine the content you see.</p>
+    </div>
+    <div class="role-grid access-role-grid">
+      <article class="role-card"><div class="role-icon">HO</div><h3>Hub Owner</h3><p>Govern the workspace, curate intelligence priorities, manage taxonomy and shape how teams consume MedTech intelligence.</p><ul><li>Manage workspace configuration</li><li>Prioritize modules & signals</li><li>Govern users and content</li></ul><button onclick="chooseAccessType('Hub Owner')">Enter as Hub Owner</button></article>
+      <article class="role-card"><div class="role-icon">CO</div><h3>Contributor</h3><p>Add intelligence, research outputs, expert findings, decision context and commentary to shared workstreams.</p><ul><li>Add and tag intelligence</li><li>Upload research outputs</li><li>Create commentary & actions</li></ul><button onclick="chooseAccessType('Contributor')">Enter as Contributor</button></article>
+      <article class="role-card"><div class="role-icon">VI</div><h3>Viewer</h3><p>Consume approved evidence, dashboards, reports, market signals and role-tailored decision views in read-only mode.</p><ul><li>Explore approved insights</li><li>Filter by domain & evidence</li><li>Export prototype snapshots</li></ul><button onclick="chooseAccessType('Viewer')">Enter as Viewer</button></article>
     </div>
   </div>
 </section>
@@ -67,7 +116,7 @@
 <section id="appScreen" class="app hidden">
   <aside class="sidebar">
     <div class="side-brand"><div class="ev-logo">EVALUESERVE<span>.</span></div><small>MedTech 360 Intelligence Hub</small></div>
-    <div class="workspace-pill">Current workspace<strong id="sideRole">Viewer</strong><span id="sideDomain">Autoimmunity & Allergy</span></div>
+    <div class="workspace-pill">Workspace lens<strong id="sideBusinessRole">Executive Leadership Team</strong><span id="sideDomain">Immunodiagnostics</span><em id="sideAccessType">Viewer access</em></div>
     <div class="nav-label">Workspace</div>
     <button id="navExecutive" class="nav-btn active" onclick="navigate('executive')"><span class="nav-ico">EH</span><span>Executive Hub</span></button>
     <button id="navIndustry" class="nav-btn" onclick="navigate('industry')"><span class="nav-ico">IO</span><span>Industry Overview</span></button>
@@ -88,7 +137,7 @@
       <div class="top-actions">
         <select id="topDomainSelect" class="top-domain" onchange="switchDomain(this.value)"></select>
         <div class="search-box"><input id="globalSearch" onkeydown="if(event.key==='Enter')runGlobalSearch()" placeholder="Search capabilities, players, topics..." /></div>
-        <button class="logout-btn" onclick="logout()">Log out</button>
+        <button id="accessActionBtn" class="access-action-btn" onclick="handleAccessAction()">Read-only mode</button><button class="logout-btn" onclick="logout()">Log out</button>
         <div class="avatar" id="avatarLabel">AB</div>
       </div>
     </header>
@@ -96,37 +145,37 @@
   </main>
 </section>
 <div id="toast" class="toast"></div>
-<script src="data-base.js?v=20260918y"></script>
-<script src="data-domains-1.js?v=20260918y"></script>
-<script src="data-domains-2.js?v=20260918y"></script>
-<script src="data-domains-3.js?v=20260918y"></script>
-<script src="data-evidence.js?v=20260918y"></script>
-<script src="data-enrichment.js?v=20260918y"></script>
-<script src="data-executive.js?v=20260918y"></script>
-<script src="data-executive-strategy.js?v=20260918y"></script>
-<script src="data-executive-daily.js?v=20260918y"></script>
-<script src="data-ci.js?v=20260918y"></script>
-<script src="data-pmr.js?v=20260918y"></script>
-<script src="data-pmr-demo.js?v=20260918y"></script>
-<script src="data-pmr-demo-v2.js?v=20260918y"></script>
-<script src="data-pageviews.js?v=20260918y"></script>
-<script src="data-company-profiles-1.js?v=20260918y"></script>
-<script src="data-company-profiles-2.js?v=20260918y"></script>
-<script src="data-company-profiles-3.js?v=20260918y"></script>
-<script src="data-company-profiles-4.js?v=20260918y"></script>
-<script src="data-ci-intelligence.js?v=20260918y"></script>
-<script src="data-ci-intelligence-extra.js?v=20260918y"></script>
-<script src="data-ci-intelligence-more-1.js?v=20260918y"></script>
-<script src="data-ci-intelligence-more-2.js?v=20260918y"></script>
-<script src="app-core.js?v=20260918y"></script>
-<script src="app-executive.js?v=20260918y"></script>
-<script src="app-executive-hub.js?v=20260918y"></script>
-<script src="app-company-profiles.js?v=20260918y"></script>
-<script src="app-ci-intelligence.js?v=20260918y"></script>
-<script src="app-ci-intelligence-v2.js?v=20260918y"></script>
-<script src="app-pmr-intelligence.js?v=20260918y"></script>
-<script src="app-pmr-intelligence-v2.js?v=20260918y"></script>
-<script src="app-knowledge-repository.js?v=20260918y"></script>
-<script src="app-subpages.js?v=20260918y"></script>
+<script src="data-base.js?v=20260925a"></script>
+<script src="data-domains-1.js?v=20260925a"></script>
+<script src="data-domains-2.js?v=20260925a"></script>
+<script src="data-domains-3.js?v=20260925a"></script>
+<script src="data-evidence.js?v=20260925a"></script>
+<script src="data-enrichment.js?v=20260925a"></script>
+<script src="data-executive.js?v=20260925a"></script>
+<script src="data-executive-strategy.js?v=20260925a"></script>
+<script src="data-executive-daily.js?v=20260925a"></script>
+<script src="data-ci.js?v=20260925a"></script>
+<script src="data-pmr.js?v=20260925a"></script>
+<script src="data-pmr-demo.js?v=20260925a"></script>
+<script src="data-pmr-demo-v2.js?v=20260925a"></script>
+<script src="data-pageviews.js?v=20260925a"></script>
+<script src="data-company-profiles-1.js?v=20260925a"></script>
+<script src="data-company-profiles-2.js?v=20260925a"></script>
+<script src="data-company-profiles-3.js?v=20260925a"></script>
+<script src="data-company-profiles-4.js?v=20260925a"></script>
+<script src="data-ci-intelligence.js?v=20260925a"></script>
+<script src="data-ci-intelligence-extra.js?v=20260925a"></script>
+<script src="data-ci-intelligence-more-1.js?v=20260925a"></script>
+<script src="data-ci-intelligence-more-2.js?v=20260925a"></script>
+<script src="app-core.js?v=20260925a"></script>
+<script src="app-executive.js?v=20260925a"></script>
+<script src="app-executive-hub.js?v=20260925a"></script>
+<script src="app-company-profiles.js?v=20260925a"></script>
+<script src="app-ci-intelligence.js?v=20260925a"></script>
+<script src="app-ci-intelligence-v2.js?v=20260925a"></script>
+<script src="app-pmr-intelligence.js?v=20260925a"></script>
+<script src="app-pmr-intelligence-v2.js?v=20260925a"></script>
+<script src="app-knowledge-repository.js?v=20260925a"></script>
+<script src="app-subpages.js?v=20260925a"></script>
 </body>
 </html>
