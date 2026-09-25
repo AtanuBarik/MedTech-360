@@ -1,5 +1,5 @@
 /* Executive Hub — daily decision workspace for client executives */
-let executiveAssistantState={team:"Executive leadership",need:"Daily executive brief",region:"Global"};
+let executiveAssistantState={team:currentBusinessRole,need:"Role-specific intelligence brief",region:"Global"};
 
 function execDaily(){return (window.EXECUTIVE_DAILY_DATA&&EXECUTIVE_DAILY_DATA[currentDomain])||{macro:[],buzz:[],questions:[]}}
 function execPmr(){return (window.PMR_DEMO_DATA&&PMR_DEMO_DATA[currentDomain])||null}
@@ -24,8 +24,16 @@ function execUrgentSignals(){
   (st.risks||[]).slice(0,1).forEach(r=>items.push({kind:"Market risk",priority:r.importance||"Medium",title:r.title,detail:r.text,date:"Current",action:"Track exposure and validate whether the risk changes near-term priorities.",route:"industry"}));
   return items.slice(0,6);
 }
-function execTeamOptions(){return ["Executive leadership","Commercial strategy","Marketing","Medical affairs","Market access","R&D / innovation","Business development","Primary market research / insights"]}
-function execNeedOptions(){return ["Daily executive brief","Competitive update","Customer / VOC insight","PMR project status","Market opportunity","Risk watch","Evidence / source summary"]}
+function execTeamOptions(){return [currentBusinessRole]}
+function execNeedOptions(){
+  const map={
+    "Executive Leadership Team":["Executive decision brief","Growth & risk priorities","Competitive update","Portfolio performance","Market opportunity"],
+    "Product & Portfolio Management Team":["Portfolio opportunity","Product / feature benchmark","Customer unmet need","Lifecycle priority","Competitive product update"],
+    "Marketing, Branding & Commercial Excellence Team":["Commercial opportunity","Brand / positioning signal","Pricing & reimbursement intelligence","Customer / VOC insight","Channel & GTM update"],
+    "Strategy & Business Development Team":["Market attractiveness","Partnership / M&A signal","Adjacency opportunity","Competitor strategy","Growth scenario"],
+    "Medical & Clinical Affairs, R&D & Innovation Team":["Clinical evidence update","Unmet need","Innovation / technology signal","Workflow opportunity","R&D priority"]
+  }; return map[currentBusinessRole]||["Role-specific intelligence brief"];
+}
 function updateExecutiveAssistant(key,value){executiveAssistantState[key]=value}
 function execSelect(label,key,values,value){
   return '<label>'+esc(label)+'<select onchange="updateExecutiveAssistant(\''+key+'\',this.value)">'+values.map(v=>'<option '+(v===value?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></label>';
@@ -88,7 +96,7 @@ function runExecutiveChatbot(){
   box.innerHTML='<div class="assistant-thinking"><span></span><span></span><span></span> Synthesizing public intelligence and PMR evidence…</div>';
   setTimeout(()=>{
     const news=execNews(),pmr=execPmr(),ex=typeof executiveData==="function"?executiveData():null,st=typeof executiveStrategy==="function"?executiveStrategy():{};
-    const low=(q+" "+executiveAssistantState.need).toLowerCase();
+    const roleCfg=businessRoleConfig(); const low=(q+" "+executiveAssistantState.need+" "+roleCfg.focus).toLowerCase();
     const regionMacro=(execDaily().macro||[]).filter(m=>executiveAssistantState.region==="Global"||(m.regions||[]).includes("Global")||(m.regions||[]).includes(executiveAssistantState.region));
     let headline="Integrated executive answer",body=[],actions=[];
     if(/customer|voc|persona|need|pain|adoption|preference/.test(low)){
@@ -120,7 +128,7 @@ function runExecutiveChatbot(){
       if((st.trends||[])[0])body.push("Industry trend: "+st.trends[0].title+" — "+st.trends[0].text);
       actions.push("Use the source links below and the PMR workspace to validate the decision context for "+executiveAssistantState.team+".");
     }
-    box.innerHTML='<div class="assistant-response-head"><span>'+esc(executiveAssistantState.team)+'</span><span>'+esc(executiveAssistantState.need)+'</span><b>'+esc(executiveAssistantState.region)+'</b></div><h3>'+esc(headline)+'</h3>'+
+    box.innerHTML='<div class="assistant-response-head"><span>'+esc(roleCfg.short)+'</span><span>'+esc(executiveAssistantState.need)+'</span><b>'+esc(executiveAssistantState.region)+'</b></div><h3>'+esc(headline)+'</h3><p class="assistant-role-context"><strong>Role lens:</strong> '+esc(roleCfg.focus)+'.</p>'+
       '<div class="assistant-answer">'+body.map(x=>'<p>'+esc(x)+'</p>').join('')+'</div>'+
       '<div class="assistant-actions"><strong>Recommended next action</strong>'+actions.map(x=>'<p>→ '+esc(x)+'</p>').join('')+'</div>'+
       '<div class="assistant-sources"><strong>Public-source evidence</strong>'+execAssistantSources(news)+'</div>'+
@@ -129,18 +137,27 @@ function runExecutiveChatbot(){
 }
 function renderExecutiveHub(){
   const d=execPmr(),news=execNews(),urgent=execUrgentSignals(),active=execCurrentPmrProjects(),macro=execDaily().macro||[];
-  $('breadcrumbSmall').textContent='MedTech 360 / Executive Hub';$('breadcrumbTitle').textContent=currentDomain+' — Daily decision center';
+  const roleCfg=businessRoleConfig(); executiveAssistantState.team=currentBusinessRole;
+  $('breadcrumbSmall').textContent='MedTech 360 / '+roleCfg.short;$('breadcrumbTitle').textContent=currentDomain+' — '+roleCfg.assistant;
   const questions=execDaily().questions||[];
+  const rolePrompts={
+    "Executive Leadership Team":["What decisions require leadership attention this week?","Where are the biggest growth and risk signals?","Which competitive moves could materially change our outlook?"],
+    "Product & Portfolio Management Team":["Where are the strongest portfolio gaps and whitespace opportunities?","Which product features are competitors using to differentiate?","What unmet customer needs should shape our roadmap?"],
+    "Marketing, Branding & Commercial Excellence Team":["How should we adjust positioning based on current competitor moves?","What pricing, reimbursement or channel signals matter most?","Which customer segments show the strongest commercial opportunity?"],
+    "Strategy & Business Development Team":["Which adjacencies, partnerships or M&A signals should we investigate?","Where is market attractiveness improving or deteriorating?","What competitor strategy shifts could create an opening?"],
+    "Medical & Clinical Affairs, R&D & Innovation Team":["Which clinical evidence and unmet needs should influence innovation priorities?","What emerging technologies could change the standard workflow?","Where are evidence gaps creating differentiation opportunities?"]
+  };
+  const tailoredQuestions=rolePrompts[currentBusinessRole]||questions;
   $('pageContent').innerHTML=
-    '<section class="hero daily-hero"><div class="hero-grid"><div><div class="kicker" style="color:#f3a4c0">Executive Hub · '+esc(currentDomain)+'</div><h1>What needs attention today?</h1><p>A single executive window combining competitive signals, active PMR work, customer evidence, market dynamics, macro exposure and decision support.</p></div>'+
+    '<section class="hero daily-hero role-aware-hero"><div class="hero-grid"><div><div class="kicker" style="color:#f3a4c0">'+esc(roleCfg.short)+' · '+esc(currentDomain)+'</div><h1>'+esc(roleCfg.assistant)+'</h1><p>This workspace prioritizes '+esc(roleCfg.focus)+'. The evidence, modules and assistant responses below are tailored to your selected role.</p><div class="hero-tags"><span>'+esc(currentRole)+' access</span><span>Role-tailored intelligence</span><span>'+esc(currentDomain)+'</span></div></div>'+
     '<div class="daily-hero-metrics"><article><b>'+urgent.length+'</b><span>Priority signals</span></article><article><b>'+active.length+'</b><span>Active PMR projects</span></article><article><b>'+news.filter(n=>execPriority(n)==="High").length+'</b><span>High-priority public signals</span></article><article><b>'+macro.filter(x=>x.impact==="High").length+'</b><span>High-impact macro factors</span></article></div></div></section>'+
-    '<section class="section executive-assistant-section exec-section-first"><div class="section-head visual-section-head"><div class="visual-title-wrap">'+execVisualIcon("assistant")+'<div><h2>Executive intelligence assistant</h2><p>Ask a business question using the lens of your team, information need and regional responsibility.</p></div></div><span class="assistant-evidence-badge">Public intelligence + PMR</span></div>'+
+    '<section class="section executive-assistant-section exec-section-first"><div class="section-head visual-section-head"><div class="visual-title-wrap">'+execVisualIcon("assistant")+'<div><h2>'+esc(roleCfg.assistant)+'</h2><p>Ask a question within your '+esc(roleCfg.short)+' remit. Responses are framed around '+esc(roleCfg.focus)+'.</p></div></div><span class="assistant-evidence-badge">Public intelligence + PMR</span></div>'+
       '<div class="executive-assistant"><div class="assistant-config">'+
-        execSelect("Your team","team",execTeamOptions(),executiveAssistantState.team)+
+        '<label>Your role<div class="assistant-locked-role">'+esc(currentBusinessRole)+'</div></label>'+
         execSelect("What are you looking for?","need",execNeedOptions(),executiveAssistantState.need)+
         execSelect("Region responsible","region",["Global","North America","Europe","Asia-Pacific","Latin America","Middle East & Africa"],executiveAssistantState.region)+
       '</div><div class="assistant-question"><textarea id="executiveChatInput" placeholder="Ask a business question, e.g., What should we pay attention to in this domain over the next 90 days?"></textarea><button onclick="runExecutiveChatbot()">Analyze question →</button></div>'+
-      '<div class="assistant-prompts">'+questions.map(q=>'<button onclick="executiveExampleQuestion(\''+q.replace(/'/g,"\\'")+'\')">'+esc(q)+'</button>').join('')+'</div>'+
+      '<div class="assistant-prompts">'+tailoredQuestions.map(q=>'<button onclick="executiveExampleQuestion(\''+q.replace(/'/g,"\\'")+'\')">'+esc(q)+'</button>').join('')+'</div>'+
       '<div id="executiveChatResponse" class="executive-chat-response"><div class="assistant-placeholder"><span>AI</span><div><strong>Ready for an executive question</strong><p>The prototype will synthesize source-linked competitive intelligence already in the platform with synthetic PMR findings and show the evidence used.</p></div></div></div></div></section>'+
 
     '<section class="section exec-section-first"><div class="section-head visual-section-head"><div class="visual-title-wrap">'+execVisualIcon("signal")+'<div><h2>Immediate attention</h2><p>Signals and project milestones most likely to require an executive decision, response or follow-up.</p></div></div><button class="daily-link-btn" onclick="navigate(\'industry\')">Open industry overview →</button></div>'+execAttentionCards()+'</section>'+
