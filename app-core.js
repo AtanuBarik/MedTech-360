@@ -2,7 +2,9 @@ const DOMAIN_NAME_MAP = {
   "Autoimmunity & Allergy":"Immunodiagnostics",
   "Diabetes & Blood Glucose Monitoring":"Diabetes Monitoring & Blood Glucose Monitoring",
   "Ophthalmology":"Eye Health",
+  "Ophthalmology & Eye Health":"Eye Health",
   "Orthopedics":"Orthopedics & Sports medicine",
+  "Orthopedics & Sports Medicine":"Orthopedics & Sports medicine",
   "Advanced Wound Management":"Advanced wound management",
   "Clinical Laboratory Services":"Clinical laboratory services"
 };
@@ -14,7 +16,7 @@ const BUSINESS_ROLES = {
   "Medical & Clinical Affairs, R&D & Innovation Team":{short:"Medical, Clinical & R&D",assistant:"Medical, clinical and innovation intelligence advisor",focus:"clinical evidence, unmet needs, emerging technology, workflow gaps, innovation signals and research priorities",ci:["product-portfolio","news-alerts"],pmr:["voc"]}
 };
 function applyDomainAliases(){
-  const stores=["DOMAIN_DATA","DOMAIN_ENRICHMENT","DOMAIN_EVIDENCE","EXECUTIVE_DAILY_DATA","EXECUTIVE_STRATEGY_DATA","EXECUTIVE_HUB_DATA","CI_NEWS_RESEARCH","PMR_DOMAIN_CONFIG","PMR_DEMO_DATA","COMPANY_PROFILES"];
+  const stores=["DOMAIN_DATA","DOMAIN_ENRICHMENT","DOMAIN_EVIDENCE","EXECUTIVE_DAILY_DATA","EXECUTIVE_STRATEGY_DATA","EXECUTIVE_HUB_DATA","CI_NEWS_RESEARCH","CI_NEWS_EXTRA","CI_NEWS_MORE_1","CI_NEWS_MORE_2","PMR_DOMAIN_CONFIG","PMR_DEMO_DATA","PMR_V2_CONFIG","COMPANY_PROFILES"];
   stores.forEach(name=>{const store=window[name];if(!store)return;Object.entries(DOMAIN_NAME_MAP).forEach(([oldName,newName])=>{if(store[oldName]&&!store[newName])store[newName]=store[oldName];});});
   Object.keys(DOMAIN_NAME_MAP).forEach(oldName=>{if(DOMAIN_DATA[oldName])delete DOMAIN_DATA[oldName];});
 }
@@ -47,8 +49,6 @@ function renderDomainSelectors(){
   $('domainGrid').innerHTML=names.map(n=>{const d=DOMAIN_DATA[n];return '<button class="domain-card '+(n===currentDomain?'selected':'')+'" onclick="selectDomain(\''+n.replace(/'/g,"\\'")+'\')"><span class="dc-icon">'+d.icon+'</span><strong>'+esc(n)+'</strong><span>'+esc(d.opportunities.slice(0,2).join(' • '))+'</span></button>'}).join('');
 }
 function selectDomain(name){currentDomain=name;$('roleDomainSelect').value=name;renderDomainSelectors()}
-function chooseRole(role){currentRole=role;localStorage.setItem('medtech360Role',role);localStorage.setItem('medtech360Domain',currentDomain);$('roleScreen').classList.add('hidden');$('appScreen').classList.remove('hidden');initializeApp();navigate('executive')}
-
 function initializeApp(){
   const roleCfg=BUSINESS_ROLES[currentBusinessRole]||BUSINESS_ROLES["Executive Leadership Team"];
   if($('sideBusinessRole'))$('sideBusinessRole').textContent=roleCfg.short;
