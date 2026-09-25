@@ -53,6 +53,7 @@ function initializeApp(){
   const roleCfg=BUSINESS_ROLES[currentBusinessRole]||BUSINESS_ROLES["Executive Leadership Team"];
   if($('sideBusinessRole'))$('sideBusinessRole').textContent=roleCfg.short;
   if($('sideAccessType'))$('sideAccessType').textContent=currentRole+' access';
+  if($('navExecutive'))$('navExecutive').querySelector('span:last-child').textContent=roleCfg.short+' Hub';
   $('sideDomain').textContent=currentDomain;
   $('avatarLabel').textContent=currentRole==='Hub Owner'?'HO':currentRole==='Contributor'?'CO':'VI';
   const opts=Object.keys(DOMAIN_DATA).map(n=>'<option '+(n===currentDomain?'selected':'')+'>'+esc(n)+'</option>').join('');$('topDomainSelect').innerHTML=opts;
